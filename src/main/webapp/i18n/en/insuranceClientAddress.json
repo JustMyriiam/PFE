@@ -1,0 +1,28 @@
+{
+  "insuranceApp": {
+    "insuranceClientAddress": {
+      "home": {
+        "title": "Client Addresses",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Client Address",
+        "createOrEditLabel": "Create or edit a Client Address",
+        "search": "Search for Client Address",
+        "notFound": "No Client Addresses found"
+      },
+      "created": "A new Client Address is created with identifier {{ param }}",
+      "updated": "A Client Address is updated with identifier {{ param }}",
+      "deleted": "A Client Address is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Client Address {{ id }}?"
+      },
+      "detail": {
+        "title": "Client Address"
+      },
+      "id": "Id",
+      "address": "Address",
+      "region": "Region",
+      "clients": "Clients",
+      "city": "City"
+    }
+  }
+}

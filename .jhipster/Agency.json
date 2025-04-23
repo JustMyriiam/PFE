@@ -1,0 +1,55 @@
+{
+  "annotations": {
+    "changelogDate": "19760601191631"
+  },
+  "applications": ["insuranceApp"],
+  "clientRootFolder": "insurance",
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "id",
+      "fieldType": "UUID"
+    },
+    {
+      "fieldName": "name",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "address",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "region",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "phoneNumber",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "managerName",
+      "fieldType": "String"
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "Agency",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityName": "contract",
+      "otherEntityRelationshipName": "agency",
+      "relationshipName": "contracts",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "city",
+      "otherEntityRelationshipName": "agencies",
+      "relationshipName": "city",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "searchEngine": "elasticsearch",
+  "service": "serviceImpl"
+}

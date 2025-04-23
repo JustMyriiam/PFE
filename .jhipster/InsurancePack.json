@@ -1,0 +1,48 @@
+{
+  "annotations": {
+    "changelogDate": "19760601191831"
+  },
+  "applications": ["insuranceApp"],
+  "clientRootFolder": "insurance",
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "id",
+      "fieldType": "UUID"
+    },
+    {
+      "fieldName": "name",
+      "fieldType": "InsurancePackName",
+      "fieldValues": "BASIC,COMFORT,PREMIUM"
+    },
+    {
+      "fieldName": "desciption",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "price",
+      "fieldType": "Float"
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "InsurancePack",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityName": "warranty",
+      "otherEntityRelationshipName": "insurancePacks",
+      "relationshipName": "warranties",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-many"
+    },
+    {
+      "otherEntityName": "vehicle",
+      "otherEntityRelationshipName": "insurancePack",
+      "relationshipName": "vehicle",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "searchEngine": "elasticsearch",
+  "service": "serviceImpl"
+}

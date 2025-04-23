@@ -1,0 +1,58 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (agency(); as agencyRef) {
+      <div>
+        <h2 data-cy="agencyDetailsHeading"><span jhiTranslate="insuranceApp.insuranceAgency.detail.title">Agency</span></h2>
+
+        <hr />
+
+        <jhi-alert-error />
+
+        <jhi-alert />
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="insuranceApp.insuranceAgency.id">Id</span></dt>
+          <dd>
+            <span>{{ agencyRef.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="insuranceApp.insuranceAgency.name">Name</span></dt>
+          <dd>
+            <span>{{ agencyRef.name }}</span>
+          </dd>
+          <dt><span jhiTranslate="insuranceApp.insuranceAgency.address">Address</span></dt>
+          <dd>
+            <span>{{ agencyRef.address }}</span>
+          </dd>
+          <dt><span jhiTranslate="insuranceApp.insuranceAgency.region">Region</span></dt>
+          <dd>
+            <span>{{ agencyRef.region }}</span>
+          </dd>
+          <dt><span jhiTranslate="insuranceApp.insuranceAgency.phoneNumber">Phone Number</span></dt>
+          <dd>
+            <span>{{ agencyRef.phoneNumber }}</span>
+          </dd>
+          <dt><span jhiTranslate="insuranceApp.insuranceAgency.managerName">Manager Name</span></dt>
+          <dd>
+            <span>{{ agencyRef.managerName }}</span>
+          </dd>
+          <dt><span jhiTranslate="insuranceApp.insuranceAgency.city">City</span></dt>
+          <dd>
+            @if (agency()!.city) {
+              <div>
+                <a [routerLink]="['/city', agency()!.city?.id, 'view']">{{ agencyRef.city?.id }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+        </button>
+
+        <button type="button" [routerLink]="['/agency', agencyRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

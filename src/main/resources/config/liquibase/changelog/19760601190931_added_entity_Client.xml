@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <!--
+        Added the entity Client.
+    -->
+    <changeSet id="19760601190931-1" author="jhipster">
+        <createTable tableName="client">
+            <column name="id" type="${uuidType}">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="last_name" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="first_name" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="identity_type" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="identity_number" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="identity_emission_date" type="date">
+                <constraints nullable="true" />
+            </column>
+            <column name="birth_date" type="date">
+                <constraints nullable="true" />
+            </column>
+            <column name="birth_place" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="identity_issue_date" type="date">
+                <constraints nullable="true" />
+            </column>
+            <column name="identity_place_of_issue" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="marital_status" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="nbr_ofchildren" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="professional_email" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="personal_email" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="primary_phone_number" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="secondary_phone_number" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="fax_number" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="nationality" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="gender" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="job_title" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="professional_status" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="bank" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="agency" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="rib" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="driving_license_number" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="driving_license_issue_date" type="date">
+                <constraints nullable="true" />
+            </column>
+            <column name="driving_license_category" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="user_id" type="varchar(100)">
+                <constraints nullable="true" unique="true" uniqueConstraintName="ux_client__user_id" />
+            </column>
+            <column name="client_address_id" type="${uuidType}">
+                <constraints nullable="true" />
+            </column>
+            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
+        </createTable>
+    </changeSet>
+
+    <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here -->
+
+    <!--
+        Load sample data generated with Faker.js
+        - This data can be easily edited using a CSV editor (or even MS Excel) and
+          is located in the 'src/main/resources/config/liquibase/fake-data' directory
+        - By default this data is applied when running with the JHipster 'dev' profile.
+          This can be customized by adding or removing 'faker' in the 'spring.liquibase.contexts'
+          Spring Boot configuration key.
+    -->
+    <changeSet id="19760601190931-1-data" author="jhipster" context="faker">
+        <loadData
+                  file="config/liquibase/fake-data/client.csv"
+                  separator=";"
+                  tableName="client"
+                  usePreparedStatements="true">
+            <column name="id" type="${uuidType}"/>
+            <column name="last_name" type="string"/>
+            <column name="first_name" type="string"/>
+            <column name="identity_type" type="string"/>
+            <column name="identity_number" type="string"/>
+            <column name="identity_emission_date" type="date"/>
+            <column name="birth_date" type="date"/>
+            <column name="birth_place" type="string"/>
+            <column name="identity_issue_date" type="date"/>
+            <column name="identity_place_of_issue" type="string"/>
+            <column name="marital_status" type="string"/>
+            <column name="nbr_ofchildren" type="numeric"/>
+            <column name="professional_email" type="string"/>
+            <column name="personal_email" type="string"/>
+            <column name="primary_phone_number" type="string"/>
+            <column name="secondary_phone_number" type="string"/>
+            <column name="fax_number" type="string"/>
+            <column name="nationality" type="string"/>
+            <column name="gender" type="string"/>
+            <column name="job_title" type="string"/>
+            <column name="professional_status" type="string"/>
+            <column name="bank" type="string"/>
+            <column name="agency" type="string"/>
+            <column name="rib" type="string"/>
+            <column name="driving_license_number" type="string"/>
+            <column name="driving_license_issue_date" type="date"/>
+            <column name="driving_license_category" type="string"/>
+            <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here -->
+        </loadData>
+    </changeSet>
+</databaseChangeLog>

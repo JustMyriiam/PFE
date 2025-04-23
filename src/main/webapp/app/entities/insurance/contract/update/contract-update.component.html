@@ -1,0 +1,217 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-contract-heading"
+        data-cy="ContractCreateUpdateHeading"
+        jhiTranslate="insuranceApp.insuranceContract.home.createOrEditLabel"
+      >
+        Create or edit a Contract
+      </h2>
+
+      <div>
+        <jhi-alert-error />
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="insuranceApp.insuranceContract.id">Id</label>
+            <input type="text" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        <div class="mb-3">
+          <label class="form-label" for="field_contractNumber" jhiTranslate="insuranceApp.insuranceContract.contractNumber"
+            >Contract Number</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="contractNumber"
+            id="field_contractNumber"
+            data-cy="contractNumber"
+            formControlName="contractNumber"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_duration" jhiTranslate="insuranceApp.insuranceContract.duration">Duration</label>
+          <input type="text" class="form-control" name="duration" id="field_duration" data-cy="duration" formControlName="duration" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_startDate" jhiTranslate="insuranceApp.insuranceContract.startDate">Start Date</label>
+          <div class="input-group">
+            <input
+              id="field_startDate"
+              data-cy="startDate"
+              type="text"
+              class="form-control"
+              name="startDate"
+              ngbDatepicker
+              #startDateDp="ngbDatepicker"
+              formControlName="startDate"
+            />
+            <button type="button" class="btn btn-secondary" (click)="startDateDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_endDate" jhiTranslate="insuranceApp.insuranceContract.endDate">End Date</label>
+          <div class="input-group">
+            <input
+              id="field_endDate"
+              data-cy="endDate"
+              type="text"
+              class="form-control"
+              name="endDate"
+              ngbDatepicker
+              #endDateDp="ngbDatepicker"
+              formControlName="endDate"
+            />
+            <button type="button" class="btn btn-secondary" (click)="endDateDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_netPremium" jhiTranslate="insuranceApp.insuranceContract.netPremium">Net Premium</label>
+          <input
+            type="number"
+            class="form-control"
+            name="netPremium"
+            id="field_netPremium"
+            data-cy="netPremium"
+            formControlName="netPremium"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_upfrontPremium" jhiTranslate="insuranceApp.insuranceContract.upfrontPremium"
+            >Upfront Premium</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="upfrontPremium"
+            id="field_upfrontPremium"
+            data-cy="upfrontPremium"
+            formControlName="upfrontPremium"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_cost" jhiTranslate="insuranceApp.insuranceContract.cost">Cost</label>
+          <input type="number" class="form-control" name="cost" id="field_cost" data-cy="cost" formControlName="cost" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_taxes" jhiTranslate="insuranceApp.insuranceContract.taxes">Taxes</label>
+          <input type="number" class="form-control" name="taxes" id="field_taxes" data-cy="taxes" formControlName="taxes" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_fSSR" jhiTranslate="insuranceApp.insuranceContract.fSSR">F SSR</label>
+          <input type="number" class="form-control" name="fSSR" id="field_fSSR" data-cy="fSSR" formControlName="fSSR" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_fPAC" jhiTranslate="insuranceApp.insuranceContract.fPAC">F PAC</label>
+          <input type="number" class="form-control" name="fPAC" id="field_fPAC" data-cy="fPAC" formControlName="fPAC" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_tFGA" jhiTranslate="insuranceApp.insuranceContract.tFGA">T FGA</label>
+          <input type="number" class="form-control" name="tFGA" id="field_tFGA" data-cy="tFGA" formControlName="tFGA" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_contractType" jhiTranslate="insuranceApp.insuranceContract.contractType"
+            >Contract Type</label
+          >
+          <select class="form-control" name="contractType" formControlName="contractType" id="field_contractType" data-cy="contractType">
+            <option [ngValue]="null">{{ 'insuranceApp.ContractType.null' | translate }}</option>
+            @for (contractType of contractTypeValues; track $index) {
+              <option [value]="contractType">{{ 'insuranceApp.ContractType.' + contractType | translate }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_paymentPlan" jhiTranslate="insuranceApp.insuranceContract.paymentPlan">Payment Plan</label>
+          <select class="form-control" name="paymentPlan" formControlName="paymentPlan" id="field_paymentPlan" data-cy="paymentPlan">
+            <option [ngValue]="null">{{ 'insuranceApp.PaymentPlan.null' | translate }}</option>
+            @for (paymentPlan of paymentPlanValues; track $index) {
+              <option [value]="paymentPlan">{{ 'insuranceApp.PaymentPlan.' + paymentPlan | translate }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_vehicle" jhiTranslate="insuranceApp.insuranceContract.vehicle">Vehicle</label>
+          <select
+            class="form-control"
+            id="field_vehicle"
+            data-cy="vehicle"
+            name="vehicle"
+            formControlName="vehicle"
+            [compareWith]="compareVehicle"
+          >
+            <option [ngValue]="null"></option>
+            @for (vehicleOption of vehiclesCollection; track $index) {
+              <option [ngValue]="vehicleOption">{{ vehicleOption.id }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_client" jhiTranslate="insuranceApp.insuranceContract.client">Client</label>
+          <select
+            class="form-control"
+            id="field_client"
+            data-cy="client"
+            name="client"
+            formControlName="client"
+            [compareWith]="compareClient"
+          >
+            <option [ngValue]="null"></option>
+            @for (clientOption of clientsSharedCollection; track $index) {
+              <option [ngValue]="clientOption">{{ clientOption.id }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_agency" jhiTranslate="insuranceApp.insuranceContract.agency">Agency</label>
+          <select
+            class="form-control"
+            id="field_agency"
+            data-cy="agency"
+            name="agency"
+            formControlName="agency"
+            [compareWith]="compareAgency"
+          >
+            <option [ngValue]="null"></option>
+            @for (agencyOption of agenciesSharedCollection; track $index) {
+              <option [ngValue]="agencyOption">{{ agencyOption.id }}</option>
+            }
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,9 @@
+{
+  "insuranceApp": {
+    "ContractType": {
+      "null": "",
+      "RENEWABLE": "RENEWABLE",
+      "CLOSED": "CLOSED"
+    }
+  }
+}

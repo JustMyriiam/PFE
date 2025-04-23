@@ -1,0 +1,11 @@
+{
+  "insuranceApp": {
+    "RequestedDocType": {
+      "null": "",
+      "CIN": "CIN",
+      "VEHICLE_REGISTRATION": "VEHICLE_REGISTRATION",
+      "DRIVING_LICENSE": "DRIVING_LICENSE",
+      "TECHNICAL_INSPECTION": "TECHNICAL_INSPECTION"
+    }
+  }
+}

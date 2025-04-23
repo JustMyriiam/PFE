@@ -1,0 +1,307 @@
+<div>
+  <h2 id="page-heading" data-cy="ContractHeading">
+    <span jhiTranslate="insuranceApp.insuranceContract.home.title">Contracts</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [animation]="isLoading ? 'spin' : undefined"></fa-icon>
+        <span jhiTranslate="insuranceApp.insuranceContract.home.refreshListLabel">Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-contract"
+        [routerLink]="['/contract/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span class="hidden-sm-down" jhiTranslate="insuranceApp.insuranceContract.home.createLabel">Create a new Contract</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error />
+
+  <jhi-alert />
+
+  <form name="searchForm" class="row row-cols-sm-auto align-items-center">
+    <div class="col-sm-12">
+      <div class="input-group w-100 mt-3">
+        <label class="visually-hidden" for="currentSearch" jhiTranslate="insuranceApp.insuranceContract.home.search"
+          >Search for Contract</label
+        >
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="currentSearch"
+          id="currentSearch"
+          name="currentSearch"
+          placeholder="{{ 'insuranceApp.insuranceContract.home.search' | translate }}"
+        />
+
+        <button class="btn btn-info" (click)="search(currentSearch)">
+          <fa-icon icon="search"></fa-icon>
+        </button>
+
+        @if (currentSearch) {
+          <button class="btn btn-danger" (click)="search('')">
+            <fa-icon icon="trash-alt"></fa-icon>
+          </button>
+        }
+      </div>
+    </div>
+  </form>
+
+  <jhi-filter [filters]="filters" />
+
+  @if (contracts().length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span jhiTranslate="insuranceApp.insuranceContract.home.notFound">No Contracts found</span>
+    </div>
+  } @else {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [(sortState)]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span jhiTranslate="insuranceApp.insuranceContract.id">Id</span>
+                @if (!currentSearch) {
+                  <fa-icon class="p-1" icon="sort"></fa-icon>
+                }
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="contractNumber">
+              <div class="d-flex">
+                <span jhiTranslate="insuranceApp.insuranceContract.contractNumber">Contract Number</span>
+                @if (!currentSearch) {
+                  <fa-icon class="p-1" icon="sort"></fa-icon>
+                }
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="duration">
+              <div class="d-flex">
+                <span jhiTranslate="insuranceApp.insuranceContract.duration">Duration</span>
+                @if (!currentSearch) {
+                  <fa-icon class="p-1" icon="sort"></fa-icon>
+                }
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="startDate">
+              <div class="d-flex">
+                <span jhiTranslate="insuranceApp.insuranceContract.startDate">Start Date</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="endDate">
+              <div class="d-flex">
+                <span jhiTranslate="insuranceApp.insuranceContract.endDate">End Date</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="netPremium">
+              <div class="d-flex">
+                <span jhiTranslate="insuranceApp.insuranceContract.netPremium">Net Premium</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="upfrontPremium">
+              <div class="d-flex">
+                <span jhiTranslate="insuranceApp.insuranceContract.upfrontPremium">Upfront Premium</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="cost">
+              <div class="d-flex">
+                <span jhiTranslate="insuranceApp.insuranceContract.cost">Cost</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="taxes">
+              <div class="d-flex">
+                <span jhiTranslate="insuranceApp.insuranceContract.taxes">Taxes</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="fSSR">
+              <div class="d-flex">
+                <span jhiTranslate="insuranceApp.insuranceContract.fSSR">F SSR</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="fPAC">
+              <div class="d-flex">
+                <span jhiTranslate="insuranceApp.insuranceContract.fPAC">F PAC</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="tFGA">
+              <div class="d-flex">
+                <span jhiTranslate="insuranceApp.insuranceContract.tFGA">T FGA</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="contractType">
+              <div class="d-flex">
+                <span jhiTranslate="insuranceApp.insuranceContract.contractType">Contract Type</span>
+                @if (!currentSearch) {
+                  <fa-icon class="p-1" icon="sort"></fa-icon>
+                }
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="paymentPlan">
+              <div class="d-flex">
+                <span jhiTranslate="insuranceApp.insuranceContract.paymentPlan">Payment Plan</span>
+                @if (!currentSearch) {
+                  <fa-icon class="p-1" icon="sort"></fa-icon>
+                }
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="vehicle.id">
+              <div class="d-flex">
+                <span jhiTranslate="insuranceApp.insuranceContract.vehicle">Vehicle</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="client.id">
+              <div class="d-flex">
+                <span jhiTranslate="insuranceApp.insuranceContract.client">Client</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="agency.id">
+              <div class="d-flex">
+                <span jhiTranslate="insuranceApp.insuranceContract.agency">Agency</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (contract of contracts(); track trackId(contract)) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/contract', contract.id, 'view']">{{ contract.id }}</a>
+              </td>
+              <td>{{ contract.contractNumber }}</td>
+              <td>{{ contract.duration }}</td>
+              <td>{{ contract.startDate | formatMediumDate }}</td>
+              <td>{{ contract.endDate | formatMediumDate }}</td>
+              <td>{{ contract.netPremium }}</td>
+              <td>{{ contract.upfrontPremium }}</td>
+              <td>{{ contract.cost }}</td>
+              <td>{{ contract.taxes }}</td>
+              <td>{{ contract.fSSR }}</td>
+              <td>{{ contract.fPAC }}</td>
+              <td>{{ contract.tFGA }}</td>
+              <td [jhiTranslate]="'insuranceApp.ContractType.' + (contract.contractType ?? 'null')">
+                {{ { null: '', RENEWABLE: 'RENEWABLE', CLOSED: 'CLOSED' }[contract.contractType ?? 'null'] }}
+              </td>
+              <td [jhiTranslate]="'insuranceApp.PaymentPlan.' + (contract.paymentPlan ?? 'null')">
+                {{ { null: '', ANNUAL: 'ANNUAL', SEMI_ANNUAL: 'SEMI_ANNUAL', Quarterly: 'Quarterly' }[contract.paymentPlan ?? 'null'] }}
+              </td>
+              <td>
+                @if (contract.vehicle) {
+                  <div>
+                    <a [routerLink]="['/vehicle', contract.vehicle.id, 'view']">{{ contract.vehicle.id }}</a>
+                  </div>
+                }
+              </td>
+              <td>
+                @if (contract.client) {
+                  <div>
+                    <a [routerLink]="['/client', contract.client.id, 'view']">{{ contract.client.id }}</a>
+                  </div>
+                }
+              </td>
+              <td>
+                @if (contract.agency) {
+                  <div>
+                    <a [routerLink]="['/agency', contract.agency.id, 'view']">{{ contract.agency.id }}</a>
+                  </div>
+                }
+              </td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <button
+                    type="submit"
+                    [routerLink]="['/document']"
+                    [queryParams]="{ 'filter[contractId.in]': contract.id }"
+                    class="btn btn-info btn-sm"
+                    data-cy="filterOtherEntityButton"
+                  >
+                    <fa-icon icon="eye"></fa-icon>
+                    <span
+                      class="d-none d-md-inline"
+                      jhiTranslate="entity.action.show"
+                      [translateValues]="{ otherEntity: ('insuranceApp.insuranceContract.documents' | translate) }"
+                      >Show Documents</span
+                    >
+                  </button>
+                  <button
+                    type="submit"
+                    [routerLink]="['/claim']"
+                    [queryParams]="{ 'filter[contractId.in]': contract.id }"
+                    class="btn btn-info btn-sm"
+                    data-cy="filterOtherEntityButton"
+                  >
+                    <fa-icon icon="eye"></fa-icon>
+                    <span
+                      class="d-none d-md-inline"
+                      jhiTranslate="entity.action.show"
+                      [translateValues]="{ otherEntity: ('insuranceApp.insuranceContract.claims' | translate) }"
+                      >Show Claims</span
+                    >
+                  </button>
+                  <a [routerLink]="['/contract', contract.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                  </a>
+
+                  <a [routerLink]="['/contract', contract.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                  </a>
+
+                  <button type="submit" (click)="delete(contract)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+  @if (contracts().length > 0) {
+    <div>
+      <div class="d-flex justify-content-center">
+        <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }" />
+      </div>
+
+      <div class="d-flex justify-content-center">
+        <ngb-pagination
+          [collectionSize]="totalItems"
+          [page]="page"
+          [pageSize]="itemsPerPage"
+          [maxSize]="5"
+          [rotate]="true"
+          [boundaryLinks]="true"
+          (pageChange)="navigateToPage($event)"
+        ></ngb-pagination>
+      </div>
+    </div>
+  }
+</div>

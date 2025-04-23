@@ -1,0 +1,50 @@
+{
+  "annotations": {
+    "changelogDate": "19760601191731"
+  },
+  "applications": ["insuranceApp"],
+  "clientRootFolder": "insurance",
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "id",
+      "fieldType": "UUID"
+    },
+    {
+      "fieldName": "name",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "docPath",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "type",
+      "fieldType": "DocType",
+      "fieldValues": "GENERATED_FILE,REQUESTED_FILE"
+    },
+    {
+      "fieldName": "requestedDocType",
+      "fieldType": "RequestedDocType",
+      "fieldValues": "CIN,VEHICLE_REGISTRATION,DRIVING_LICENSE,TECHNICAL_INSPECTION"
+    },
+    {
+      "fieldName": "creationDate",
+      "fieldType": "LocalDate"
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "Document",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityName": "contract",
+      "otherEntityRelationshipName": "documents",
+      "relationshipName": "contract",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "searchEngine": "elasticsearch",
+  "service": "serviceImpl"
+}

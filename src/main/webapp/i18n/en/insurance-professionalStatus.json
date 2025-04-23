@@ -1,0 +1,9 @@
+{
+  "insuranceApp": {
+    "ProfessionalStatus": {
+      "null": "",
+      "EMPLOYEE": "EMPLOYEE",
+      "SELF_EMPLOYED": "SELF_EMPLOYED"
+    }
+  }
+}

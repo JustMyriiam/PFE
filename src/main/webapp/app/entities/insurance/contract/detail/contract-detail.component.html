@@ -1,0 +1,110 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (contract(); as contractRef) {
+      <div>
+        <h2 data-cy="contractDetailsHeading"><span jhiTranslate="insuranceApp.insuranceContract.detail.title">Contract</span></h2>
+
+        <hr />
+
+        <jhi-alert-error />
+
+        <jhi-alert />
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="insuranceApp.insuranceContract.id">Id</span></dt>
+          <dd>
+            <span>{{ contractRef.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="insuranceApp.insuranceContract.contractNumber">Contract Number</span></dt>
+          <dd>
+            <span>{{ contractRef.contractNumber }}</span>
+          </dd>
+          <dt><span jhiTranslate="insuranceApp.insuranceContract.duration">Duration</span></dt>
+          <dd>
+            <span>{{ contractRef.duration }}</span>
+          </dd>
+          <dt><span jhiTranslate="insuranceApp.insuranceContract.startDate">Start Date</span></dt>
+          <dd>
+            <span>{{ contractRef.startDate | formatMediumDate }}</span>
+          </dd>
+          <dt><span jhiTranslate="insuranceApp.insuranceContract.endDate">End Date</span></dt>
+          <dd>
+            <span>{{ contractRef.endDate | formatMediumDate }}</span>
+          </dd>
+          <dt><span jhiTranslate="insuranceApp.insuranceContract.netPremium">Net Premium</span></dt>
+          <dd>
+            <span>{{ contractRef.netPremium }}</span>
+          </dd>
+          <dt><span jhiTranslate="insuranceApp.insuranceContract.upfrontPremium">Upfront Premium</span></dt>
+          <dd>
+            <span>{{ contractRef.upfrontPremium }}</span>
+          </dd>
+          <dt><span jhiTranslate="insuranceApp.insuranceContract.cost">Cost</span></dt>
+          <dd>
+            <span>{{ contractRef.cost }}</span>
+          </dd>
+          <dt><span jhiTranslate="insuranceApp.insuranceContract.taxes">Taxes</span></dt>
+          <dd>
+            <span>{{ contractRef.taxes }}</span>
+          </dd>
+          <dt><span jhiTranslate="insuranceApp.insuranceContract.fSSR">F SSR</span></dt>
+          <dd>
+            <span>{{ contractRef.fSSR }}</span>
+          </dd>
+          <dt><span jhiTranslate="insuranceApp.insuranceContract.fPAC">F PAC</span></dt>
+          <dd>
+            <span>{{ contractRef.fPAC }}</span>
+          </dd>
+          <dt><span jhiTranslate="insuranceApp.insuranceContract.tFGA">T FGA</span></dt>
+          <dd>
+            <span>{{ contractRef.tFGA }}</span>
+          </dd>
+          <dt><span jhiTranslate="insuranceApp.insuranceContract.contractType">Contract Type</span></dt>
+          <dd>
+            <span [jhiTranslate]="'insuranceApp.ContractType.' + (contractRef.contractType ?? 'null')">{{
+              { null: '', RENEWABLE: 'RENEWABLE', CLOSED: 'CLOSED' }[contractRef.contractType ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span jhiTranslate="insuranceApp.insuranceContract.paymentPlan">Payment Plan</span></dt>
+          <dd>
+            <span [jhiTranslate]="'insuranceApp.PaymentPlan.' + (contractRef.paymentPlan ?? 'null')">{{
+              { null: '', ANNUAL: 'ANNUAL', SEMI_ANNUAL: 'SEMI_ANNUAL', Quarterly: 'Quarterly' }[contractRef.paymentPlan ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span jhiTranslate="insuranceApp.insuranceContract.vehicle">Vehicle</span></dt>
+          <dd>
+            @if (contract()!.vehicle) {
+              <div>
+                <a [routerLink]="['/vehicle', contract()!.vehicle?.id, 'view']">{{ contractRef.vehicle?.id }}</a>
+              </div>
+            }
+          </dd>
+          <dt><span jhiTranslate="insuranceApp.insuranceContract.client">Client</span></dt>
+          <dd>
+            @if (contract()!.client) {
+              <div>
+                <a [routerLink]="['/client', contract()!.client?.id, 'view']">{{ contractRef.client?.id }}</a>
+              </div>
+            }
+          </dd>
+          <dt><span jhiTranslate="insuranceApp.insuranceContract.agency">Agency</span></dt>
+          <dd>
+            @if (contract()!.agency) {
+              <div>
+                <a [routerLink]="['/agency', contract()!.agency?.id, 'view']">{{ contractRef.agency?.id }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+        </button>
+
+        <button type="button" [routerLink]="['/contract', contractRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

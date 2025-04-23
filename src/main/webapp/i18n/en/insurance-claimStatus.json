@@ -1,0 +1,9 @@
+{
+  "insuranceApp": {
+    "ClaimStatus": {
+      "null": "",
+      "IN_PROGRESS": "IN_PROGRESS",
+      "RESOLVED": "RESOLVED"
+    }
+  }
+}

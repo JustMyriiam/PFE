@@ -1,0 +1,432 @@
+<div>
+  <h2 id="page-heading" data-cy="ClientHeading">
+    <span jhiTranslate="insuranceApp.insuranceClient.home.title">Clients</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [animation]="isLoading ? 'spin' : undefined"></fa-icon>
+        <span jhiTranslate="insuranceApp.insuranceClient.home.refreshListLabel">Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-client"
+        [routerLink]="['/client/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span class="hidden-sm-down" jhiTranslate="insuranceApp.insuranceClient.home.createLabel">Create a new Client</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error />
+
+  <jhi-alert />
+
+  <form name="searchForm" class="row row-cols-sm-auto align-items-center">
+    <div class="col-sm-12">
+      <div class="input-group w-100 mt-3">
+        <label class="visually-hidden" for="currentSearch" jhiTranslate="insuranceApp.insuranceClient.home.search">Search for Client</label>
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="currentSearch"
+          id="currentSearch"
+          name="currentSearch"
+          placeholder="{{ 'insuranceApp.insuranceClient.home.search' | translate }}"
+        />
+
+        <button class="btn btn-info" (click)="search(currentSearch)">
+          <fa-icon icon="search"></fa-icon>
+        </button>
+
+        @if (currentSearch) {
+          <button class="btn btn-danger" (click)="search('')">
+            <fa-icon icon="trash-alt"></fa-icon>
+          </button>
+        }
+      </div>
+    </div>
+  </form>
+
+  <jhi-filter [filters]="filters" />
+
+  @if (clients().length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span jhiTranslate="insuranceApp.insuranceClient.home.notFound">No Clients found</span>
+    </div>
+  } @else {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [(sortState)]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span jhiTranslate="insuranceApp.insuranceClient.id">Id</span>
+                @if (!currentSearch) {
+                  <fa-icon class="p-1" icon="sort"></fa-icon>
+                }
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="lastName">
+              <div class="d-flex">
+                <span jhiTranslate="insuranceApp.insuranceClient.lastName">Last Name</span>
+                @if (!currentSearch) {
+                  <fa-icon class="p-1" icon="sort"></fa-icon>
+                }
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="firstName">
+              <div class="d-flex">
+                <span jhiTranslate="insuranceApp.insuranceClient.firstName">First Name</span>
+                @if (!currentSearch) {
+                  <fa-icon class="p-1" icon="sort"></fa-icon>
+                }
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="identityType">
+              <div class="d-flex">
+                <span jhiTranslate="insuranceApp.insuranceClient.identityType">Identity Type</span>
+                @if (!currentSearch) {
+                  <fa-icon class="p-1" icon="sort"></fa-icon>
+                }
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="identityNumber">
+              <div class="d-flex">
+                <span jhiTranslate="insuranceApp.insuranceClient.identityNumber">Identity Number</span>
+                @if (!currentSearch) {
+                  <fa-icon class="p-1" icon="sort"></fa-icon>
+                }
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="identityEmissionDate">
+              <div class="d-flex">
+                <span jhiTranslate="insuranceApp.insuranceClient.identityEmissionDate">Identity Emission Date</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="birthDate">
+              <div class="d-flex">
+                <span jhiTranslate="insuranceApp.insuranceClient.birthDate">Birth Date</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="birthPlace">
+              <div class="d-flex">
+                <span jhiTranslate="insuranceApp.insuranceClient.birthPlace">Birth Place</span>
+                @if (!currentSearch) {
+                  <fa-icon class="p-1" icon="sort"></fa-icon>
+                }
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="identityIssueDate">
+              <div class="d-flex">
+                <span jhiTranslate="insuranceApp.insuranceClient.identityIssueDate">Identity Issue Date</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="identityPlaceOfIssue">
+              <div class="d-flex">
+                <span jhiTranslate="insuranceApp.insuranceClient.identityPlaceOfIssue">Identity Place Of Issue</span>
+                @if (!currentSearch) {
+                  <fa-icon class="p-1" icon="sort"></fa-icon>
+                }
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="maritalStatus">
+              <div class="d-flex">
+                <span jhiTranslate="insuranceApp.insuranceClient.maritalStatus">Marital Status</span>
+                @if (!currentSearch) {
+                  <fa-icon class="p-1" icon="sort"></fa-icon>
+                }
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="nbrOfchildren">
+              <div class="d-flex">
+                <span jhiTranslate="insuranceApp.insuranceClient.nbrOfchildren">Nbr Ofchildren</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="professionalEmail">
+              <div class="d-flex">
+                <span jhiTranslate="insuranceApp.insuranceClient.professionalEmail">Professional Email</span>
+                @if (!currentSearch) {
+                  <fa-icon class="p-1" icon="sort"></fa-icon>
+                }
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="personalEmail">
+              <div class="d-flex">
+                <span jhiTranslate="insuranceApp.insuranceClient.personalEmail">Personal Email</span>
+                @if (!currentSearch) {
+                  <fa-icon class="p-1" icon="sort"></fa-icon>
+                }
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="primaryPhoneNumber">
+              <div class="d-flex">
+                <span jhiTranslate="insuranceApp.insuranceClient.primaryPhoneNumber">Primary Phone Number</span>
+                @if (!currentSearch) {
+                  <fa-icon class="p-1" icon="sort"></fa-icon>
+                }
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="secondaryPhoneNumber">
+              <div class="d-flex">
+                <span jhiTranslate="insuranceApp.insuranceClient.secondaryPhoneNumber">Secondary Phone Number</span>
+                @if (!currentSearch) {
+                  <fa-icon class="p-1" icon="sort"></fa-icon>
+                }
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="faxNumber">
+              <div class="d-flex">
+                <span jhiTranslate="insuranceApp.insuranceClient.faxNumber">Fax Number</span>
+                @if (!currentSearch) {
+                  <fa-icon class="p-1" icon="sort"></fa-icon>
+                }
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="nationality">
+              <div class="d-flex">
+                <span jhiTranslate="insuranceApp.insuranceClient.nationality">Nationality</span>
+                @if (!currentSearch) {
+                  <fa-icon class="p-1" icon="sort"></fa-icon>
+                }
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="gender">
+              <div class="d-flex">
+                <span jhiTranslate="insuranceApp.insuranceClient.gender">Gender</span>
+                @if (!currentSearch) {
+                  <fa-icon class="p-1" icon="sort"></fa-icon>
+                }
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="jobTitle">
+              <div class="d-flex">
+                <span jhiTranslate="insuranceApp.insuranceClient.jobTitle">Job Title</span>
+                @if (!currentSearch) {
+                  <fa-icon class="p-1" icon="sort"></fa-icon>
+                }
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="professionalStatus">
+              <div class="d-flex">
+                <span jhiTranslate="insuranceApp.insuranceClient.professionalStatus">Professional Status</span>
+                @if (!currentSearch) {
+                  <fa-icon class="p-1" icon="sort"></fa-icon>
+                }
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="bank">
+              <div class="d-flex">
+                <span jhiTranslate="insuranceApp.insuranceClient.bank">Bank</span>
+                @if (!currentSearch) {
+                  <fa-icon class="p-1" icon="sort"></fa-icon>
+                }
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="agency">
+              <div class="d-flex">
+                <span jhiTranslate="insuranceApp.insuranceClient.agency">Agency</span>
+                @if (!currentSearch) {
+                  <fa-icon class="p-1" icon="sort"></fa-icon>
+                }
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="rib">
+              <div class="d-flex">
+                <span jhiTranslate="insuranceApp.insuranceClient.rib">Rib</span>
+                @if (!currentSearch) {
+                  <fa-icon class="p-1" icon="sort"></fa-icon>
+                }
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="drivingLicenseNumber">
+              <div class="d-flex">
+                <span jhiTranslate="insuranceApp.insuranceClient.drivingLicenseNumber">Driving License Number</span>
+                @if (!currentSearch) {
+                  <fa-icon class="p-1" icon="sort"></fa-icon>
+                }
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="drivingLicenseIssueDate">
+              <div class="d-flex">
+                <span jhiTranslate="insuranceApp.insuranceClient.drivingLicenseIssueDate">Driving License Issue Date</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="drivingLicenseCategory">
+              <div class="d-flex">
+                <span jhiTranslate="insuranceApp.insuranceClient.drivingLicenseCategory">Driving License Category</span>
+                @if (!currentSearch) {
+                  <fa-icon class="p-1" icon="sort"></fa-icon>
+                }
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="user.login">
+              <div class="d-flex">
+                <span jhiTranslate="insuranceApp.insuranceClient.user">User</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="clientAddress.id">
+              <div class="d-flex">
+                <span jhiTranslate="insuranceApp.insuranceClient.clientAddress">Client Address</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (client of clients(); track trackId(client)) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/client', client.id, 'view']">{{ client.id }}</a>
+              </td>
+              <td>{{ client.lastName }}</td>
+              <td>{{ client.firstName }}</td>
+              <td [jhiTranslate]="'insuranceApp.IdentityType.' + (client.identityType ?? 'null')">
+                {{ { null: '', CIN: 'CIN', PASSPORT: 'PASSPORT' }[client.identityType ?? 'null'] }}
+              </td>
+              <td>{{ client.identityNumber }}</td>
+              <td>{{ client.identityEmissionDate | formatMediumDate }}</td>
+              <td>{{ client.birthDate | formatMediumDate }}</td>
+              <td>{{ client.birthPlace }}</td>
+              <td>{{ client.identityIssueDate | formatMediumDate }}</td>
+              <td>{{ client.identityPlaceOfIssue }}</td>
+              <td [jhiTranslate]="'insuranceApp.MaritalStatus.' + (client.maritalStatus ?? 'null')">
+                {{
+                  { null: '', SINGLE: 'SINGLE', MARRIED: 'MARRIED', WIDOWED: 'WIDOWED', DIVORCED: 'DIVORCED' }[
+                    client.maritalStatus ?? 'null'
+                  ]
+                }}
+              </td>
+              <td>{{ client.nbrOfchildren }}</td>
+              <td>{{ client.professionalEmail }}</td>
+              <td>{{ client.personalEmail }}</td>
+              <td>{{ client.primaryPhoneNumber }}</td>
+              <td>{{ client.secondaryPhoneNumber }}</td>
+              <td>{{ client.faxNumber }}</td>
+              <td>{{ client.nationality }}</td>
+              <td [jhiTranslate]="'insuranceApp.Gender.' + (client.gender ?? 'null')">
+                {{ { null: '', MALE: 'MALE', FEMALE: 'FEMALE' }[client.gender ?? 'null'] }}
+              </td>
+              <td>{{ client.jobTitle }}</td>
+              <td [jhiTranslate]="'insuranceApp.ProfessionalStatus.' + (client.professionalStatus ?? 'null')">
+                {{ { null: '', EMPLOYEE: 'EMPLOYEE', SELF_EMPLOYED: 'SELF_EMPLOYED' }[client.professionalStatus ?? 'null'] }}
+              </td>
+              <td>{{ client.bank }}</td>
+              <td>{{ client.agency }}</td>
+              <td>{{ client.rib }}</td>
+              <td>{{ client.drivingLicenseNumber }}</td>
+              <td>{{ client.drivingLicenseIssueDate | formatMediumDate }}</td>
+              <td>{{ client.drivingLicenseCategory }}</td>
+              <td>
+                {{ client.user?.login }}
+              </td>
+              <td>
+                @if (client.clientAddress) {
+                  <div>
+                    <a [routerLink]="['/client-address', client.clientAddress.id, 'view']">{{ client.clientAddress.id }}</a>
+                  </div>
+                }
+              </td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <button
+                    type="submit"
+                    [routerLink]="['/quote']"
+                    [queryParams]="{ 'filter[clientId.in]': client.id }"
+                    class="btn btn-info btn-sm"
+                    data-cy="filterOtherEntityButton"
+                  >
+                    <fa-icon icon="eye"></fa-icon>
+                    <span
+                      class="d-none d-md-inline"
+                      jhiTranslate="entity.action.show"
+                      [translateValues]="{ otherEntity: ('insuranceApp.insuranceClient.quotes' | translate) }"
+                      >Show Quotes</span
+                    >
+                  </button>
+                  <button
+                    type="submit"
+                    [routerLink]="['/contract']"
+                    [queryParams]="{ 'filter[clientId.in]': client.id }"
+                    class="btn btn-info btn-sm"
+                    data-cy="filterOtherEntityButton"
+                  >
+                    <fa-icon icon="eye"></fa-icon>
+                    <span
+                      class="d-none d-md-inline"
+                      jhiTranslate="entity.action.show"
+                      [translateValues]="{ otherEntity: ('insuranceApp.insuranceClient.contracts' | translate) }"
+                      >Show Contracts</span
+                    >
+                  </button>
+                  <button
+                    type="submit"
+                    [routerLink]="['/claim']"
+                    [queryParams]="{ 'filter[clientId.in]': client.id }"
+                    class="btn btn-info btn-sm"
+                    data-cy="filterOtherEntityButton"
+                  >
+                    <fa-icon icon="eye"></fa-icon>
+                    <span
+                      class="d-none d-md-inline"
+                      jhiTranslate="entity.action.show"
+                      [translateValues]="{ otherEntity: ('insuranceApp.insuranceClient.claims' | translate) }"
+                      >Show Claims</span
+                    >
+                  </button>
+                  <a [routerLink]="['/client', client.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                  </a>
+
+                  <a [routerLink]="['/client', client.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                  </a>
+
+                  <button type="submit" (click)="delete(client)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+  @if (clients().length > 0) {
+    <div>
+      <div class="d-flex justify-content-center">
+        <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }" />
+      </div>
+
+      <div class="d-flex justify-content-center">
+        <ngb-pagination
+          [collectionSize]="totalItems"
+          [page]="page"
+          [pageSize]="itemsPerPage"
+          [maxSize]="5"
+          [rotate]="true"
+          [boundaryLinks]="true"
+          (pageChange)="navigateToPage($event)"
+        ></ngb-pagination>
+      </div>
+    </div>
+  }
+</div>

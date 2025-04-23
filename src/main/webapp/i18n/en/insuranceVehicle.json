@@ -1,0 +1,62 @@
+{
+  "insuranceApp": {
+    "insuranceVehicle": {
+      "home": {
+        "title": "Vehicles",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Vehicle",
+        "createOrEditLabel": "Create or edit a Vehicle",
+        "search": "Search for Vehicle",
+        "notFound": "No Vehicles found"
+      },
+      "created": "A new Vehicle is created with identifier {{ param }}",
+      "updated": "A Vehicle is updated with identifier {{ param }}",
+      "deleted": "A Vehicle is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Vehicle {{ id }}?"
+      },
+      "detail": {
+        "title": "Vehicle"
+      },
+      "id": "Id",
+      "registrationNumber": "Registration Number",
+      "registrationType": "Registration Type",
+      "firstRegistrationDate": "First Registration Date",
+      "technicalInspectionStatus": "Technical Inspection Status",
+      "expirationDate": "Expiration Date",
+      "newValue": "New Value",
+      "marketValue": "Market Value",
+      "brand": "Brand",
+      "model": "Model",
+      "fiscalPower": "Fiscal Power",
+      "chassisNumber": "Chassis Number",
+      "energy": "Energy",
+      "genre": "Genre",
+      "nbrOfSeats": "Nbr Of Seats",
+      "nbrOfStandingPlaces": "Nbr Of Standing Places",
+      "emptyWeight": "Empty Weight",
+      "payload": "Payload",
+      "bonusMalus": "Bonus Malus",
+      "vehicleAge": "Vehicle Age",
+      "mileage": "Mileage",
+      "numberOfDoors": "Number Of Doors",
+      "gearbox": "Gearbox",
+      "color": "Color",
+      "usage": "Usage",
+      "isNew": "Is New",
+      "hasGarage": "Has Garage",
+      "hasParking": "Has Parking",
+      "hasAlarmSystem": "Has Alarm System",
+      "hasSeatbeltAlarm": "Has Seatbelt Alarm",
+      "hasRearCamera": "Has Rear Camera",
+      "hasRearRadar": "Has Rear Radar",
+      "hasAbsSystem": "Has Abs System",
+      "hasGPS": "Has GPS",
+      "hasAirbag": "Has Airbag",
+      "navette": "Navette",
+      "insurancePack": "Insurance Pack",
+      "quote": "Quote",
+      "contract": "Contract"
+    }
+  }
+}

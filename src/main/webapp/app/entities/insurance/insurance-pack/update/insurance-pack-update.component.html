@@ -1,0 +1,101 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-insurance-pack-heading"
+        data-cy="InsurancePackCreateUpdateHeading"
+        jhiTranslate="insuranceApp.insuranceInsurancePack.home.createOrEditLabel"
+      >
+        Create or edit a Insurance Pack
+      </h2>
+
+      <div>
+        <jhi-alert-error />
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="insuranceApp.insuranceInsurancePack.id">Id</label>
+            <input type="text" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        <div class="mb-3">
+          <label class="form-label" for="field_name" jhiTranslate="insuranceApp.insuranceInsurancePack.name">Name</label>
+          <select class="form-control" name="name" formControlName="name" id="field_name" data-cy="name">
+            <option [ngValue]="null">{{ 'insuranceApp.InsurancePackName.null' | translate }}</option>
+            @for (insurancePackName of insurancePackNameValues; track $index) {
+              <option [value]="insurancePackName">{{ 'insuranceApp.InsurancePackName.' + insurancePackName | translate }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_desciption" jhiTranslate="insuranceApp.insuranceInsurancePack.desciption">Desciption</label>
+          <input
+            type="text"
+            class="form-control"
+            name="desciption"
+            id="field_desciption"
+            data-cy="desciption"
+            formControlName="desciption"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_price" jhiTranslate="insuranceApp.insuranceInsurancePack.price">Price</label>
+          <input type="number" class="form-control" name="price" id="field_price" data-cy="price" formControlName="price" />
+        </div>
+
+        <div class="mb-3">
+          <label for="field_warranties" jhiTranslate="insuranceApp.insuranceInsurancePack.warranties">Warranties</label>
+          <select
+            class="form-control"
+            id="field_warranties"
+            data-cy="warranties"
+            multiple
+            name="warranties"
+            formControlName="warranties"
+            [compareWith]="compareWarranty"
+          >
+            @for (warrantyOption of warrantiesSharedCollection; track $index) {
+              <option [ngValue]="warrantyOption">{{ warrantyOption.id }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_vehicle" jhiTranslate="insuranceApp.insuranceInsurancePack.vehicle">Vehicle</label>
+          <select
+            class="form-control"
+            id="field_vehicle"
+            data-cy="vehicle"
+            name="vehicle"
+            formControlName="vehicle"
+            [compareWith]="compareVehicle"
+          >
+            <option [ngValue]="null"></option>
+            @for (vehicleOption of vehiclesSharedCollection; track $index) {
+              <option [ngValue]="vehicleOption">{{ vehicleOption.id }}</option>
+            }
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

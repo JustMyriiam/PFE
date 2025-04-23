@@ -1,0 +1,167 @@
+<div>
+  <h2 id="page-heading" data-cy="InsurancePackHeading">
+    <span jhiTranslate="insuranceApp.insuranceInsurancePack.home.title">Insurance Packs</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [animation]="isLoading ? 'spin' : undefined"></fa-icon>
+        <span jhiTranslate="insuranceApp.insuranceInsurancePack.home.refreshListLabel">Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-insurance-pack"
+        [routerLink]="['/insurance-pack/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span class="hidden-sm-down" jhiTranslate="insuranceApp.insuranceInsurancePack.home.createLabel">Create a new Insurance Pack</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error />
+
+  <jhi-alert />
+
+  <form name="searchForm" class="row row-cols-sm-auto align-items-center">
+    <div class="col-sm-12">
+      <div class="input-group w-100 mt-3">
+        <label class="visually-hidden" for="currentSearch" jhiTranslate="insuranceApp.insuranceInsurancePack.home.search"
+          >Search for Insurance Pack</label
+        >
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="currentSearch"
+          id="currentSearch"
+          name="currentSearch"
+          placeholder="{{ 'insuranceApp.insuranceInsurancePack.home.search' | translate }}"
+        />
+
+        <button class="btn btn-info" (click)="search(currentSearch)">
+          <fa-icon icon="search"></fa-icon>
+        </button>
+
+        @if (currentSearch) {
+          <button class="btn btn-danger" (click)="search('')">
+            <fa-icon icon="trash-alt"></fa-icon>
+          </button>
+        }
+      </div>
+    </div>
+  </form>
+
+  <jhi-filter [filters]="filters" />
+
+  @if (insurancePacks().length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span jhiTranslate="insuranceApp.insuranceInsurancePack.home.notFound">No Insurance Packs found</span>
+    </div>
+  } @else {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [(sortState)]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span jhiTranslate="insuranceApp.insuranceInsurancePack.id">Id</span>
+                @if (!currentSearch) {
+                  <fa-icon class="p-1" icon="sort"></fa-icon>
+                }
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="name">
+              <div class="d-flex">
+                <span jhiTranslate="insuranceApp.insuranceInsurancePack.name">Name</span>
+                @if (!currentSearch) {
+                  <fa-icon class="p-1" icon="sort"></fa-icon>
+                }
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="desciption">
+              <div class="d-flex">
+                <span jhiTranslate="insuranceApp.insuranceInsurancePack.desciption">Desciption</span>
+                @if (!currentSearch) {
+                  <fa-icon class="p-1" icon="sort"></fa-icon>
+                }
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="price">
+              <div class="d-flex">
+                <span jhiTranslate="insuranceApp.insuranceInsurancePack.price">Price</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="vehicle.id">
+              <div class="d-flex">
+                <span jhiTranslate="insuranceApp.insuranceInsurancePack.vehicle">Vehicle</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (insurancePack of insurancePacks(); track trackId(insurancePack)) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/insurance-pack', insurancePack.id, 'view']">{{ insurancePack.id }}</a>
+              </td>
+              <td [jhiTranslate]="'insuranceApp.InsurancePackName.' + (insurancePack.name ?? 'null')">
+                {{ { null: '', BASIC: 'BASIC', COMFORT: 'COMFORT', PREMIUM: 'PREMIUM' }[insurancePack.name ?? 'null'] }}
+              </td>
+              <td>{{ insurancePack.desciption }}</td>
+              <td>{{ insurancePack.price }}</td>
+              <td>
+                @if (insurancePack.vehicle) {
+                  <div>
+                    <a [routerLink]="['/vehicle', insurancePack.vehicle.id, 'view']">{{ insurancePack.vehicle.id }}</a>
+                  </div>
+                }
+              </td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <a [routerLink]="['/insurance-pack', insurancePack.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                  </a>
+
+                  <a [routerLink]="['/insurance-pack', insurancePack.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                  </a>
+
+                  <button type="submit" (click)="delete(insurancePack)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+  @if (insurancePacks().length > 0) {
+    <div>
+      <div class="d-flex justify-content-center">
+        <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }" />
+      </div>
+
+      <div class="d-flex justify-content-center">
+        <ngb-pagination
+          [collectionSize]="totalItems"
+          [page]="page"
+          [pageSize]="itemsPerPage"
+          [maxSize]="5"
+          [rotate]="true"
+          [boundaryLinks]="true"
+          (pageChange)="navigateToPage($event)"
+        ></ngb-pagination>
+      </div>
+    </div>
+  }
+</div>

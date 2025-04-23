@@ -1,0 +1,63 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (insurancePack(); as insurancePackRef) {
+      <div>
+        <h2 data-cy="insurancePackDetailsHeading">
+          <span jhiTranslate="insuranceApp.insuranceInsurancePack.detail.title">Insurance Pack</span>
+        </h2>
+
+        <hr />
+
+        <jhi-alert-error />
+
+        <jhi-alert />
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="insuranceApp.insuranceInsurancePack.id">Id</span></dt>
+          <dd>
+            <span>{{ insurancePackRef.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="insuranceApp.insuranceInsurancePack.name">Name</span></dt>
+          <dd>
+            <span [jhiTranslate]="'insuranceApp.InsurancePackName.' + (insurancePackRef.name ?? 'null')">{{
+              { null: '', BASIC: 'BASIC', COMFORT: 'COMFORT', PREMIUM: 'PREMIUM' }[insurancePackRef.name ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span jhiTranslate="insuranceApp.insuranceInsurancePack.desciption">Desciption</span></dt>
+          <dd>
+            <span>{{ insurancePackRef.desciption }}</span>
+          </dd>
+          <dt><span jhiTranslate="insuranceApp.insuranceInsurancePack.price">Price</span></dt>
+          <dd>
+            <span>{{ insurancePackRef.price }}</span>
+          </dd>
+          <dt><span jhiTranslate="insuranceApp.insuranceInsurancePack.warranties">Warranties</span></dt>
+          <dd>
+            @for (warranties of insurancePackRef.warranties; track $index; let last = $last) {
+              <span>
+                <a [routerLink]="['/warranty', warranties.id, 'view']">{{ warranties?.id }}</a
+                >{{ last ? '' : ', ' }}
+              </span>
+            }
+          </dd>
+          <dt><span jhiTranslate="insuranceApp.insuranceInsurancePack.vehicle">Vehicle</span></dt>
+          <dd>
+            @if (insurancePack()!.vehicle) {
+              <div>
+                <a [routerLink]="['/vehicle', insurancePack()!.vehicle?.id, 'view']">{{ insurancePackRef.vehicle?.id }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+        </button>
+
+        <button type="button" [routerLink]="['/insurance-pack', insurancePackRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

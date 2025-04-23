@@ -1,0 +1,42 @@
+{
+  "insuranceApp": {
+    "insuranceContract": {
+      "home": {
+        "title": "Contracts",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Contract",
+        "createOrEditLabel": "Créer ou éditer un Contract",
+        "search": "Recherche pour Contract",
+        "notFound": "Aucun Contract trouvé"
+      },
+      "created": "Un nouveau Contract a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Contract avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Contract avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Êtes-vous certain de vouloir supprimer le Contract {{ id }} ?"
+      },
+      "detail": {
+        "title": "Contract"
+      },
+      "id": "Id",
+      "contractNumber": "Contract Number",
+      "duration": "Duration",
+      "startDate": "Start Date",
+      "endDate": "End Date",
+      "netPremium": "Net Premium",
+      "upfrontPremium": "Upfront Premium",
+      "cost": "Cost",
+      "taxes": "Taxes",
+      "fSSR": "F SSR",
+      "fPAC": "F PAC",
+      "tFGA": "T FGA",
+      "contractType": "Contract Type",
+      "paymentPlan": "Payment Plan",
+      "vehicle": "Vehicle",
+      "documents": "Documents",
+      "claims": "Claims",
+      "client": "Client",
+      "agency": "Agency"
+    }
+  }
+}

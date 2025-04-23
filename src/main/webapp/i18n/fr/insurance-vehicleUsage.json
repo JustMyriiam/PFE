@@ -1,0 +1,9 @@
+{
+  "insuranceApp": {
+    "VehicleUsage": {
+      "null": "",
+      "PERSONAL": "PERSONAL",
+      "COMMERCIAL": "COMMERCIAL"
+    }
+  }
+}

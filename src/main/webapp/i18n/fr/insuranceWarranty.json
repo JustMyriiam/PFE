@@ -1,0 +1,30 @@
+{
+  "insuranceApp": {
+    "insuranceWarranty": {
+      "home": {
+        "title": "Warranties",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Warranty",
+        "createOrEditLabel": "Créer ou éditer un Warranty",
+        "search": "Recherche pour Warranty",
+        "notFound": "Aucun Warranty trouvé"
+      },
+      "created": "Un nouveau Warranty a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Warranty avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Warranty avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Êtes-vous certain de vouloir supprimer le Warranty {{ id }} ?"
+      },
+      "detail": {
+        "title": "Warranty"
+      },
+      "id": "Id",
+      "name": "Name",
+      "limit": "Limit",
+      "franchise": "Franchise",
+      "price": "Price",
+      "mandatory": "Mandatory",
+      "insurancePacks": "Insurance Packs"
+    }
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "insuranceApp": {
+    "Gearbox": {
+      "null": "",
+      "AUTOMATIC": "AUTOMATIC",
+      "MANUAL": "MANUAL"
+    }
+  }
+}

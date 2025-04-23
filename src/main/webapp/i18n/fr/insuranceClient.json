@@ -1,0 +1,55 @@
+{
+  "insuranceApp": {
+    "insuranceClient": {
+      "home": {
+        "title": "Clients",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Client",
+        "createOrEditLabel": "Créer ou éditer un Client",
+        "search": "Recherche pour Client",
+        "notFound": "Aucun Client trouvé"
+      },
+      "created": "Un nouveau Client a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Client avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Client avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Êtes-vous certain de vouloir supprimer le Client {{ id }} ?"
+      },
+      "detail": {
+        "title": "Client"
+      },
+      "id": "Id",
+      "lastName": "Last Name",
+      "firstName": "First Name",
+      "identityType": "Identity Type",
+      "identityNumber": "Identity Number",
+      "identityEmissionDate": "Identity Emission Date",
+      "birthDate": "Birth Date",
+      "birthPlace": "Birth Place",
+      "identityIssueDate": "Identity Issue Date",
+      "identityPlaceOfIssue": "Identity Place Of Issue",
+      "maritalStatus": "Marital Status",
+      "nbrOfchildren": "Nbr Ofchildren",
+      "professionalEmail": "Professional Email",
+      "personalEmail": "Personal Email",
+      "primaryPhoneNumber": "Primary Phone Number",
+      "secondaryPhoneNumber": "Secondary Phone Number",
+      "faxNumber": "Fax Number",
+      "nationality": "Nationality",
+      "gender": "Gender",
+      "jobTitle": "Job Title",
+      "professionalStatus": "Professional Status",
+      "bank": "Bank",
+      "agency": "Agency",
+      "rib": "Rib",
+      "drivingLicenseNumber": "Driving License Number",
+      "drivingLicenseIssueDate": "Driving License Issue Date",
+      "drivingLicenseCategory": "Driving License Category",
+      "user": "User",
+      "quotes": "Quotes",
+      "contracts": "Contracts",
+      "claims": "Claims",
+      "clientAddress": "Client Address"
+    }
+  }
+}

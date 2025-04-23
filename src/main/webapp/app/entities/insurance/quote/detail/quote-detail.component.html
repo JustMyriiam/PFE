@@ -1,0 +1,54 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (quote(); as quoteRef) {
+      <div>
+        <h2 data-cy="quoteDetailsHeading"><span jhiTranslate="insuranceApp.insuranceQuote.detail.title">Quote</span></h2>
+
+        <hr />
+
+        <jhi-alert-error />
+
+        <jhi-alert />
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="insuranceApp.insuranceQuote.id">Id</span></dt>
+          <dd>
+            <span>{{ quoteRef.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="insuranceApp.insuranceQuote.date">Date</span></dt>
+          <dd>
+            <span>{{ quoteRef.date | formatMediumDate }}</span>
+          </dd>
+          <dt><span jhiTranslate="insuranceApp.insuranceQuote.estimatedAmount">Estimated Amount</span></dt>
+          <dd>
+            <span>{{ quoteRef.estimatedAmount }}</span>
+          </dd>
+          <dt><span jhiTranslate="insuranceApp.insuranceQuote.vehicle">Vehicle</span></dt>
+          <dd>
+            @if (quote()!.vehicle) {
+              <div>
+                <a [routerLink]="['/vehicle', quote()!.vehicle?.id, 'view']">{{ quoteRef.vehicle?.id }}</a>
+              </div>
+            }
+          </dd>
+          <dt><span jhiTranslate="insuranceApp.insuranceQuote.client">Client</span></dt>
+          <dd>
+            @if (quote()!.client) {
+              <div>
+                <a [routerLink]="['/client', quote()!.client?.id, 'view']">{{ quoteRef.client?.id }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+        </button>
+
+        <button type="button" [routerLink]="['/quote', quoteRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

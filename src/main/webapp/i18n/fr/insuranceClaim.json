@@ -1,0 +1,30 @@
+{
+  "insuranceApp": {
+    "insuranceClaim": {
+      "home": {
+        "title": "Claims",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Claim",
+        "createOrEditLabel": "Créer ou éditer un Claim",
+        "search": "Recherche pour Claim",
+        "notFound": "Aucun Claim trouvé"
+      },
+      "created": "Un nouveau Claim a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Claim avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Claim avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Êtes-vous certain de vouloir supprimer le Claim {{ id }} ?"
+      },
+      "detail": {
+        "title": "Claim"
+      },
+      "id": "Id",
+      "type": "Type",
+      "description": "Description",
+      "date": "Date",
+      "status": "Status",
+      "client": "Client",
+      "contract": "Contract"
+    }
+  }
+}

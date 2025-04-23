@@ -1,0 +1,42 @@
+{
+  "annotations": {
+    "changelogDate": "19760601191431"
+  },
+  "applications": ["insuranceApp"],
+  "clientRootFolder": "insurance",
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "id",
+      "fieldType": "UUID"
+    },
+    {
+      "fieldName": "date",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "estimatedAmount",
+      "fieldType": "Float"
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "Quote",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityName": "vehicle",
+      "relationshipName": "vehicle",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "client",
+      "otherEntityRelationshipName": "quotes",
+      "relationshipName": "client",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "searchEngine": "elasticsearch",
+  "service": "serviceImpl"
+}

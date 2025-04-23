@@ -1,0 +1,165 @@
+{
+  "annotations": {
+    "changelogDate": "19760601190931"
+  },
+  "applications": ["insuranceApp"],
+  "clientRootFolder": "insurance",
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "id",
+      "fieldType": "UUID"
+    },
+    {
+      "fieldName": "lastName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "firstName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "identityType",
+      "fieldType": "IdentityType",
+      "fieldValues": "CIN,PASSPORT"
+    },
+    {
+      "fieldName": "identityNumber",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "identityEmissionDate",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "birthDate",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "birthPlace",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "identityIssueDate",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "identityPlaceOfIssue",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "maritalStatus",
+      "fieldType": "MaritalStatus",
+      "fieldValues": "SINGLE,MARRIED,WIDOWED,DIVORCED"
+    },
+    {
+      "fieldName": "nbrOfchildren",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "professionalEmail",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "personalEmail",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "primaryPhoneNumber",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "secondaryPhoneNumber",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "faxNumber",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "nationality",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "gender",
+      "fieldType": "Gender",
+      "fieldValues": "MALE,FEMALE"
+    },
+    {
+      "fieldName": "jobTitle",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "professionalStatus",
+      "fieldType": "ProfessionalStatus",
+      "fieldValues": "EMPLOYEE,SELF_EMPLOYED"
+    },
+    {
+      "fieldName": "bank",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "agency",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "rib",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "drivingLicenseNumber",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "drivingLicenseIssueDate",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "drivingLicenseCategory",
+      "fieldType": "String"
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "Client",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityField": "login",
+      "otherEntityName": "user",
+      "relationshipName": "user",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-one",
+      "relationshipWithBuiltInEntity": true
+    },
+    {
+      "otherEntityName": "quote",
+      "otherEntityRelationshipName": "client",
+      "relationshipName": "quotes",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "contract",
+      "otherEntityRelationshipName": "client",
+      "relationshipName": "contracts",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "claim",
+      "otherEntityRelationshipName": "client",
+      "relationshipName": "claims",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "clientAddress",
+      "otherEntityRelationshipName": "clients",
+      "relationshipName": "clientAddress",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "searchEngine": "elasticsearch",
+  "service": "serviceImpl"
+}

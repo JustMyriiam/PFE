@@ -1,0 +1,28 @@
+{
+  "insuranceApp": {
+    "insuranceQuote": {
+      "home": {
+        "title": "Quotes",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Quote",
+        "createOrEditLabel": "Créer ou éditer un Quote",
+        "search": "Recherche pour Quote",
+        "notFound": "Aucun Quote trouvé"
+      },
+      "created": "Un nouveau Quote a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Quote avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Quote avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Êtes-vous certain de vouloir supprimer le Quote {{ id }} ?"
+      },
+      "detail": {
+        "title": "Quote"
+      },
+      "id": "Id",
+      "date": "Date",
+      "estimatedAmount": "Estimated Amount",
+      "vehicle": "Vehicle",
+      "client": "Client"
+    }
+  }
+}

@@ -1,0 +1,68 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (document(); as documentRef) {
+      <div>
+        <h2 data-cy="documentDetailsHeading"><span jhiTranslate="insuranceApp.insuranceDocument.detail.title">Document</span></h2>
+
+        <hr />
+
+        <jhi-alert-error />
+
+        <jhi-alert />
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="insuranceApp.insuranceDocument.id">Id</span></dt>
+          <dd>
+            <span>{{ documentRef.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="insuranceApp.insuranceDocument.name">Name</span></dt>
+          <dd>
+            <span>{{ documentRef.name }}</span>
+          </dd>
+          <dt><span jhiTranslate="insuranceApp.insuranceDocument.docPath">Doc Path</span></dt>
+          <dd>
+            <span>{{ documentRef.docPath }}</span>
+          </dd>
+          <dt><span jhiTranslate="insuranceApp.insuranceDocument.type">Type</span></dt>
+          <dd>
+            <span [jhiTranslate]="'insuranceApp.DocType.' + (documentRef.type ?? 'null')">{{
+              { null: '', GENERATED_FILE: 'GENERATED_FILE', REQUESTED_FILE: 'REQUESTED_FILE' }[documentRef.type ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span jhiTranslate="insuranceApp.insuranceDocument.requestedDocType">Requested Doc Type</span></dt>
+          <dd>
+            <span [jhiTranslate]="'insuranceApp.RequestedDocType.' + (documentRef.requestedDocType ?? 'null')">{{
+              {
+                null: '',
+                CIN: 'CIN',
+                VEHICLE_REGISTRATION: 'VEHICLE_REGISTRATION',
+                DRIVING_LICENSE: 'DRIVING_LICENSE',
+                TECHNICAL_INSPECTION: 'TECHNICAL_INSPECTION',
+              }[documentRef.requestedDocType ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span jhiTranslate="insuranceApp.insuranceDocument.creationDate">Creation Date</span></dt>
+          <dd>
+            <span>{{ documentRef.creationDate | formatMediumDate }}</span>
+          </dd>
+          <dt><span jhiTranslate="insuranceApp.insuranceDocument.contract">Contract</span></dt>
+          <dd>
+            @if (document()!.contract) {
+              <div>
+                <a [routerLink]="['/contract', document()!.contract?.id, 'view']">{{ documentRef.contract?.id }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+        </button>
+
+        <button type="button" [routerLink]="['/document', documentRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

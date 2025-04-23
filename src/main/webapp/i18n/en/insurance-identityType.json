@@ -1,0 +1,9 @@
+{
+  "insuranceApp": {
+    "IdentityType": {
+      "null": "",
+      "CIN": "CIN",
+      "PASSPORT": "PASSPORT"
+    }
+  }
+}

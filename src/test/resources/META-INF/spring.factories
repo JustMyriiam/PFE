@@ -1,0 +1,4 @@
+org.springframework.test.context.ContextCustomizerFactory = \
+    com.satoripop.insurance.config.\
+    SqlTestContainersSpringContextCustomizerFactory,com.satoripop.insurance.\
+    config.TestContainersSpringContextCustomizerFactory

@@ -1,0 +1,59 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (warranty(); as warrantyRef) {
+      <div>
+        <h2 data-cy="warrantyDetailsHeading"><span jhiTranslate="insuranceApp.insuranceWarranty.detail.title">Warranty</span></h2>
+
+        <hr />
+
+        <jhi-alert-error />
+
+        <jhi-alert />
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="insuranceApp.insuranceWarranty.id">Id</span></dt>
+          <dd>
+            <span>{{ warrantyRef.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="insuranceApp.insuranceWarranty.name">Name</span></dt>
+          <dd>
+            <span>{{ warrantyRef.name }}</span>
+          </dd>
+          <dt><span jhiTranslate="insuranceApp.insuranceWarranty.limit">Limit</span></dt>
+          <dd>
+            <span>{{ warrantyRef.limit }}</span>
+          </dd>
+          <dt><span jhiTranslate="insuranceApp.insuranceWarranty.franchise">Franchise</span></dt>
+          <dd>
+            <span>{{ warrantyRef.franchise }}</span>
+          </dd>
+          <dt><span jhiTranslate="insuranceApp.insuranceWarranty.price">Price</span></dt>
+          <dd>
+            <span>{{ warrantyRef.price }}</span>
+          </dd>
+          <dt><span jhiTranslate="insuranceApp.insuranceWarranty.mandatory">Mandatory</span></dt>
+          <dd>
+            <span>{{ warrantyRef.mandatory }}</span>
+          </dd>
+          <dt><span jhiTranslate="insuranceApp.insuranceWarranty.insurancePacks">Insurance Packs</span></dt>
+          <dd>
+            @for (insurancePacks of warrantyRef.insurancePacks; track $index; let last = $last) {
+              <span>
+                <a [routerLink]="['/insurance-pack', insurancePacks.id, 'view']">{{ insurancePacks?.id }}</a
+                >{{ last ? '' : ', ' }}
+              </span>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+        </button>
+
+        <button type="button" [routerLink]="['/warranty', warrantyRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

@@ -1,0 +1,82 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-warranty-heading"
+        data-cy="WarrantyCreateUpdateHeading"
+        jhiTranslate="insuranceApp.insuranceWarranty.home.createOrEditLabel"
+      >
+        Create or edit a Warranty
+      </h2>
+
+      <div>
+        <jhi-alert-error />
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="insuranceApp.insuranceWarranty.id">Id</label>
+            <input type="text" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        <div class="mb-3">
+          <label class="form-label" for="field_name" jhiTranslate="insuranceApp.insuranceWarranty.name">Name</label>
+          <input type="text" class="form-control" name="name" id="field_name" data-cy="name" formControlName="name" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_limit" jhiTranslate="insuranceApp.insuranceWarranty.limit">Limit</label>
+          <input type="number" class="form-control" name="limit" id="field_limit" data-cy="limit" formControlName="limit" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_franchise" jhiTranslate="insuranceApp.insuranceWarranty.franchise">Franchise</label>
+          <input type="number" class="form-control" name="franchise" id="field_franchise" data-cy="franchise" formControlName="franchise" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_price" jhiTranslate="insuranceApp.insuranceWarranty.price">Price</label>
+          <input type="number" class="form-control" name="price" id="field_price" data-cy="price" formControlName="price" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_mandatory" jhiTranslate="insuranceApp.insuranceWarranty.mandatory">Mandatory</label>
+          <input type="checkbox" class="form-check" name="mandatory" id="field_mandatory" data-cy="mandatory" formControlName="mandatory" />
+        </div>
+
+        <div class="mb-3">
+          <label for="field_insurancePacks" jhiTranslate="insuranceApp.insuranceWarranty.insurancePacks">Insurance Packs</label>
+          <select
+            class="form-control"
+            id="field_insurancePacks"
+            data-cy="insurancePacks"
+            multiple
+            name="insurancePacks"
+            formControlName="insurancePacks"
+            [compareWith]="compareInsurancePack"
+          >
+            @for (insurancePackOption of insurancePacksSharedCollection; track $index) {
+              <option [ngValue]="insurancePackOption">{{ insurancePackOption.id }}</option>
+            }
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

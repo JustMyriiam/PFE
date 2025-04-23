@@ -1,0 +1,45 @@
+export enum Brand {
+  AUDI = 'AUDI',
+
+  BMW = 'BMW',
+
+  BYD = 'BYD',
+
+  CHEVROLET = 'CHEVROLET',
+
+  CITROEN = 'CITROEN',
+
+  FIAT = 'FIAT',
+
+  HONDA = 'HONDA',
+
+  HYUNDAI = 'HYUNDAI',
+
+  ISUZU = 'ISUZU',
+
+  KIA = 'KIA',
+
+  LEXUS = 'LEXUS',
+
+  MAHINDRA = 'MAHINDRA',
+
+  MERCEDES_BENZ = 'MERCEDES_BENZ',
+
+  MG = 'MG',
+
+  NISSAN = 'NISSAN',
+
+  PEUGEOT = 'PEUGEOT',
+
+  RENAULT = 'RENAULT',
+
+  SKODA = 'SKODA',
+
+  SUZUKI = 'SUZUKI',
+
+  TOYOTA = 'TOYOTA',
+
+  VOLKSWAGEN = 'VOLKSWAGEN',
+
+  VOLVO = 'VOLVO',
+}

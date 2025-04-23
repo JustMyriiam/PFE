@@ -1,0 +1,109 @@
+{
+  "annotations": {
+    "changelogDate": "19760601191531"
+  },
+  "applications": ["insuranceApp"],
+  "clientRootFolder": "insurance",
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "id",
+      "fieldType": "UUID"
+    },
+    {
+      "fieldName": "contractNumber",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "duration",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "startDate",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "endDate",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "netPremium",
+      "fieldType": "Float"
+    },
+    {
+      "fieldName": "upfrontPremium",
+      "fieldType": "Float"
+    },
+    {
+      "fieldName": "cost",
+      "fieldType": "Float"
+    },
+    {
+      "fieldName": "taxes",
+      "fieldType": "Float"
+    },
+    {
+      "fieldName": "fSSR",
+      "fieldType": "Float"
+    },
+    {
+      "fieldName": "fPAC",
+      "fieldType": "Float"
+    },
+    {
+      "fieldName": "tFGA",
+      "fieldType": "Float"
+    },
+    {
+      "fieldName": "contractType",
+      "fieldType": "ContractType",
+      "fieldValues": "RENEWABLE,CLOSED"
+    },
+    {
+      "fieldName": "paymentPlan",
+      "fieldType": "PaymentPlan",
+      "fieldValues": "ANNUAL,SEMI_ANNUAL,Quarterly"
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "Contract",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityName": "vehicle",
+      "relationshipName": "vehicle",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "document",
+      "otherEntityRelationshipName": "contract",
+      "relationshipName": "documents",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "claim",
+      "otherEntityRelationshipName": "contract",
+      "relationshipName": "claims",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "client",
+      "otherEntityRelationshipName": "contracts",
+      "relationshipName": "client",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "agency",
+      "otherEntityRelationshipName": "contracts",
+      "relationshipName": "agency",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "searchEngine": "elasticsearch",
+  "service": "serviceImpl"
+}

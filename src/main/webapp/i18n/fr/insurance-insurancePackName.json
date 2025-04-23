@@ -1,0 +1,10 @@
+{
+  "insuranceApp": {
+    "InsurancePackName": {
+      "null": "",
+      "BASIC": "BASIC",
+      "COMFORT": "COMFORT",
+      "PREMIUM": "PREMIUM"
+    }
+  }
+}

@@ -1,0 +1,48 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (clientAddress(); as clientAddressRef) {
+      <div>
+        <h2 data-cy="clientAddressDetailsHeading">
+          <span jhiTranslate="insuranceApp.insuranceClientAddress.detail.title">Client Address</span>
+        </h2>
+
+        <hr />
+
+        <jhi-alert-error />
+
+        <jhi-alert />
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="insuranceApp.insuranceClientAddress.id">Id</span></dt>
+          <dd>
+            <span>{{ clientAddressRef.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="insuranceApp.insuranceClientAddress.address">Address</span></dt>
+          <dd>
+            <span>{{ clientAddressRef.address }}</span>
+          </dd>
+          <dt><span jhiTranslate="insuranceApp.insuranceClientAddress.region">Region</span></dt>
+          <dd>
+            <span>{{ clientAddressRef.region }}</span>
+          </dd>
+          <dt><span jhiTranslate="insuranceApp.insuranceClientAddress.city">City</span></dt>
+          <dd>
+            @if (clientAddress()!.city) {
+              <div>
+                <a [routerLink]="['/city', clientAddress()!.city?.id, 'view']">{{ clientAddressRef.city?.id }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+        </button>
+
+        <button type="button" [routerLink]="['/client-address', clientAddressRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

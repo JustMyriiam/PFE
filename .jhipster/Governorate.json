@@ -1,0 +1,33 @@
+{
+  "annotations": {
+    "changelogDate": "19760601191131"
+  },
+  "applications": ["insuranceApp"],
+  "clientRootFolder": "insurance",
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "id",
+      "fieldType": "UUID"
+    },
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "unique"]
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "Governorate",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityName": "city",
+      "otherEntityRelationshipName": "governorate",
+      "relationshipName": "cities",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "searchEngine": "elasticsearch",
+  "service": "serviceImpl"
+}

@@ -1,0 +1,101 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-quote-heading" data-cy="QuoteCreateUpdateHeading" jhiTranslate="insuranceApp.insuranceQuote.home.createOrEditLabel">
+        Create or edit a Quote
+      </h2>
+
+      <div>
+        <jhi-alert-error />
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="insuranceApp.insuranceQuote.id">Id</label>
+            <input type="text" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        <div class="mb-3">
+          <label class="form-label" for="field_date" jhiTranslate="insuranceApp.insuranceQuote.date">Date</label>
+          <div class="input-group">
+            <input
+              id="field_date"
+              data-cy="date"
+              type="text"
+              class="form-control"
+              name="date"
+              ngbDatepicker
+              #dateDp="ngbDatepicker"
+              formControlName="date"
+            />
+            <button type="button" class="btn btn-secondary" (click)="dateDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_estimatedAmount" jhiTranslate="insuranceApp.insuranceQuote.estimatedAmount"
+            >Estimated Amount</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="estimatedAmount"
+            id="field_estimatedAmount"
+            data-cy="estimatedAmount"
+            formControlName="estimatedAmount"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_vehicle" jhiTranslate="insuranceApp.insuranceQuote.vehicle">Vehicle</label>
+          <select
+            class="form-control"
+            id="field_vehicle"
+            data-cy="vehicle"
+            name="vehicle"
+            formControlName="vehicle"
+            [compareWith]="compareVehicle"
+          >
+            <option [ngValue]="null"></option>
+            @for (vehicleOption of vehiclesCollection; track $index) {
+              <option [ngValue]="vehicleOption">{{ vehicleOption.id }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_client" jhiTranslate="insuranceApp.insuranceQuote.client">Client</label>
+          <select
+            class="form-control"
+            id="field_client"
+            data-cy="client"
+            name="client"
+            formControlName="client"
+            [compareWith]="compareClient"
+          >
+            <option [ngValue]="null"></option>
+            @for (clientOption of clientsSharedCollection; track $index) {
+              <option [ngValue]="clientOption">{{ clientOption.id }}</option>
+            }
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

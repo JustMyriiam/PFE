@@ -1,0 +1,48 @@
+{
+  "annotations": {
+    "changelogDate": "19760601191931"
+  },
+  "applications": ["insuranceApp"],
+  "clientRootFolder": "insurance",
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "id",
+      "fieldType": "UUID"
+    },
+    {
+      "fieldName": "name",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "limit",
+      "fieldType": "Float"
+    },
+    {
+      "fieldName": "franchise",
+      "fieldType": "Float"
+    },
+    {
+      "fieldName": "price",
+      "fieldType": "Float"
+    },
+    {
+      "fieldName": "mandatory",
+      "fieldType": "Boolean"
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "Warranty",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityName": "insurancePack",
+      "otherEntityRelationshipName": "warranties",
+      "relationshipName": "insurancePacks",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-many"
+    }
+  ],
+  "searchEngine": "elasticsearch",
+  "service": "serviceImpl"
+}

@@ -1,0 +1,55 @@
+{
+  "insuranceApp": {
+    "insuranceClient": {
+      "home": {
+        "title": "Clients",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Client",
+        "createOrEditLabel": "Create or edit a Client",
+        "search": "Search for Client",
+        "notFound": "No Clients found"
+      },
+      "created": "A new Client is created with identifier {{ param }}",
+      "updated": "A Client is updated with identifier {{ param }}",
+      "deleted": "A Client is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Client {{ id }}?"
+      },
+      "detail": {
+        "title": "Client"
+      },
+      "id": "Id",
+      "lastName": "Last Name",
+      "firstName": "First Name",
+      "identityType": "Identity Type",
+      "identityNumber": "Identity Number",
+      "identityEmissionDate": "Identity Emission Date",
+      "birthDate": "Birth Date",
+      "birthPlace": "Birth Place",
+      "identityIssueDate": "Identity Issue Date",
+      "identityPlaceOfIssue": "Identity Place Of Issue",
+      "maritalStatus": "Marital Status",
+      "nbrOfchildren": "Nbr Ofchildren",
+      "professionalEmail": "Professional Email",
+      "personalEmail": "Personal Email",
+      "primaryPhoneNumber": "Primary Phone Number",
+      "secondaryPhoneNumber": "Secondary Phone Number",
+      "faxNumber": "Fax Number",
+      "nationality": "Nationality",
+      "gender": "Gender",
+      "jobTitle": "Job Title",
+      "professionalStatus": "Professional Status",
+      "bank": "Bank",
+      "agency": "Agency",
+      "rib": "Rib",
+      "drivingLicenseNumber": "Driving License Number",
+      "drivingLicenseIssueDate": "Driving License Issue Date",
+      "drivingLicenseCategory": "Driving License Category",
+      "user": "User",
+      "quotes": "Quotes",
+      "contracts": "Contracts",
+      "claims": "Claims",
+      "clientAddress": "Client Address"
+    }
+  }
+}

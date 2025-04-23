@@ -1,0 +1,252 @@
+application {
+  config {
+    applicationType monolith
+    authenticationType oauth2
+    baseName insuranceApp
+    blueprints []
+    buildTool maven
+    cacheProvider ehcache
+    clientFramework angular
+    clientPackageManager npm
+    creationTimestamp 202504111736
+    databaseType sql
+    devDatabaseType postgresql
+    dtoSuffix DTO
+    enableGradleEnterprise false
+    enableHibernateCache true
+    enableSwaggerCodegen true
+    enableTranslation true
+    gradleEnterpriseHost ""
+    jhiPrefix jhi
+    languages [en, fr]
+    microfrontend false
+    nativeLanguage en
+    packageName com.satoripop.insurance
+    prodDatabaseType postgresql
+    reactive false
+    searchEngine elasticsearch
+    serverPort 8080
+    skipClient false
+    skipUserManagement false
+    testFrameworks []
+    clientFramework angular
+    websocket false
+  }
+  entities *
+}
+
+
+entity Client {
+  id UUID,
+  lastName String,
+  firstName String,
+  identityType IdentityType,
+  identityNumber String,
+  identityEmissionDate LocalDate,
+  birthDate LocalDate,
+  birthPlace String,
+  identityIssueDate LocalDate,
+  identityPlaceOfIssue String,
+  maritalStatus MaritalStatus,
+  nbrOfchildren Integer,
+  professionalEmail String,
+  personalEmail String,
+  primaryPhoneNumber String,
+  secondaryPhoneNumber String,
+  faxNumber String,
+  nationality String,
+  gender Gender,
+  jobTitle String,
+  professionalStatus ProfessionalStatus,
+  bank String,
+  agency String,
+  rib String,
+  drivingLicenseNumber String,
+  drivingLicenseIssueDate LocalDate,
+  drivingLicenseCategory String,
+}
+
+
+entity City {
+  id UUID,
+  name String,
+  postalCode String,
+}
+
+
+entity Governorate {
+  id UUID,
+  name String required unique,
+}
+
+
+entity ClientAddress {
+  id UUID,
+  address String,
+  region String,
+}
+
+
+entity Claim {
+  id UUID
+  type String
+  description String
+  date LocalDate
+  status ClaimStatus
+}
+
+
+entity Quote {
+  id UUID
+  date LocalDate
+  estimatedAmount Float
+}
+
+
+entity Contract {
+  id UUID,
+  contractNumber String,
+  duration String,
+  startDate LocalDate
+  endDate LocalDate
+  netPremium Float,
+  upfrontPremium Float,
+  cost Float,
+  taxes Float,
+  FSSR Float,
+  FPAC Float,
+  TFGA Float,
+  contractType ContractType,
+  paymentPlan PaymentPlan
+}
+
+
+entity Agency {
+  id UUID,
+  name String,
+  address String,
+  region String,
+  phoneNumber String,
+  managerName String,
+}
+
+
+entity Document {
+  id UUID,
+  name String,
+  docPath String,
+  type DocType,
+  requestedDocType RequestedDocType,
+  creationDate LocalDate
+}
+
+
+entity InsurancePack {
+  id UUID
+  name InsurancePackName
+  desciption String
+  price Float,
+}
+
+
+entity Warranty {
+  id UUID,
+  name String,
+  limit Float,
+  franchise Float,
+  price Float,
+  mandatory Boolean,
+}
+
+
+entity Vehicle {
+  id UUID,
+  registrationNumber String,
+  registrationType RegistrationType,
+  firstRegistrationDate LocalDate,
+  technicalInspectionStatus TechnicalInspectionStatus,
+  expirationDate LocalDate,
+  newValue Float,
+  marketValue Float,
+  brand Brand,
+  model String,
+  fiscalPower Integer,
+  chassisNumber String,
+  energy Energy,
+  genre String,
+  nbrOfSeats Integer,
+  nbrOfStandingPlaces Integer,
+  emptyWeight Integer,
+  payload Integer,
+  bonusMalus Integer,
+  vehicleAge String,
+  mileage Integer,
+  numberOfDoors Long,
+  gearbox Gearbox,
+  color String,
+  usage VehicleUsage,
+  isNew Boolean,
+  hasGarage Boolean,
+  hasParking Boolean,
+  hasAlarmSystem Boolean,
+  hasSeatbeltAlarm Boolean,
+  hasRearCamera Boolean,
+  hasRearRadar Boolean,
+  hasAbsSystem Boolean,
+  hasGPS Boolean,
+  hasAirbag Boolean,
+ navette Boolean
+}
+
+
+enum InsurancePackName { BASIC, COMFORT, PREMIUM}
+enum VehicleUsage { PERSONAL, COMMERCIAL }
+enum Energy { DIESEL, PETROL, HYBRID, ELECTRIC, GPL }
+enum TechnicalInspectionStatus { VALID, EXEMPTED, EXPIRED, NO_INFORMATION }
+enum DocType { GENERATED_FILE, REQUESTED_FILE }
+enum Gender { MALE, FEMALE }
+enum ContractType { RENEWABLE, CLOSED }
+enum MaritalStatus { SINGLE, MARRIED, WIDOWED, DIVORCED }
+enum IdentityType  { CIN, PASSPORT }
+enum ProfessionalStatus { EMPLOYEE, SELF_EMPLOYED }
+enum ClaimStatus { IN_PROGRESS, RESOLVED }
+enum RequestedDocType { CIN, VEHICLE_REGISTRATION, DRIVING_LICENSE, TECHNICAL_INSPECTION }
+enum Brand { AUDI, BMW, BYD, CHEVROLET, CITROEN, FIAT, HONDA, HYUNDAI, ISUZU, KIA, LEXUS, MAHINDRA, MERCEDES_BENZ, MG, NISSAN, PEUGEOT, RENAULT, SKODA, SUZUKI, TOYOTA, VOLKSWAGEN, VOLVO }
+enum Gearbox { AUTOMATIC, MANUAL }
+enum RegistrationType { STANDARD_PRIVATE_VEHICLE(TU), SUSPENSIVE_REGIME(RS), TEMPORARY_REGISTRATION(IT), TRAILER(REM), DIPLOMATIC_CORPS(CD), DIPLOMATIC_MISSION(MD), ADMINISTRATIVE_AND_TECHNICAL_STAFF(PAT), CONSULAR_CORPS(CC), CONSULAR_MISSION(MC) }
+enum PaymentPlan { ANNUAL, SEMI_ANNUAL, Quarterly }
+
+
+relationship OneToMany {
+  Client { quotes } to Quote { client },
+  Client { contracts } to Contract { client },
+  Client { claims } to Claim { client },
+  Contract { documents } to Document { contract },
+  Vehicle { insurancePack } to InsurancePack { vehicle },
+  Contract { claims } to Claim { contract },
+  Governorate { cities } to City { governorate },
+  City { clientAddresses } to ClientAddress { city },
+  ClientAddress { clients } to Client { clientAddress },
+  City { agencies } to Agency { city },
+  Agency{contracts} to Contract { agency },
+}
+
+
+relationship OneToOne {
+Contract{ vehicle } to Vehicle,
+Quote{ vehicle } to Vehicle,
+Client {user(login)} to User with builtInEntity,
+}
+
+
+relationship ManyToMany {
+  InsurancePack{warranties} to Warranty{ insurancePacks}
+}
+
+
+dto * with mapstruct
+service * with serviceImpl
+paginate * with pagination
+search * with elasticsearch
+filter *
+clientRootFolder * with insurance

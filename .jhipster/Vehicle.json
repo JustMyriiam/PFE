@@ -1,0 +1,174 @@
+{
+  "annotations": {
+    "changelogDate": "19760601192031"
+  },
+  "applications": ["insuranceApp"],
+  "clientRootFolder": "insurance",
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "id",
+      "fieldType": "UUID"
+    },
+    {
+      "fieldName": "registrationNumber",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "registrationType",
+      "fieldType": "RegistrationType",
+      "fieldValues": "STANDARD_PRIVATE_VEHICLE (TU),SUSPENSIVE_REGIME (RS),TEMPORARY_REGISTRATION (IT),TRAILER (REM),DIPLOMATIC_CORPS (CD),DIPLOMATIC_MISSION (MD),ADMINISTRATIVE_AND_TECHNICAL_STAFF (PAT),CONSULAR_CORPS (CC),CONSULAR_MISSION (MC)"
+    },
+    {
+      "fieldName": "firstRegistrationDate",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "technicalInspectionStatus",
+      "fieldType": "TechnicalInspectionStatus",
+      "fieldValues": "VALID,EXEMPTED,EXPIRED,NO_INFORMATION"
+    },
+    {
+      "fieldName": "expirationDate",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "newValue",
+      "fieldType": "Float"
+    },
+    {
+      "fieldName": "marketValue",
+      "fieldType": "Float"
+    },
+    {
+      "fieldName": "brand",
+      "fieldType": "Brand",
+      "fieldValues": "AUDI,BMW,BYD,CHEVROLET,CITROEN,FIAT,HONDA,HYUNDAI,ISUZU,KIA,LEXUS,MAHINDRA,MERCEDES_BENZ,MG,NISSAN,PEUGEOT,RENAULT,SKODA,SUZUKI,TOYOTA,VOLKSWAGEN,VOLVO"
+    },
+    {
+      "fieldName": "model",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "fiscalPower",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "chassisNumber",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "energy",
+      "fieldType": "Energy",
+      "fieldValues": "DIESEL,PETROL,HYBRID,ELECTRIC,GPL"
+    },
+    {
+      "fieldName": "genre",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "nbrOfSeats",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "nbrOfStandingPlaces",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "emptyWeight",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "payload",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "bonusMalus",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "vehicleAge",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "mileage",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "numberOfDoors",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "gearbox",
+      "fieldType": "Gearbox",
+      "fieldValues": "AUTOMATIC,MANUAL"
+    },
+    {
+      "fieldName": "color",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "usage",
+      "fieldType": "VehicleUsage",
+      "fieldValues": "PERSONAL,COMMERCIAL"
+    },
+    {
+      "fieldName": "isNew",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "hasGarage",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "hasParking",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "hasAlarmSystem",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "hasSeatbeltAlarm",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "hasRearCamera",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "hasRearRadar",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "hasAbsSystem",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "hasGPS",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "hasAirbag",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "navette",
+      "fieldType": "Boolean"
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "Vehicle",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityName": "insurancePack",
+      "otherEntityRelationshipName": "vehicle",
+      "relationshipName": "insurancePack",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "searchEngine": "elasticsearch",
+  "service": "serviceImpl"
+}

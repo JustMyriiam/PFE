@@ -1,0 +1,50 @@
+{
+  "annotations": {
+    "changelogDate": "19760601191031"
+  },
+  "applications": ["insuranceApp"],
+  "clientRootFolder": "insurance",
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "id",
+      "fieldType": "UUID"
+    },
+    {
+      "fieldName": "name",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "postalCode",
+      "fieldType": "String"
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "City",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityName": "clientAddress",
+      "otherEntityRelationshipName": "city",
+      "relationshipName": "clientAddresses",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "agency",
+      "otherEntityRelationshipName": "city",
+      "relationshipName": "agencies",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "governorate",
+      "otherEntityRelationshipName": "cities",
+      "relationshipName": "governorate",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "searchEngine": "elasticsearch",
+  "service": "serviceImpl"
+}

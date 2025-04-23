@@ -1,0 +1,492 @@
+<div>
+  <h2 id="page-heading" data-cy="VehicleHeading">
+    <span jhiTranslate="insuranceApp.insuranceVehicle.home.title">Vehicles</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [animation]="isLoading ? 'spin' : undefined"></fa-icon>
+        <span jhiTranslate="insuranceApp.insuranceVehicle.home.refreshListLabel">Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-vehicle"
+        [routerLink]="['/vehicle/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span class="hidden-sm-down" jhiTranslate="insuranceApp.insuranceVehicle.home.createLabel">Create a new Vehicle</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error />
+
+  <jhi-alert />
+
+  <form name="searchForm" class="row row-cols-sm-auto align-items-center">
+    <div class="col-sm-12">
+      <div class="input-group w-100 mt-3">
+        <label class="visually-hidden" for="currentSearch" jhiTranslate="insuranceApp.insuranceVehicle.home.search"
+          >Search for Vehicle</label
+        >
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="currentSearch"
+          id="currentSearch"
+          name="currentSearch"
+          placeholder="{{ 'insuranceApp.insuranceVehicle.home.search' | translate }}"
+        />
+
+        <button class="btn btn-info" (click)="search(currentSearch)">
+          <fa-icon icon="search"></fa-icon>
+        </button>
+
+        @if (currentSearch) {
+          <button class="btn btn-danger" (click)="search('')">
+            <fa-icon icon="trash-alt"></fa-icon>
+          </button>
+        }
+      </div>
+    </div>
+  </form>
+
+  <jhi-filter [filters]="filters" />
+
+  @if (vehicles().length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span jhiTranslate="insuranceApp.insuranceVehicle.home.notFound">No Vehicles found</span>
+    </div>
+  } @else {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [(sortState)]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span jhiTranslate="insuranceApp.insuranceVehicle.id">Id</span>
+                @if (!currentSearch) {
+                  <fa-icon class="p-1" icon="sort"></fa-icon>
+                }
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="registrationNumber">
+              <div class="d-flex">
+                <span jhiTranslate="insuranceApp.insuranceVehicle.registrationNumber">Registration Number</span>
+                @if (!currentSearch) {
+                  <fa-icon class="p-1" icon="sort"></fa-icon>
+                }
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="registrationType">
+              <div class="d-flex">
+                <span jhiTranslate="insuranceApp.insuranceVehicle.registrationType">Registration Type</span>
+                @if (!currentSearch) {
+                  <fa-icon class="p-1" icon="sort"></fa-icon>
+                }
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="firstRegistrationDate">
+              <div class="d-flex">
+                <span jhiTranslate="insuranceApp.insuranceVehicle.firstRegistrationDate">First Registration Date</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="technicalInspectionStatus">
+              <div class="d-flex">
+                <span jhiTranslate="insuranceApp.insuranceVehicle.technicalInspectionStatus">Technical Inspection Status</span>
+                @if (!currentSearch) {
+                  <fa-icon class="p-1" icon="sort"></fa-icon>
+                }
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="expirationDate">
+              <div class="d-flex">
+                <span jhiTranslate="insuranceApp.insuranceVehicle.expirationDate">Expiration Date</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="newValue">
+              <div class="d-flex">
+                <span jhiTranslate="insuranceApp.insuranceVehicle.newValue">New Value</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="marketValue">
+              <div class="d-flex">
+                <span jhiTranslate="insuranceApp.insuranceVehicle.marketValue">Market Value</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="brand">
+              <div class="d-flex">
+                <span jhiTranslate="insuranceApp.insuranceVehicle.brand">Brand</span>
+                @if (!currentSearch) {
+                  <fa-icon class="p-1" icon="sort"></fa-icon>
+                }
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="model">
+              <div class="d-flex">
+                <span jhiTranslate="insuranceApp.insuranceVehicle.model">Model</span>
+                @if (!currentSearch) {
+                  <fa-icon class="p-1" icon="sort"></fa-icon>
+                }
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="fiscalPower">
+              <div class="d-flex">
+                <span jhiTranslate="insuranceApp.insuranceVehicle.fiscalPower">Fiscal Power</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="chassisNumber">
+              <div class="d-flex">
+                <span jhiTranslate="insuranceApp.insuranceVehicle.chassisNumber">Chassis Number</span>
+                @if (!currentSearch) {
+                  <fa-icon class="p-1" icon="sort"></fa-icon>
+                }
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="energy">
+              <div class="d-flex">
+                <span jhiTranslate="insuranceApp.insuranceVehicle.energy">Energy</span>
+                @if (!currentSearch) {
+                  <fa-icon class="p-1" icon="sort"></fa-icon>
+                }
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="genre">
+              <div class="d-flex">
+                <span jhiTranslate="insuranceApp.insuranceVehicle.genre">Genre</span>
+                @if (!currentSearch) {
+                  <fa-icon class="p-1" icon="sort"></fa-icon>
+                }
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="nbrOfSeats">
+              <div class="d-flex">
+                <span jhiTranslate="insuranceApp.insuranceVehicle.nbrOfSeats">Nbr Of Seats</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="nbrOfStandingPlaces">
+              <div class="d-flex">
+                <span jhiTranslate="insuranceApp.insuranceVehicle.nbrOfStandingPlaces">Nbr Of Standing Places</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="emptyWeight">
+              <div class="d-flex">
+                <span jhiTranslate="insuranceApp.insuranceVehicle.emptyWeight">Empty Weight</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="payload">
+              <div class="d-flex">
+                <span jhiTranslate="insuranceApp.insuranceVehicle.payload">Payload</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="bonusMalus">
+              <div class="d-flex">
+                <span jhiTranslate="insuranceApp.insuranceVehicle.bonusMalus">Bonus Malus</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="vehicleAge">
+              <div class="d-flex">
+                <span jhiTranslate="insuranceApp.insuranceVehicle.vehicleAge">Vehicle Age</span>
+                @if (!currentSearch) {
+                  <fa-icon class="p-1" icon="sort"></fa-icon>
+                }
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="mileage">
+              <div class="d-flex">
+                <span jhiTranslate="insuranceApp.insuranceVehicle.mileage">Mileage</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="numberOfDoors">
+              <div class="d-flex">
+                <span jhiTranslate="insuranceApp.insuranceVehicle.numberOfDoors">Number Of Doors</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="gearbox">
+              <div class="d-flex">
+                <span jhiTranslate="insuranceApp.insuranceVehicle.gearbox">Gearbox</span>
+                @if (!currentSearch) {
+                  <fa-icon class="p-1" icon="sort"></fa-icon>
+                }
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="color">
+              <div class="d-flex">
+                <span jhiTranslate="insuranceApp.insuranceVehicle.color">Color</span>
+                @if (!currentSearch) {
+                  <fa-icon class="p-1" icon="sort"></fa-icon>
+                }
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="usage">
+              <div class="d-flex">
+                <span jhiTranslate="insuranceApp.insuranceVehicle.usage">Usage</span>
+                @if (!currentSearch) {
+                  <fa-icon class="p-1" icon="sort"></fa-icon>
+                }
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="isNew">
+              <div class="d-flex">
+                <span jhiTranslate="insuranceApp.insuranceVehicle.isNew">Is New</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="hasGarage">
+              <div class="d-flex">
+                <span jhiTranslate="insuranceApp.insuranceVehicle.hasGarage">Has Garage</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="hasParking">
+              <div class="d-flex">
+                <span jhiTranslate="insuranceApp.insuranceVehicle.hasParking">Has Parking</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="hasAlarmSystem">
+              <div class="d-flex">
+                <span jhiTranslate="insuranceApp.insuranceVehicle.hasAlarmSystem">Has Alarm System</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="hasSeatbeltAlarm">
+              <div class="d-flex">
+                <span jhiTranslate="insuranceApp.insuranceVehicle.hasSeatbeltAlarm">Has Seatbelt Alarm</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="hasRearCamera">
+              <div class="d-flex">
+                <span jhiTranslate="insuranceApp.insuranceVehicle.hasRearCamera">Has Rear Camera</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="hasRearRadar">
+              <div class="d-flex">
+                <span jhiTranslate="insuranceApp.insuranceVehicle.hasRearRadar">Has Rear Radar</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="hasAbsSystem">
+              <div class="d-flex">
+                <span jhiTranslate="insuranceApp.insuranceVehicle.hasAbsSystem">Has Abs System</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="hasGPS">
+              <div class="d-flex">
+                <span jhiTranslate="insuranceApp.insuranceVehicle.hasGPS">Has GPS</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="hasAirbag">
+              <div class="d-flex">
+                <span jhiTranslate="insuranceApp.insuranceVehicle.hasAirbag">Has Airbag</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="navette">
+              <div class="d-flex">
+                <span jhiTranslate="insuranceApp.insuranceVehicle.navette">Navette</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (vehicle of vehicles(); track trackId(vehicle)) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/vehicle', vehicle.id, 'view']">{{ vehicle.id }}</a>
+              </td>
+              <td>{{ vehicle.registrationNumber }}</td>
+              <td [jhiTranslate]="'insuranceApp.RegistrationType.' + (vehicle.registrationType ?? 'null')">
+                {{
+                  {
+                    null: '',
+                    STANDARD_PRIVATE_VEHICLE: 'TU',
+                    SUSPENSIVE_REGIME: 'RS',
+                    TEMPORARY_REGISTRATION: 'IT',
+                    TRAILER: 'REM',
+                    DIPLOMATIC_CORPS: 'CD',
+                    DIPLOMATIC_MISSION: 'MD',
+                    ADMINISTRATIVE_AND_TECHNICAL_STAFF: 'PAT',
+                    CONSULAR_CORPS: 'CC',
+                    CONSULAR_MISSION: 'MC',
+                  }[vehicle.registrationType ?? 'null']
+                }}
+              </td>
+              <td>{{ vehicle.firstRegistrationDate | formatMediumDate }}</td>
+              <td [jhiTranslate]="'insuranceApp.TechnicalInspectionStatus.' + (vehicle.technicalInspectionStatus ?? 'null')">
+                {{
+                  { null: '', VALID: 'VALID', EXEMPTED: 'EXEMPTED', EXPIRED: 'EXPIRED', NO_INFORMATION: 'NO_INFORMATION' }[
+                    vehicle.technicalInspectionStatus ?? 'null'
+                  ]
+                }}
+              </td>
+              <td>{{ vehicle.expirationDate | formatMediumDate }}</td>
+              <td>{{ vehicle.newValue }}</td>
+              <td>{{ vehicle.marketValue }}</td>
+              <td [jhiTranslate]="'insuranceApp.Brand.' + (vehicle.brand ?? 'null')">
+                {{
+                  {
+                    null: '',
+                    AUDI: 'AUDI',
+                    BMW: 'BMW',
+                    BYD: 'BYD',
+                    CHEVROLET: 'CHEVROLET',
+                    CITROEN: 'CITROEN',
+                    FIAT: 'FIAT',
+                    HONDA: 'HONDA',
+                    HYUNDAI: 'HYUNDAI',
+                    ISUZU: 'ISUZU',
+                    KIA: 'KIA',
+                    LEXUS: 'LEXUS',
+                    MAHINDRA: 'MAHINDRA',
+                    MERCEDES_BENZ: 'MERCEDES_BENZ',
+                    MG: 'MG',
+                    NISSAN: 'NISSAN',
+                    PEUGEOT: 'PEUGEOT',
+                    RENAULT: 'RENAULT',
+                    SKODA: 'SKODA',
+                    SUZUKI: 'SUZUKI',
+                    TOYOTA: 'TOYOTA',
+                    VOLKSWAGEN: 'VOLKSWAGEN',
+                    VOLVO: 'VOLVO',
+                  }[vehicle.brand ?? 'null']
+                }}
+              </td>
+              <td>{{ vehicle.model }}</td>
+              <td>{{ vehicle.fiscalPower }}</td>
+              <td>{{ vehicle.chassisNumber }}</td>
+              <td [jhiTranslate]="'insuranceApp.Energy.' + (vehicle.energy ?? 'null')">
+                {{
+                  { null: '', DIESEL: 'DIESEL', PETROL: 'PETROL', HYBRID: 'HYBRID', ELECTRIC: 'ELECTRIC', GPL: 'GPL' }[
+                    vehicle.energy ?? 'null'
+                  ]
+                }}
+              </td>
+              <td>{{ vehicle.genre }}</td>
+              <td>{{ vehicle.nbrOfSeats }}</td>
+              <td>{{ vehicle.nbrOfStandingPlaces }}</td>
+              <td>{{ vehicle.emptyWeight }}</td>
+              <td>{{ vehicle.payload }}</td>
+              <td>{{ vehicle.bonusMalus }}</td>
+              <td>{{ vehicle.vehicleAge }}</td>
+              <td>{{ vehicle.mileage }}</td>
+              <td>{{ vehicle.numberOfDoors }}</td>
+              <td [jhiTranslate]="'insuranceApp.Gearbox.' + (vehicle.gearbox ?? 'null')">
+                {{ { null: '', AUTOMATIC: 'AUTOMATIC', MANUAL: 'MANUAL' }[vehicle.gearbox ?? 'null'] }}
+              </td>
+              <td>{{ vehicle.color }}</td>
+              <td [jhiTranslate]="'insuranceApp.VehicleUsage.' + (vehicle.usage ?? 'null')">
+                {{ { null: '', PERSONAL: 'PERSONAL', COMMERCIAL: 'COMMERCIAL' }[vehicle.usage ?? 'null'] }}
+              </td>
+              <td>{{ vehicle.isNew }}</td>
+              <td>{{ vehicle.hasGarage }}</td>
+              <td>{{ vehicle.hasParking }}</td>
+              <td>{{ vehicle.hasAlarmSystem }}</td>
+              <td>{{ vehicle.hasSeatbeltAlarm }}</td>
+              <td>{{ vehicle.hasRearCamera }}</td>
+              <td>{{ vehicle.hasRearRadar }}</td>
+              <td>{{ vehicle.hasAbsSystem }}</td>
+              <td>{{ vehicle.hasGPS }}</td>
+              <td>{{ vehicle.hasAirbag }}</td>
+              <td>{{ vehicle.navette }}</td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <button
+                    type="submit"
+                    [routerLink]="['/insurance-pack']"
+                    [queryParams]="{ 'filter[vehicleId.in]': vehicle.id }"
+                    class="btn btn-info btn-sm"
+                    data-cy="filterOtherEntityButton"
+                  >
+                    <fa-icon icon="eye"></fa-icon>
+                    <span
+                      class="d-none d-md-inline"
+                      jhiTranslate="entity.action.show"
+                      [translateValues]="{ otherEntity: ('insuranceApp.insuranceVehicle.insurancePack' | translate) }"
+                      >Show Insurance Pack</span
+                    >
+                  </button>
+                  <a [routerLink]="['/vehicle', vehicle.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                  </a>
+
+                  <a [routerLink]="['/vehicle', vehicle.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                  </a>
+
+                  <button type="submit" (click)="delete(vehicle)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+  @if (vehicles().length > 0) {
+    <div>
+      <div class="d-flex justify-content-center">
+        <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }" />
+      </div>
+
+      <div class="d-flex justify-content-center">
+        <ngb-pagination
+          [collectionSize]="totalItems"
+          [page]="page"
+          [pageSize]="itemsPerPage"
+          [maxSize]="5"
+          [rotate]="true"
+          [boundaryLinks]="true"
+          (pageChange)="navigateToPage($event)"
+        ></ngb-pagination>
+      </div>
+    </div>
+  }
+</div>

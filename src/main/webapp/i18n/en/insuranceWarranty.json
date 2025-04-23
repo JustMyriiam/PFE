@@ -1,0 +1,30 @@
+{
+  "insuranceApp": {
+    "insuranceWarranty": {
+      "home": {
+        "title": "Warranties",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Warranty",
+        "createOrEditLabel": "Create or edit a Warranty",
+        "search": "Search for Warranty",
+        "notFound": "No Warranties found"
+      },
+      "created": "A new Warranty is created with identifier {{ param }}",
+      "updated": "A Warranty is updated with identifier {{ param }}",
+      "deleted": "A Warranty is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Warranty {{ id }}?"
+      },
+      "detail": {
+        "title": "Warranty"
+      },
+      "id": "Id",
+      "name": "Name",
+      "limit": "Limit",
+      "franchise": "Franchise",
+      "price": "Price",
+      "mandatory": "Mandatory",
+      "insurancePacks": "Insurance Packs"
+    }
+  }
+}

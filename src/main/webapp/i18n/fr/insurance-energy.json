@@ -1,0 +1,12 @@
+{
+  "insuranceApp": {
+    "Energy": {
+      "null": "",
+      "DIESEL": "DIESEL",
+      "PETROL": "PETROL",
+      "HYBRID": "HYBRID",
+      "ELECTRIC": "ELECTRIC",
+      "GPL": "GPL"
+    }
+  }
+}

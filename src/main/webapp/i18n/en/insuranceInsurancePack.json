@@ -1,0 +1,29 @@
+{
+  "insuranceApp": {
+    "insuranceInsurancePack": {
+      "home": {
+        "title": "Insurance Packs",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Insurance Pack",
+        "createOrEditLabel": "Create or edit a Insurance Pack",
+        "search": "Search for Insurance Pack",
+        "notFound": "No Insurance Packs found"
+      },
+      "created": "A new Insurance Pack is created with identifier {{ param }}",
+      "updated": "A Insurance Pack is updated with identifier {{ param }}",
+      "deleted": "A Insurance Pack is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Insurance Pack {{ id }}?"
+      },
+      "detail": {
+        "title": "Insurance Pack"
+      },
+      "id": "Id",
+      "name": "Name",
+      "desciption": "Desciption",
+      "price": "Price",
+      "warranties": "Warranties",
+      "vehicle": "Vehicle"
+    }
+  }
+}

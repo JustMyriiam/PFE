@@ -1,0 +1,156 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (client(); as clientRef) {
+      <div>
+        <h2 data-cy="clientDetailsHeading"><span jhiTranslate="insuranceApp.insuranceClient.detail.title">Client</span></h2>
+
+        <hr />
+
+        <jhi-alert-error />
+
+        <jhi-alert />
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="insuranceApp.insuranceClient.id">Id</span></dt>
+          <dd>
+            <span>{{ clientRef.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="insuranceApp.insuranceClient.lastName">Last Name</span></dt>
+          <dd>
+            <span>{{ clientRef.lastName }}</span>
+          </dd>
+          <dt><span jhiTranslate="insuranceApp.insuranceClient.firstName">First Name</span></dt>
+          <dd>
+            <span>{{ clientRef.firstName }}</span>
+          </dd>
+          <dt><span jhiTranslate="insuranceApp.insuranceClient.identityType">Identity Type</span></dt>
+          <dd>
+            <span [jhiTranslate]="'insuranceApp.IdentityType.' + (clientRef.identityType ?? 'null')">{{
+              { null: '', CIN: 'CIN', PASSPORT: 'PASSPORT' }[clientRef.identityType ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span jhiTranslate="insuranceApp.insuranceClient.identityNumber">Identity Number</span></dt>
+          <dd>
+            <span>{{ clientRef.identityNumber }}</span>
+          </dd>
+          <dt><span jhiTranslate="insuranceApp.insuranceClient.identityEmissionDate">Identity Emission Date</span></dt>
+          <dd>
+            <span>{{ clientRef.identityEmissionDate | formatMediumDate }}</span>
+          </dd>
+          <dt><span jhiTranslate="insuranceApp.insuranceClient.birthDate">Birth Date</span></dt>
+          <dd>
+            <span>{{ clientRef.birthDate | formatMediumDate }}</span>
+          </dd>
+          <dt><span jhiTranslate="insuranceApp.insuranceClient.birthPlace">Birth Place</span></dt>
+          <dd>
+            <span>{{ clientRef.birthPlace }}</span>
+          </dd>
+          <dt><span jhiTranslate="insuranceApp.insuranceClient.identityIssueDate">Identity Issue Date</span></dt>
+          <dd>
+            <span>{{ clientRef.identityIssueDate | formatMediumDate }}</span>
+          </dd>
+          <dt><span jhiTranslate="insuranceApp.insuranceClient.identityPlaceOfIssue">Identity Place Of Issue</span></dt>
+          <dd>
+            <span>{{ clientRef.identityPlaceOfIssue }}</span>
+          </dd>
+          <dt><span jhiTranslate="insuranceApp.insuranceClient.maritalStatus">Marital Status</span></dt>
+          <dd>
+            <span [jhiTranslate]="'insuranceApp.MaritalStatus.' + (clientRef.maritalStatus ?? 'null')">{{
+              { null: '', SINGLE: 'SINGLE', MARRIED: 'MARRIED', WIDOWED: 'WIDOWED', DIVORCED: 'DIVORCED' }[
+                clientRef.maritalStatus ?? 'null'
+              ]
+            }}</span>
+          </dd>
+          <dt><span jhiTranslate="insuranceApp.insuranceClient.nbrOfchildren">Nbr Ofchildren</span></dt>
+          <dd>
+            <span>{{ clientRef.nbrOfchildren }}</span>
+          </dd>
+          <dt><span jhiTranslate="insuranceApp.insuranceClient.professionalEmail">Professional Email</span></dt>
+          <dd>
+            <span>{{ clientRef.professionalEmail }}</span>
+          </dd>
+          <dt><span jhiTranslate="insuranceApp.insuranceClient.personalEmail">Personal Email</span></dt>
+          <dd>
+            <span>{{ clientRef.personalEmail }}</span>
+          </dd>
+          <dt><span jhiTranslate="insuranceApp.insuranceClient.primaryPhoneNumber">Primary Phone Number</span></dt>
+          <dd>
+            <span>{{ clientRef.primaryPhoneNumber }}</span>
+          </dd>
+          <dt><span jhiTranslate="insuranceApp.insuranceClient.secondaryPhoneNumber">Secondary Phone Number</span></dt>
+          <dd>
+            <span>{{ clientRef.secondaryPhoneNumber }}</span>
+          </dd>
+          <dt><span jhiTranslate="insuranceApp.insuranceClient.faxNumber">Fax Number</span></dt>
+          <dd>
+            <span>{{ clientRef.faxNumber }}</span>
+          </dd>
+          <dt><span jhiTranslate="insuranceApp.insuranceClient.nationality">Nationality</span></dt>
+          <dd>
+            <span>{{ clientRef.nationality }}</span>
+          </dd>
+          <dt><span jhiTranslate="insuranceApp.insuranceClient.gender">Gender</span></dt>
+          <dd>
+            <span [jhiTranslate]="'insuranceApp.Gender.' + (clientRef.gender ?? 'null')">{{
+              { null: '', MALE: 'MALE', FEMALE: 'FEMALE' }[clientRef.gender ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span jhiTranslate="insuranceApp.insuranceClient.jobTitle">Job Title</span></dt>
+          <dd>
+            <span>{{ clientRef.jobTitle }}</span>
+          </dd>
+          <dt><span jhiTranslate="insuranceApp.insuranceClient.professionalStatus">Professional Status</span></dt>
+          <dd>
+            <span [jhiTranslate]="'insuranceApp.ProfessionalStatus.' + (clientRef.professionalStatus ?? 'null')">{{
+              { null: '', EMPLOYEE: 'EMPLOYEE', SELF_EMPLOYED: 'SELF_EMPLOYED' }[clientRef.professionalStatus ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span jhiTranslate="insuranceApp.insuranceClient.bank">Bank</span></dt>
+          <dd>
+            <span>{{ clientRef.bank }}</span>
+          </dd>
+          <dt><span jhiTranslate="insuranceApp.insuranceClient.agency">Agency</span></dt>
+          <dd>
+            <span>{{ clientRef.agency }}</span>
+          </dd>
+          <dt><span jhiTranslate="insuranceApp.insuranceClient.rib">Rib</span></dt>
+          <dd>
+            <span>{{ clientRef.rib }}</span>
+          </dd>
+          <dt><span jhiTranslate="insuranceApp.insuranceClient.drivingLicenseNumber">Driving License Number</span></dt>
+          <dd>
+            <span>{{ clientRef.drivingLicenseNumber }}</span>
+          </dd>
+          <dt><span jhiTranslate="insuranceApp.insuranceClient.drivingLicenseIssueDate">Driving License Issue Date</span></dt>
+          <dd>
+            <span>{{ clientRef.drivingLicenseIssueDate | formatMediumDate }}</span>
+          </dd>
+          <dt><span jhiTranslate="insuranceApp.insuranceClient.drivingLicenseCategory">Driving License Category</span></dt>
+          <dd>
+            <span>{{ clientRef.drivingLicenseCategory }}</span>
+          </dd>
+          <dt><span jhiTranslate="insuranceApp.insuranceClient.user">User</span></dt>
+          <dd>
+            <span>{{ clientRef.user?.login }}</span>
+          </dd>
+          <dt><span jhiTranslate="insuranceApp.insuranceClient.clientAddress">Client Address</span></dt>
+          <dd>
+            @if (client()!.clientAddress) {
+              <div>
+                <a [routerLink]="['/client-address', client()!.clientAddress?.id, 'view']">{{ clientRef.clientAddress?.id }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+        </button>
+
+        <button type="button" [routerLink]="['/client', clientRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

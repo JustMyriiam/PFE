@@ -1,0 +1,52 @@
+{
+  "annotations": {
+    "changelogDate": "19760601191331"
+  },
+  "applications": ["insuranceApp"],
+  "clientRootFolder": "insurance",
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "id",
+      "fieldType": "UUID"
+    },
+    {
+      "fieldName": "type",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "date",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "status",
+      "fieldType": "ClaimStatus",
+      "fieldValues": "IN_PROGRESS,RESOLVED"
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "Claim",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityName": "client",
+      "otherEntityRelationshipName": "claims",
+      "relationshipName": "client",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "contract",
+      "otherEntityRelationshipName": "claims",
+      "relationshipName": "contract",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "searchEngine": "elasticsearch",
+  "service": "serviceImpl"
+}

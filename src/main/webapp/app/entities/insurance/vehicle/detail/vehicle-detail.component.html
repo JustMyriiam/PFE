@@ -1,0 +1,221 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (vehicle(); as vehicleRef) {
+      <div>
+        <h2 data-cy="vehicleDetailsHeading"><span jhiTranslate="insuranceApp.insuranceVehicle.detail.title">Vehicle</span></h2>
+
+        <hr />
+
+        <jhi-alert-error />
+
+        <jhi-alert />
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="insuranceApp.insuranceVehicle.id">Id</span></dt>
+          <dd>
+            <span>{{ vehicleRef.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="insuranceApp.insuranceVehicle.registrationNumber">Registration Number</span></dt>
+          <dd>
+            <span>{{ vehicleRef.registrationNumber }}</span>
+          </dd>
+          <dt><span jhiTranslate="insuranceApp.insuranceVehicle.registrationType">Registration Type</span></dt>
+          <dd>
+            <span [jhiTranslate]="'insuranceApp.RegistrationType.' + (vehicleRef.registrationType ?? 'null')">{{
+              {
+                null: '',
+                STANDARD_PRIVATE_VEHICLE: 'TU',
+                SUSPENSIVE_REGIME: 'RS',
+                TEMPORARY_REGISTRATION: 'IT',
+                TRAILER: 'REM',
+                DIPLOMATIC_CORPS: 'CD',
+                DIPLOMATIC_MISSION: 'MD',
+                ADMINISTRATIVE_AND_TECHNICAL_STAFF: 'PAT',
+                CONSULAR_CORPS: 'CC',
+                CONSULAR_MISSION: 'MC',
+              }[vehicleRef.registrationType ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span jhiTranslate="insuranceApp.insuranceVehicle.firstRegistrationDate">First Registration Date</span></dt>
+          <dd>
+            <span>{{ vehicleRef.firstRegistrationDate | formatMediumDate }}</span>
+          </dd>
+          <dt><span jhiTranslate="insuranceApp.insuranceVehicle.technicalInspectionStatus">Technical Inspection Status</span></dt>
+          <dd>
+            <span [jhiTranslate]="'insuranceApp.TechnicalInspectionStatus.' + (vehicleRef.technicalInspectionStatus ?? 'null')">{{
+              { null: '', VALID: 'VALID', EXEMPTED: 'EXEMPTED', EXPIRED: 'EXPIRED', NO_INFORMATION: 'NO_INFORMATION' }[
+                vehicleRef.technicalInspectionStatus ?? 'null'
+              ]
+            }}</span>
+          </dd>
+          <dt><span jhiTranslate="insuranceApp.insuranceVehicle.expirationDate">Expiration Date</span></dt>
+          <dd>
+            <span>{{ vehicleRef.expirationDate | formatMediumDate }}</span>
+          </dd>
+          <dt><span jhiTranslate="insuranceApp.insuranceVehicle.newValue">New Value</span></dt>
+          <dd>
+            <span>{{ vehicleRef.newValue }}</span>
+          </dd>
+          <dt><span jhiTranslate="insuranceApp.insuranceVehicle.marketValue">Market Value</span></dt>
+          <dd>
+            <span>{{ vehicleRef.marketValue }}</span>
+          </dd>
+          <dt><span jhiTranslate="insuranceApp.insuranceVehicle.brand">Brand</span></dt>
+          <dd>
+            <span [jhiTranslate]="'insuranceApp.Brand.' + (vehicleRef.brand ?? 'null')">{{
+              {
+                null: '',
+                AUDI: 'AUDI',
+                BMW: 'BMW',
+                BYD: 'BYD',
+                CHEVROLET: 'CHEVROLET',
+                CITROEN: 'CITROEN',
+                FIAT: 'FIAT',
+                HONDA: 'HONDA',
+                HYUNDAI: 'HYUNDAI',
+                ISUZU: 'ISUZU',
+                KIA: 'KIA',
+                LEXUS: 'LEXUS',
+                MAHINDRA: 'MAHINDRA',
+                MERCEDES_BENZ: 'MERCEDES_BENZ',
+                MG: 'MG',
+                NISSAN: 'NISSAN',
+                PEUGEOT: 'PEUGEOT',
+                RENAULT: 'RENAULT',
+                SKODA: 'SKODA',
+                SUZUKI: 'SUZUKI',
+                TOYOTA: 'TOYOTA',
+                VOLKSWAGEN: 'VOLKSWAGEN',
+                VOLVO: 'VOLVO',
+              }[vehicleRef.brand ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span jhiTranslate="insuranceApp.insuranceVehicle.model">Model</span></dt>
+          <dd>
+            <span>{{ vehicleRef.model }}</span>
+          </dd>
+          <dt><span jhiTranslate="insuranceApp.insuranceVehicle.fiscalPower">Fiscal Power</span></dt>
+          <dd>
+            <span>{{ vehicleRef.fiscalPower }}</span>
+          </dd>
+          <dt><span jhiTranslate="insuranceApp.insuranceVehicle.chassisNumber">Chassis Number</span></dt>
+          <dd>
+            <span>{{ vehicleRef.chassisNumber }}</span>
+          </dd>
+          <dt><span jhiTranslate="insuranceApp.insuranceVehicle.energy">Energy</span></dt>
+          <dd>
+            <span [jhiTranslate]="'insuranceApp.Energy.' + (vehicleRef.energy ?? 'null')">{{
+              { null: '', DIESEL: 'DIESEL', PETROL: 'PETROL', HYBRID: 'HYBRID', ELECTRIC: 'ELECTRIC', GPL: 'GPL' }[
+                vehicleRef.energy ?? 'null'
+              ]
+            }}</span>
+          </dd>
+          <dt><span jhiTranslate="insuranceApp.insuranceVehicle.genre">Genre</span></dt>
+          <dd>
+            <span>{{ vehicleRef.genre }}</span>
+          </dd>
+          <dt><span jhiTranslate="insuranceApp.insuranceVehicle.nbrOfSeats">Nbr Of Seats</span></dt>
+          <dd>
+            <span>{{ vehicleRef.nbrOfSeats }}</span>
+          </dd>
+          <dt><span jhiTranslate="insuranceApp.insuranceVehicle.nbrOfStandingPlaces">Nbr Of Standing Places</span></dt>
+          <dd>
+            <span>{{ vehicleRef.nbrOfStandingPlaces }}</span>
+          </dd>
+          <dt><span jhiTranslate="insuranceApp.insuranceVehicle.emptyWeight">Empty Weight</span></dt>
+          <dd>
+            <span>{{ vehicleRef.emptyWeight }}</span>
+          </dd>
+          <dt><span jhiTranslate="insuranceApp.insuranceVehicle.payload">Payload</span></dt>
+          <dd>
+            <span>{{ vehicleRef.payload }}</span>
+          </dd>
+          <dt><span jhiTranslate="insuranceApp.insuranceVehicle.bonusMalus">Bonus Malus</span></dt>
+          <dd>
+            <span>{{ vehicleRef.bonusMalus }}</span>
+          </dd>
+          <dt><span jhiTranslate="insuranceApp.insuranceVehicle.vehicleAge">Vehicle Age</span></dt>
+          <dd>
+            <span>{{ vehicleRef.vehicleAge }}</span>
+          </dd>
+          <dt><span jhiTranslate="insuranceApp.insuranceVehicle.mileage">Mileage</span></dt>
+          <dd>
+            <span>{{ vehicleRef.mileage }}</span>
+          </dd>
+          <dt><span jhiTranslate="insuranceApp.insuranceVehicle.numberOfDoors">Number Of Doors</span></dt>
+          <dd>
+            <span>{{ vehicleRef.numberOfDoors }}</span>
+          </dd>
+          <dt><span jhiTranslate="insuranceApp.insuranceVehicle.gearbox">Gearbox</span></dt>
+          <dd>
+            <span [jhiTranslate]="'insuranceApp.Gearbox.' + (vehicleRef.gearbox ?? 'null')">{{
+              { null: '', AUTOMATIC: 'AUTOMATIC', MANUAL: 'MANUAL' }[vehicleRef.gearbox ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span jhiTranslate="insuranceApp.insuranceVehicle.color">Color</span></dt>
+          <dd>
+            <span>{{ vehicleRef.color }}</span>
+          </dd>
+          <dt><span jhiTranslate="insuranceApp.insuranceVehicle.usage">Usage</span></dt>
+          <dd>
+            <span [jhiTranslate]="'insuranceApp.VehicleUsage.' + (vehicleRef.usage ?? 'null')">{{
+              { null: '', PERSONAL: 'PERSONAL', COMMERCIAL: 'COMMERCIAL' }[vehicleRef.usage ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span jhiTranslate="insuranceApp.insuranceVehicle.isNew">Is New</span></dt>
+          <dd>
+            <span>{{ vehicleRef.isNew }}</span>
+          </dd>
+          <dt><span jhiTranslate="insuranceApp.insuranceVehicle.hasGarage">Has Garage</span></dt>
+          <dd>
+            <span>{{ vehicleRef.hasGarage }}</span>
+          </dd>
+          <dt><span jhiTranslate="insuranceApp.insuranceVehicle.hasParking">Has Parking</span></dt>
+          <dd>
+            <span>{{ vehicleRef.hasParking }}</span>
+          </dd>
+          <dt><span jhiTranslate="insuranceApp.insuranceVehicle.hasAlarmSystem">Has Alarm System</span></dt>
+          <dd>
+            <span>{{ vehicleRef.hasAlarmSystem }}</span>
+          </dd>
+          <dt><span jhiTranslate="insuranceApp.insuranceVehicle.hasSeatbeltAlarm">Has Seatbelt Alarm</span></dt>
+          <dd>
+            <span>{{ vehicleRef.hasSeatbeltAlarm }}</span>
+          </dd>
+          <dt><span jhiTranslate="insuranceApp.insuranceVehicle.hasRearCamera">Has Rear Camera</span></dt>
+          <dd>
+            <span>{{ vehicleRef.hasRearCamera }}</span>
+          </dd>
+          <dt><span jhiTranslate="insuranceApp.insuranceVehicle.hasRearRadar">Has Rear Radar</span></dt>
+          <dd>
+            <span>{{ vehicleRef.hasRearRadar }}</span>
+          </dd>
+          <dt><span jhiTranslate="insuranceApp.insuranceVehicle.hasAbsSystem">Has Abs System</span></dt>
+          <dd>
+            <span>{{ vehicleRef.hasAbsSystem }}</span>
+          </dd>
+          <dt><span jhiTranslate="insuranceApp.insuranceVehicle.hasGPS">Has GPS</span></dt>
+          <dd>
+            <span>{{ vehicleRef.hasGPS }}</span>
+          </dd>
+          <dt><span jhiTranslate="insuranceApp.insuranceVehicle.hasAirbag">Has Airbag</span></dt>
+          <dd>
+            <span>{{ vehicleRef.hasAirbag }}</span>
+          </dd>
+          <dt><span jhiTranslate="insuranceApp.insuranceVehicle.navette">Navette</span></dt>
+          <dd>
+            <span>{{ vehicleRef.navette }}</span>
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+        </button>
+
+        <button type="button" [routerLink]="['/vehicle', vehicleRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

@@ -1,0 +1,31 @@
+{
+  "insuranceApp": {
+    "insuranceAgency": {
+      "home": {
+        "title": "Agencies",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Agency",
+        "createOrEditLabel": "Créer ou éditer un Agency",
+        "search": "Recherche pour Agency",
+        "notFound": "Aucun Agency trouvé"
+      },
+      "created": "Un nouveau Agency a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Agency avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Agency avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Êtes-vous certain de vouloir supprimer le Agency {{ id }} ?"
+      },
+      "detail": {
+        "title": "Agency"
+      },
+      "id": "Id",
+      "name": "Name",
+      "address": "Address",
+      "region": "Region",
+      "phoneNumber": "Phone Number",
+      "managerName": "Manager Name",
+      "contracts": "Contracts",
+      "city": "City"
+    }
+  }
+}

@@ -1,0 +1,386 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-client-heading" data-cy="ClientCreateUpdateHeading" jhiTranslate="insuranceApp.insuranceClient.home.createOrEditLabel">
+        Create or edit a Client
+      </h2>
+
+      <div>
+        <jhi-alert-error />
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="insuranceApp.insuranceClient.id">Id</label>
+            <input type="text" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        <div class="mb-3">
+          <label class="form-label" for="field_lastName" jhiTranslate="insuranceApp.insuranceClient.lastName">Last Name</label>
+          <input type="text" class="form-control" name="lastName" id="field_lastName" data-cy="lastName" formControlName="lastName" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_firstName" jhiTranslate="insuranceApp.insuranceClient.firstName">First Name</label>
+          <input type="text" class="form-control" name="firstName" id="field_firstName" data-cy="firstName" formControlName="firstName" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_identityType" jhiTranslate="insuranceApp.insuranceClient.identityType">Identity Type</label>
+          <select class="form-control" name="identityType" formControlName="identityType" id="field_identityType" data-cy="identityType">
+            <option [ngValue]="null">{{ 'insuranceApp.IdentityType.null' | translate }}</option>
+            @for (identityType of identityTypeValues; track $index) {
+              <option [value]="identityType">{{ 'insuranceApp.IdentityType.' + identityType | translate }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_identityNumber" jhiTranslate="insuranceApp.insuranceClient.identityNumber"
+            >Identity Number</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="identityNumber"
+            id="field_identityNumber"
+            data-cy="identityNumber"
+            formControlName="identityNumber"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_identityEmissionDate" jhiTranslate="insuranceApp.insuranceClient.identityEmissionDate"
+            >Identity Emission Date</label
+          >
+          <div class="input-group">
+            <input
+              id="field_identityEmissionDate"
+              data-cy="identityEmissionDate"
+              type="text"
+              class="form-control"
+              name="identityEmissionDate"
+              ngbDatepicker
+              #identityEmissionDateDp="ngbDatepicker"
+              formControlName="identityEmissionDate"
+            />
+            <button type="button" class="btn btn-secondary" (click)="identityEmissionDateDp.toggle()">
+              <fa-icon icon="calendar-alt"></fa-icon>
+            </button>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_birthDate" jhiTranslate="insuranceApp.insuranceClient.birthDate">Birth Date</label>
+          <div class="input-group">
+            <input
+              id="field_birthDate"
+              data-cy="birthDate"
+              type="text"
+              class="form-control"
+              name="birthDate"
+              ngbDatepicker
+              #birthDateDp="ngbDatepicker"
+              formControlName="birthDate"
+            />
+            <button type="button" class="btn btn-secondary" (click)="birthDateDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_birthPlace" jhiTranslate="insuranceApp.insuranceClient.birthPlace">Birth Place</label>
+          <input
+            type="text"
+            class="form-control"
+            name="birthPlace"
+            id="field_birthPlace"
+            data-cy="birthPlace"
+            formControlName="birthPlace"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_identityIssueDate" jhiTranslate="insuranceApp.insuranceClient.identityIssueDate"
+            >Identity Issue Date</label
+          >
+          <div class="input-group">
+            <input
+              id="field_identityIssueDate"
+              data-cy="identityIssueDate"
+              type="text"
+              class="form-control"
+              name="identityIssueDate"
+              ngbDatepicker
+              #identityIssueDateDp="ngbDatepicker"
+              formControlName="identityIssueDate"
+            />
+            <button type="button" class="btn btn-secondary" (click)="identityIssueDateDp.toggle()">
+              <fa-icon icon="calendar-alt"></fa-icon>
+            </button>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_identityPlaceOfIssue" jhiTranslate="insuranceApp.insuranceClient.identityPlaceOfIssue"
+            >Identity Place Of Issue</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="identityPlaceOfIssue"
+            id="field_identityPlaceOfIssue"
+            data-cy="identityPlaceOfIssue"
+            formControlName="identityPlaceOfIssue"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_maritalStatus" jhiTranslate="insuranceApp.insuranceClient.maritalStatus"
+            >Marital Status</label
+          >
+          <select
+            class="form-control"
+            name="maritalStatus"
+            formControlName="maritalStatus"
+            id="field_maritalStatus"
+            data-cy="maritalStatus"
+          >
+            <option [ngValue]="null">{{ 'insuranceApp.MaritalStatus.null' | translate }}</option>
+            @for (maritalStatus of maritalStatusValues; track $index) {
+              <option [value]="maritalStatus">{{ 'insuranceApp.MaritalStatus.' + maritalStatus | translate }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_nbrOfchildren" jhiTranslate="insuranceApp.insuranceClient.nbrOfchildren"
+            >Nbr Ofchildren</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="nbrOfchildren"
+            id="field_nbrOfchildren"
+            data-cy="nbrOfchildren"
+            formControlName="nbrOfchildren"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_professionalEmail" jhiTranslate="insuranceApp.insuranceClient.professionalEmail"
+            >Professional Email</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="professionalEmail"
+            id="field_professionalEmail"
+            data-cy="professionalEmail"
+            formControlName="professionalEmail"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_personalEmail" jhiTranslate="insuranceApp.insuranceClient.personalEmail"
+            >Personal Email</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="personalEmail"
+            id="field_personalEmail"
+            data-cy="personalEmail"
+            formControlName="personalEmail"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_primaryPhoneNumber" jhiTranslate="insuranceApp.insuranceClient.primaryPhoneNumber"
+            >Primary Phone Number</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="primaryPhoneNumber"
+            id="field_primaryPhoneNumber"
+            data-cy="primaryPhoneNumber"
+            formControlName="primaryPhoneNumber"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_secondaryPhoneNumber" jhiTranslate="insuranceApp.insuranceClient.secondaryPhoneNumber"
+            >Secondary Phone Number</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="secondaryPhoneNumber"
+            id="field_secondaryPhoneNumber"
+            data-cy="secondaryPhoneNumber"
+            formControlName="secondaryPhoneNumber"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_faxNumber" jhiTranslate="insuranceApp.insuranceClient.faxNumber">Fax Number</label>
+          <input type="text" class="form-control" name="faxNumber" id="field_faxNumber" data-cy="faxNumber" formControlName="faxNumber" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_nationality" jhiTranslate="insuranceApp.insuranceClient.nationality">Nationality</label>
+          <input
+            type="text"
+            class="form-control"
+            name="nationality"
+            id="field_nationality"
+            data-cy="nationality"
+            formControlName="nationality"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_gender" jhiTranslate="insuranceApp.insuranceClient.gender">Gender</label>
+          <select class="form-control" name="gender" formControlName="gender" id="field_gender" data-cy="gender">
+            <option [ngValue]="null">{{ 'insuranceApp.Gender.null' | translate }}</option>
+            @for (gender of genderValues; track $index) {
+              <option [value]="gender">{{ 'insuranceApp.Gender.' + gender | translate }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_jobTitle" jhiTranslate="insuranceApp.insuranceClient.jobTitle">Job Title</label>
+          <input type="text" class="form-control" name="jobTitle" id="field_jobTitle" data-cy="jobTitle" formControlName="jobTitle" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_professionalStatus" jhiTranslate="insuranceApp.insuranceClient.professionalStatus"
+            >Professional Status</label
+          >
+          <select
+            class="form-control"
+            name="professionalStatus"
+            formControlName="professionalStatus"
+            id="field_professionalStatus"
+            data-cy="professionalStatus"
+          >
+            <option [ngValue]="null">{{ 'insuranceApp.ProfessionalStatus.null' | translate }}</option>
+            @for (professionalStatus of professionalStatusValues; track $index) {
+              <option [value]="professionalStatus">{{ 'insuranceApp.ProfessionalStatus.' + professionalStatus | translate }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_bank" jhiTranslate="insuranceApp.insuranceClient.bank">Bank</label>
+          <input type="text" class="form-control" name="bank" id="field_bank" data-cy="bank" formControlName="bank" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_agency" jhiTranslate="insuranceApp.insuranceClient.agency">Agency</label>
+          <input type="text" class="form-control" name="agency" id="field_agency" data-cy="agency" formControlName="agency" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_rib" jhiTranslate="insuranceApp.insuranceClient.rib">Rib</label>
+          <input type="text" class="form-control" name="rib" id="field_rib" data-cy="rib" formControlName="rib" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_drivingLicenseNumber" jhiTranslate="insuranceApp.insuranceClient.drivingLicenseNumber"
+            >Driving License Number</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="drivingLicenseNumber"
+            id="field_drivingLicenseNumber"
+            data-cy="drivingLicenseNumber"
+            formControlName="drivingLicenseNumber"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_drivingLicenseIssueDate" jhiTranslate="insuranceApp.insuranceClient.drivingLicenseIssueDate"
+            >Driving License Issue Date</label
+          >
+          <div class="input-group">
+            <input
+              id="field_drivingLicenseIssueDate"
+              data-cy="drivingLicenseIssueDate"
+              type="text"
+              class="form-control"
+              name="drivingLicenseIssueDate"
+              ngbDatepicker
+              #drivingLicenseIssueDateDp="ngbDatepicker"
+              formControlName="drivingLicenseIssueDate"
+            />
+            <button type="button" class="btn btn-secondary" (click)="drivingLicenseIssueDateDp.toggle()">
+              <fa-icon icon="calendar-alt"></fa-icon>
+            </button>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_drivingLicenseCategory" jhiTranslate="insuranceApp.insuranceClient.drivingLicenseCategory"
+            >Driving License Category</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="drivingLicenseCategory"
+            id="field_drivingLicenseCategory"
+            data-cy="drivingLicenseCategory"
+            formControlName="drivingLicenseCategory"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_user" jhiTranslate="insuranceApp.insuranceClient.user">User</label>
+          <select class="form-control" id="field_user" data-cy="user" name="user" formControlName="user" [compareWith]="compareUser">
+            <option [ngValue]="null"></option>
+            @for (userOption of usersSharedCollection; track $index) {
+              <option [ngValue]="userOption">{{ userOption.login }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_clientAddress" jhiTranslate="insuranceApp.insuranceClient.clientAddress"
+            >Client Address</label
+          >
+          <select
+            class="form-control"
+            id="field_clientAddress"
+            data-cy="clientAddress"
+            name="clientAddress"
+            formControlName="clientAddress"
+            [compareWith]="compareClientAddress"
+          >
+            <option [ngValue]="null"></option>
+            @for (clientAddressOption of clientAddressesSharedCollection; track $index) {
+              <option [ngValue]="clientAddressOption">{{ clientAddressOption.id }}</option>
+            }
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
