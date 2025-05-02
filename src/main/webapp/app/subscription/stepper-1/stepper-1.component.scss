@@ -1,0 +1,6 @@
+@import 'bootstrap/scss/functions';
+@import 'bootstrap/scss/variables';
+$primary: #0278f6;
+$grey: #d3d3d3;
+
+$form-bg-gradient: linear-gradient(135deg, rgba($primary, 0.1), rgba($body-bg, 0.1));

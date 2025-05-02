@@ -25,12 +25,16 @@ $border-radius-sm: 0.1rem;
 // Body:
 // Settings for the `<body>` element.
 
-$body-bg: #ffffff;
+$body-bg: #fffcf8;
+$primary: #0278f6;
+$light: red;
 
 // Typography:
 // Font, line-height, and color for body text, headings, and more.
 
 $font-size-base: 1rem;
-
+$form-select-border-color: $primary;
 $dropdown-link-hover-color: white;
-$dropdown-link-hover-bg: #343a40;
+$input-btn-focus-box-shadow: none;
+$input-btn-focus-color: $primary;
+$dropdown-link-hover-bg: $primary;

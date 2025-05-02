@@ -34,6 +34,9 @@
     <include file="config/liquibase/changelog/19760601191631_added_entity_constraints_Agency.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/19760601191731_added_entity_constraints_Document.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/19760601191831_added_entity_constraints_InsurancePack.xml" relativeToChangelogFile="false"/>
-    <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
+  <include file="config/liquibase/changelog/23-01-added_audit_to_contract.xml" relativeToChangelogFile="false"/>
+  <include file="config/liquibase/changelog/04-25-02_added_audit_to_client.xml" relativeToChangelogFile="false"/>
+
+  <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
     <!-- jhipster-needle-liquibase-add-incremental-changelog - JHipster will add incremental liquibase changelogs here -->
 </databaseChangeLog>

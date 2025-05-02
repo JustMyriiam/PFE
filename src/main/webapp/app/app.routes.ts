@@ -17,6 +17,10 @@ const routes: Routes = [
     outlet: 'navbar',
   },
   {
+    path: 'stepper-1',
+    loadComponent: () => import('./subscription/stepper-1/stepper-1.component').then(m => m.Stepper1Component),
+  },
+  {
     path: 'admin',
     data: {
       authorities: [Authority.ADMIN],
