@@ -1,13 +1,29 @@
 import { Component, model } from '@angular/core';
 import { FormlyFieldConfig } from '@ngx-formly/core';
-import { FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FormlyModule } from '@ngx-formly/core';
 import { FormlyBootstrapModule } from '@ngx-formly/bootstrap';
-import { JsonPipe } from '@angular/common';
+import { JsonPipe, NgClass } from '@angular/common';
+import { Step, StepList, StepPanel, StepPanels, Stepper } from 'primeng/stepper';
+import { Button } from 'primeng/button';
+import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 
 @Component({
   selector: 'jhi-stepper-1',
-  imports: [FormlyModule, FormlyBootstrapModule, ReactiveFormsModule, JsonPipe],
+  imports: [
+    FormlyModule,
+    FormlyBootstrapModule,
+    ReactiveFormsModule,
+    StepList,
+    Stepper,
+    Step,
+    JsonPipe,
+    StepPanels,
+    StepPanel,
+    NgClass,
+    Button,
+    FaIconComponent,
+  ],
   templateUrl: './stepper-1.component.html',
   styleUrl: './stepper-1.component.scss',
 })
@@ -116,4 +132,5 @@ export class Stepper1Component {
   ];
   protected readonly model = model;
   novalidate: any;
+  activeStep: number = 0;
 }

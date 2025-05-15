@@ -23,6 +23,9 @@ import routes from './app.routes';
 // jhipster-needle-angular-add-module-import JHipster will add new module here
 import { NgbDateDayjsAdapter } from './config/datepicker-adapter';
 import { AppPageTitleStrategy } from './app-page-title-strategy';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { providePrimeNG } from 'primeng/config';
+import Lara from '@primeng/themes/lara';
 
 const routerFeatures: RouterFeatures[] = [
   withComponentInputBinding(),
@@ -57,5 +60,11 @@ export const appConfig: ApplicationConfig = {
     httpInterceptorProviders,
     { provide: TitleStrategy, useClass: AppPageTitleStrategy },
     // jhipster-needle-angular-add-module JHipster will add new module here
+    provideAnimationsAsync(),
+    providePrimeNG({
+      theme: {
+        preset: Lara,
+      },
+    }),
   ],
 };

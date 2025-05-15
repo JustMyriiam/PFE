@@ -6,11 +6,13 @@ import {
   faBell,
   faBook,
   faCalendarAlt,
+  faCar,
   faCheck,
   faCloud,
   faCogs,
   faDatabase,
   faEye,
+  faFileContract,
   faFlag,
   faHeart,
   faHome,
@@ -79,5 +81,7 @@ export const fontAwesomeIcons = [
   faUsers,
   faUsersCog,
   faWrench,
+  faCar,
+  faFileContract,
   // jhipster-needle-add-icon-import
 ];
