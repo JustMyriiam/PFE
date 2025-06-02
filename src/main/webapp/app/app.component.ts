@@ -7,8 +7,8 @@ import locale from '@angular/common/locales/en';
 // jhipster-needle-angular-add-module-import JHipster will add new module here
 
 import { ApplicationConfigService } from 'app/core/config/application-config.service';
-import { fontAwesomeIcons } from './config/font-awesome-icons';
 import MainComponent from './layouts/main/main.component';
+import { fontAwesomeIcons } from './config/font-awesome-icons';
 
 @Component({
   selector: 'jhi-app',

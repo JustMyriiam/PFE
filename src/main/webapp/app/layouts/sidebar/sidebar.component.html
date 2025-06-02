@@ -1,0 +1,53 @@
+<aside data-cy="sidebar" class="sidebar d-flex flex-column flex-shrink-0 bg-white collapsed px-1" [class.collapsed]="isCollapsed">
+  <div class="container-fluid">
+    <fa-icon icon="bars" class="sidebar-toggler fs-4 px-3 mb-5 my-5" (click)="toggleSidebar()"></fa-icon>
+    <div class="">
+      <ul class="navbar-nav">
+        <li class="nav-item mb-3">
+          <a class="nav-link px-3 py-3" routerLink="/dashboard" routerLinkActive="active">
+            <fa-icon icon="tachometer-alt" class="sidebar-icon me-2"></fa-icon>
+            @if (!isCollapsed) {
+              <span class="sidebar-text" jhiTranslate="global.menu.dashboard">Tableau de bord</span>
+            }
+          </a>
+        </li>
+
+        <li class="nav-item mb-3">
+          <a class="nav-link px-3 py-3" routerLink="/contract" routerLinkActive="active">
+            <fa-icon icon="file-invoice-dollar" class="sidebar-icon me-2"></fa-icon>
+            @if (!isCollapsed) {
+              <span class="sidebar-text" jhiTranslate="global.menu.entities.insuranceContract">Contrats</span>
+            }
+          </a>
+        </li>
+
+        <li class="nav-item mb-3">
+          <a class="nav-link px-3 py-3" routerLink="/quote" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+            <fa-icon icon="calculator" class="sidebar-icon me-2"></fa-icon>
+            @if (!isCollapsed) {
+              <span class="sidebar-text" jhiTranslate="global.menu.entities.insuranceQuote">Devis</span>
+            }
+          </a>
+        </li>
+
+        <li class="nav-item mb-3">
+          <a class="nav-link px-3 py-3" routerLink="/claim" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+            <fa-icon icon="exclamation-circle" class="sidebar-icon me-2"></fa-icon>
+            @if (!isCollapsed) {
+              <span class="sidebar-text" jhiTranslate="global.menu.entities.insuranceClaim">Réclamation</span>
+            }
+          </a>
+        </li>
+
+        <li class="nav-item mb-3">
+          <a class="nav-link px-3 py-3" routerLink="/agency" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+            <fa-icon icon="location-dot" class="sidebar-icon me-2"></fa-icon>
+            @if (!isCollapsed) {
+              <span class="sidebar-text" jhiTranslate="global.menu.entities.insuranceAgency">Agences</span>
+            }
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</aside>

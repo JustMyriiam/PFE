@@ -1,22 +1,55 @@
 @import 'bootstrap/scss/functions';
 @import 'bootstrap/scss/variables';
-@import 'primeicons/primeicons.css';
 
-$primary: #0278f6;
-$grey: #d3d3d3;
+//$primary: #0278f6;
+//$grey: #d3d3d3;
 
 .container-fluid {
+  width: 50vw;
   background-color: white;
-  box-shadow: 0 4px 8px $grey;
-  width: 60vw;
 }
 
-p-stepper {
+//formly-form {
+//  .form-control {
+//    padding: 1rem 0.5rem;
+//    border-radius: 0.5rem;
+//    font-size: 1rem;
+//    border: 1px solid black;
+//  }
+//}
+
+.btn {
+  width: 12vw;
+  padding: 0.5rem 1.5rem;
 }
-p-button {
-  button {
-    width: 30vw;
-    height: 5vh;
-    color: blue;
-  }
+
+::ng-deep formly-form .form-control {
+  border-radius: 0.5rem;
+  border: 1px solid #ced4da;
+  padding: 0.7rem 0.75rem;
+  font-size: 1rem;
+  width: 100%;
+  box-shadow: none;
+  appearance: none;
+}
+
+::ng-deep formly-form label {
+  font-size: 1rem;
+  color: #333;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+::ng-deep formly-form .form-control:focus {
+  outline: none;
+  box-shadow: none;
+  border-color: #0d6efd;
+}
+
+::ng-deep formly-form .form-control.ng-valid,
+::ng-deep formly-form .form-control.ng-invalid,
+::ng-deep formly-form .form-control.ng-touched,
+::ng-deep formly-form .form-control.ng-untouched {
+  box-shadow: none !important;
+  border-color: #ced4da !important; // default border color
 }

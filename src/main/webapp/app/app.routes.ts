@@ -17,8 +17,17 @@ const routes: Routes = [
     outlet: 'navbar',
   },
   {
+    path: '',
+    loadComponent: () => import('./layouts/sidebar/sidebar.component'),
+    outlet: 'sidebar',
+  },
+  {
     path: 'stepper-1',
     loadComponent: () => import('./subscription/stepper-1/stepper-1.component').then(m => m.Stepper1Component),
+  },
+  {
+    path: 'agency',
+    loadComponent: () => import('./client/agency/agency.component').then(m => m.AgencyComponent),
   },
   {
     path: 'admin',

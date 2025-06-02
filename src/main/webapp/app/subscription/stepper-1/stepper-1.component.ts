@@ -3,26 +3,23 @@ import { FormlyFieldConfig } from '@ngx-formly/core';
 import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FormlyModule } from '@ngx-formly/core';
 import { FormlyBootstrapModule } from '@ngx-formly/bootstrap';
-import { JsonPipe, NgClass } from '@angular/common';
+import { NgClass } from '@angular/common';
 import { Step, StepList, StepPanel, StepPanels, Stepper } from 'primeng/stepper';
-import { Button } from 'primeng/button';
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 
 @Component({
   selector: 'jhi-stepper-1',
   imports: [
     FormlyModule,
-    FormlyBootstrapModule,
-    ReactiveFormsModule,
     StepList,
     Stepper,
     Step,
-    JsonPipe,
     StepPanels,
     StepPanel,
     NgClass,
-    Button,
     FaIconComponent,
+    ReactiveFormsModule,
+    FormlyBootstrapModule,
   ],
   templateUrl: './stepper-1.component.html',
   styleUrl: './stepper-1.component.scss',
@@ -37,11 +34,6 @@ export class Stepper1Component {
         label: 'Prénom',
         placeholder: 'Foulen',
         required: true,
-      },
-      validation: {
-        messages: {
-          required: 'Veuillez spécifier le ticket ConnectWise auquel ce ticket utilisateur est lié.',
-        },
       },
     },
     {
