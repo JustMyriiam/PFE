@@ -122,6 +122,102 @@ export class Stepper1Component {
       },
     },
   ];
+
+  fieldsStep2: FormlyFieldConfig[] = [
+    {
+      key: 'registrationNumber',
+      type: 'input',
+      props: {
+        label: 'Matricule',
+        placeholder: '123 TU 456',
+        required: true,
+      },
+    },
+    {
+      key: 'brand',
+      type: 'input',
+      props: {
+        label: 'Marque',
+        placeholder: 'Toyota, Renault, etc.',
+        required: true,
+      },
+    },
+    {
+      key: 'model',
+      type: 'input',
+      props: {
+        label: 'Modèle',
+        placeholder: 'Clio, Corolla, etc.',
+        required: true,
+      },
+    },
+    {
+      key: 'firstRegistrationDate',
+      type: 'datepicker',
+      props: {
+        label: 'Date de première mise en circulation',
+        required: true,
+      },
+    },
+    {
+      key: 'fiscalPower',
+      type: 'input',
+      props: {
+        label: 'Puissance fiscale',
+        placeholder: '6',
+        type: 'number',
+      },
+    },
+    {
+      key: 'mileage',
+      type: 'input',
+      props: {
+        label: 'Kilométrage',
+        placeholder: 'ex: 120000',
+        type: 'number',
+      },
+    },
+    {
+      key: 'color',
+      type: 'input',
+      props: {
+        label: 'Couleur',
+        placeholder: 'ex: Noir, Blanc',
+      },
+    },
+    {
+      key: 'gearbox',
+      type: 'select',
+      props: {
+        label: 'Boîte de vitesse',
+        options: [
+          { label: 'Manuelle', value: 'MANUAL' },
+          { label: 'Automatique', value: 'AUTOMATIC' },
+        ],
+      },
+    },
+    {
+      key: 'energy',
+      type: 'select',
+      props: {
+        label: 'Énergie',
+        options: [
+          { label: 'Essence', value: 'ESSENCE' },
+          { label: 'Diesel', value: 'DIESEL' },
+          { label: 'Électrique', value: 'ELECTRIC' },
+          { label: 'Hybride', value: 'HYBRID' },
+        ],
+      },
+    },
+    {
+      key: 'isNew',
+      type: 'checkbox',
+      props: {
+        label: 'Véhicule Neuf ?',
+      },
+    },
+  ];
+
   protected readonly model = model;
   novalidate: any;
   activeStep: number = 0;

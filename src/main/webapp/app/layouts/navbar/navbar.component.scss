@@ -34,3 +34,20 @@ Logo styles
   background: url('/content/images/logo-jhipster.png') no-repeat center center;
   background-size: contain;
 }
+
+header {
+  transition: all 0.3s ease-in-out;
+  z-index: 1050;
+
+  a.nav-link {
+    transition: color 0.2s ease-in-out;
+
+    &:hover {
+      color: var(--bs-primary);
+    }
+  }
+
+  .bi {
+    transition: color 0.2s;
+  }
+}

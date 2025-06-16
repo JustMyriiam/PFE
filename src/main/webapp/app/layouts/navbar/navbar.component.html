@@ -319,3 +319,48 @@
     </div>
   </div>
 </nav>
+
+<header
+  [ngClass]="{
+    'bg-white shadow-sm py-2': isScrolled,
+    'bg-transparent py-4': !isScrolled,
+  }"
+  class="fixed-top w-100 transition-all"
+>
+  <div class="container d-flex align-items-center justify-content-between">
+    <div class="d-flex align-items-center">
+      <i class="bi bi-shield-check text-primary fs-3 me-2"></i>
+      <span class="fs-4 fw-bold text-primary">Assuri</span>
+    </div>
+
+    <!-- Desktop Navigation -->
+    <nav class="d-none d-md-flex align-items-center gap-4">
+      <a href="#home" class="text-dark fw-medium nav-link">Accueil</a>
+      <a href="#services" class="text-dark fw-medium nav-link">Services</a>
+      <a href="#about" class="text-dark fw-medium nav-link">À Propos</a>
+      <a href="#testimonials" class="text-dark fw-medium nav-link">Témoignages</a>
+      <a href="#contact" class="text-dark fw-medium nav-link">Contact</a>
+    </nav>
+
+    <div class="d-none d-md-block">
+      <a routerLink="/stepper-1" class="btn btn-primary">Espace Client</a>
+    </div>
+
+    <!-- Mobile Menu Button -->
+    <button class="d-md-none btn btn-link text-primary p-0 border-0" (click)="toggleMobileMenu()">
+      <i class="bi" [ngClass]="mobileMenuOpen ? 'bi-x-lg' : 'bi-list'" style="font-size: 1.5rem"></i>
+    </button>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div *ngIf="mobileMenuOpen" class="d-md-none bg-white shadow-sm py-4 px-3">
+    <nav class="d-flex flex-column gap-3">
+      <a href="#home" class="text-dark fw-medium nav-link" (click)="closeMobileMenu()">Accueil</a>
+      <a href="#services" class="text-dark fw-medium nav-link" (click)="closeMobileMenu()">Services</a>
+      <a href="#about" class="text-dark fw-medium nav-link" (click)="closeMobileMenu()">À Propos</a>
+      <a href="#testimonials" class="text-dark fw-medium nav-link" (click)="closeMobileMenu()">Témoignages</a>
+      <a href="#contact" class="text-dark fw-medium nav-link" (click)="closeMobileMenu()">Contact</a>
+      <button class="btn btn-primary w-100" (click)="closeMobileMenu()">Obtenir un Devis</button>
+    </nav>
+  </div>
+</header>

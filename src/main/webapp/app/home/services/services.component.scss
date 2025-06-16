@@ -1,0 +1,19 @@
+.service-card {
+  border-radius: 0.4rem;
+  transition: box-shadow 0.3s ease;
+
+  &:hover {
+    box-shadow: 0 0.5rem 1.7rem rgba(0, 0, 0, 0.3) !important;
+    .icon-container {
+      background-color: #0d6efd !important;
+      color: white !important;
+    }
+  }
+}
+
+.icon-container {
+  border-radius: 0.4rem;
+  background-color: rgba(13, 110, 253, 0.1);
+  color: #0d6efd;
+  transition: all 0.3s ease;
+}

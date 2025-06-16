@@ -1,3 +1,4 @@
+<h1 class="display-5">Contrat de souscription</h1>
 <p-stepper [(value)]="activeStep" class="d-flex flex-column justify-content-center align-items-center">
   <p-step-list class="w-75 mb-5">
     <p-step [value]="1" class="d-flex flex-row flex-grow-1">
@@ -69,7 +70,7 @@
     </p-step>
   </p-step-list>
 
-  <div class="container-fluid shadow-sm h-100 p-0 mb-0 rounded-4">
+  <div class="container-fluid shadow-sm h-100 p-0 mb-0">
     <p-step-panels>
       <p-step-panel [value]="1">
         <ng-template #content let-activateCallback="activateCallback">
@@ -94,7 +95,9 @@
             <div
               class="border-2 border-dashed border-surface-200 dark:border-surface-700 rounded bg-surface-50 dark:bg-surface-950 flex-auto flex justify-center items-center font-medium"
             >
-              Content II
+              <form [formGroup]="form" class="form">
+                <formly-form [model]="model" [fields]="fieldsStep2" [form]="form"></formly-form>
+              </form>
             </div>
           </div>
           <div class="d-flex justify-content-between mx-4 my-2">
@@ -110,7 +113,61 @@
             <div
               class="border-2 border-dashed border-surface-200 dark:border-surface-700 rounded bg-surface-50 dark:bg-surface-950 flex-auto flex justify-center items-center font-medium"
             >
-              Content II
+              <div class="container py-5">
+                <h2 class="text-center mb-4">Choose Your WarrantyPack</h2>
+                <div class="row g-4">
+                  <!-- Basic Plan -->
+                  <div class="col-md-4">
+                    <div class="card border-primary h-100 text-center">
+                      <div class="card-header bg-primary text-white fw-bold">Basic</div>
+                      <div class="card-body">
+                        <h3 class="card-title">$9<span class="fs-6">/mo</span></h3>
+                        <p class="card-text">Perfect for short-term protection</p>
+                        <ul class="list-unstyled">
+                          <li>✔ 6-month coverage</li>
+                          <li>✔ Basic customer support</li>
+                          <li>✔ 1 device only</li>
+                        </ul>
+                        <a href="#" class="btn btn-outline-primary mt-3">Get Started</a>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Standard Plan -->
+                  <div class="col-md-4">
+                    <div class="card border-success h-100 text-center">
+                      <div class="card-header bg-success text-white fw-bold">Standard</div>
+                      <div class="card-body">
+                        <h3 class="card-title">$19<span class="fs-6">/mo</span></h3>
+                        <p class="card-text">Ideal for regular users</p>
+                        <ul class="list-unstyled">
+                          <li>✔ 1-year coverage</li>
+                          <li>✔ Priority support</li>
+                          <li>✔ Up to 3 devices</li>
+                        </ul>
+                        <a href="#" class="btn btn-success mt-3">Choose Plan</a>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Premium Plan -->
+                  <div class="col-md-4">
+                    <div class="card border-dark h-100 text-center">
+                      <div class="card-header bg-dark text-white fw-bold">Premium</div>
+                      <div class="card-body">
+                        <h3 class="card-title">$29<span class="fs-6">/mo</span></h3>
+                        <p class="card-text">Best for full protection</p>
+                        <ul class="list-unstyled">
+                          <li>✔ 2-year coverage</li>
+                          <li>✔ 24/7 premium support</li>
+                          <li>✔ Unlimited devices</li>
+                        </ul>
+                        <a href="#" class="btn btn-dark mt-3">Go Premium</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
           <div class="d-flex justify-content-between mx-4 my-2">

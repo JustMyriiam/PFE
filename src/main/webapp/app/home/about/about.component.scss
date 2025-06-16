@@ -1,0 +1,32 @@
+.bg-light-gradient {
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+}
+
+.bg-warning-light {
+  background-color: rgba(255, 193, 7, 0.1) !important;
+}
+
+.shadow-custom {
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08) !important;
+}
+
+.hover-lift {
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15) !important;
+  }
+}
+
+.bg-orange {
+  background-color: #ff8c00 !important;
+}
+
+@media (max-width: 768px) {
+  .col-6.mt-5 {
+    margin-top: 0 !important;
+  }
+}

@@ -1,0 +1,121 @@
+.hero-section {
+  background: linear-gradient(135deg, #f8f9ff 0%, #ffffff 100%);
+  min-height: 100vh;
+}
+
+.decoration-blur {
+  filter: blur(3rem);
+}
+
+.hero-card-shadow {
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+.hero-overlay {
+  background: linear-gradient(135deg, rgba(13, 110, 253, 0.1) 0%, rgba(25, 135, 84, 0.1) 100%);
+  opacity: 0.6;
+}
+
+.quote-card-bg {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(13, 110, 253, 0.1);
+}
+
+.trust-badge-bg {
+  background-color: rgba(13, 110, 253, 0.1);
+}
+
+.learn-more-btn:hover .arrow-icon {
+  transform: translateX(0.25rem);
+}
+
+.arrow-icon {
+  transition: transform 0.3s ease;
+}
+
+.fade-in {
+  animation: fadeIn 1s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(1rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-image {
+  object-fit: cover;
+}
+
+:root {
+  --primary-color: #0d6efd;
+  --accent-color: #198754;
+}
+
+.hero-section {
+  background: linear-gradient(135deg, #f8f9ff 0%, #ffffff 100%);
+  min-height: 100vh;
+}
+
+.decoration-blur {
+  filter: blur(3rem);
+}
+
+.hero-card-shadow {
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+.hero-overlay {
+  background: linear-gradient(135deg, rgba(13, 110, 253, 0.1) 0%, rgba(25, 135, 84, 0.1) 100%);
+  opacity: 0.6;
+}
+
+.quote-card-bg {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(13, 110, 253, 0.1);
+}
+
+.trust-badge-bg {
+  background-color: rgba(13, 110, 253, 0.1);
+}
+
+.learn-more-btn:hover .arrow-icon {
+  transform: translateX(0.25rem);
+}
+
+.arrow-icon {
+  transition: transform 0.3s ease;
+}
+
+.fade-in {
+  animation: fadeIn 1s ease-in;
+}
+
+.hover-bg-orange:hover {
+  background-color: orange !important;
+  color: white !important;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(1rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-image {
+  object-fit: cover;
+}
