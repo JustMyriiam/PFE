@@ -6,8 +6,7 @@
 
 .container-fluid {
   border-radius: 0.75rem;
-  padding: 5vw;
-  width: 50vw;
+  width: 40vw;
   background-color: white;
 }
 
@@ -21,8 +20,8 @@
 //}
 
 .btn {
-  width: 12vw;
-  padding: 0.5rem 1.5rem;
+  width: 10vw;
+  padding: 0.4rem 1.2rem;
 }
 
 ::ng-deep formly-form .form-control {
@@ -55,3 +54,30 @@
   box-shadow: none !important;
   border-color: #ced4da !important; // default border color
 }
+
+.progress {
+  width: 97%;
+  height: 1vh;
+}
+
+::ng-deep .formly-field-radio .form-check {
+  width: calc(33.333% - 1rem);
+  margin-bottom: 1rem;
+}
+::ng-deep .formly-field-radio .form-check-input {
+  display: none; // hide the circle input
+}
+::ng-deep .formly-field-radio .form-check-label {
+  width: 100%;
+  cursor: pointer;
+  padding: 0;
+}
+::ng-deep .formly-field-radio input:checked + .form-check-label .card {
+  border: 2px solid #0d6efd;
+  box-shadow: 0 0 0 0.1rem rgba(13, 110, 253, 0.25);
+}
+
+//
+//.p-stepper-separator.p-component {
+//  background-color: #007bff !important;
+//}

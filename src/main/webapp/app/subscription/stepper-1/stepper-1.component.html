@@ -1,6 +1,6 @@
 <h1 class="display-5">Contrat de souscription</h1>
 <p-stepper [(value)]="activeStep" class="d-flex flex-column justify-content-center align-items-center">
-  <p-step-list class="w-75 mb-5">
+  <p-step-list class="w-50 mb-5">
     <p-step [value]="1" class="d-flex flex-row flex-grow-1">
       <ng-template #content let-activateCallback="activateCallback" let-value="value">
         <button class="bg-transparent border-0 d-flex flex-column align-items-center" (click)="activateCallback()">
@@ -8,7 +8,8 @@
             class="rounded-circle border border-2 d-flex align-items-center justify-content-center"
             style="width: 3rem; height: 3rem"
             [ngClass]="{
-              'bg-primary text-white border-primary': value <= activeStep,
+              'bg-primary text-white border-primary': value < activeStep,
+              'border-primary text-primary': value === activeStep,
               'border-secondary text-dark': value > activeStep,
             }"
           >
@@ -25,7 +26,8 @@
             class="rounded-circle border border-2 d-flex align-items-center justify-content-center"
             style="width: 3rem; height: 3rem"
             [ngClass]="{
-              'bg-primary text-white border-primary': value <= activeStep,
+              'bg-primary text-white border-primary': value < activeStep,
+              'border-primary text-primary': value === activeStep,
               'border-secondary text-dark': value > activeStep,
             }"
           >
@@ -42,11 +44,12 @@
             class="rounded-circle border border-2 d-flex align-items-center justify-content-center"
             style="width: 3rem; height: 3rem"
             [ngClass]="{
-              'bg-primary text-white border-primary': value <= activeStep,
+              'bg-primary text-white border-primary': value < activeStep,
+              'border-primary text-primary': value === activeStep,
               'border-secondary text-dark': value > activeStep,
             }"
           >
-            <fa-icon icon="check" class="fs-5"></fa-icon>
+            <fa-icon icon="file-contract" class="fs-5"></fa-icon>
           </span>
         </button>
       </ng-template>
@@ -59,27 +62,26 @@
             class="rounded-circle border border-2 d-flex align-items-center justify-content-center"
             style="width: 3rem; height: 3rem"
             [ngClass]="{
-              'bg-primary text-white border-primary': value <= activeStep,
+              'bg-primary text-white border-primary': value < activeStep,
+              'border-primary text-primary': value === activeStep,
               'border-secondary text-dark': value > activeStep,
             }"
           >
-            <fa-icon class="fs-5" icon="user"></fa-icon>
+            <fa-icon class="fs-5" icon="check"></fa-icon>
           </span>
         </button>
       </ng-template>
     </p-step>
   </p-step-list>
 
-  <div class="container-fluid shadow-sm h-100 p-0 mb-0">
+  <div class="container-fluid shadow-sm h-100 mb-0">
     <p-step-panels>
       <p-step-panel [value]="1">
         <ng-template #content let-activateCallback="activateCallback">
           <div class="flex flex-col h-48">
-            <div
-              class="border-2 border-dashed border-surface-200 dark:border-surface-700 rounded bg-surface-50 dark:bg-surface-950 flex-auto flex justify-center items-center font-medium"
-            >
-              <form [formGroup]="form" class="form">
-                <formly-form [model]="model" [fields]="fields" [form]="form"></formly-form>
+            <div class="">
+              <form [formGroup]="form" class="form px-4 py-1">
+                <formly-form [model]="clientModel" [fields]="fields" [form]="form"></formly-form>
               </form>
             </div>
           </div>
@@ -92,11 +94,9 @@
       <p-step-panel [value]="2">
         <ng-template #content let-activateCallback="activateCallback">
           <div class="flex flex-col h-48">
-            <div
-              class="border-2 border-dashed border-surface-200 dark:border-surface-700 rounded bg-surface-50 dark:bg-surface-950 flex-auto flex justify-center items-center font-medium"
-            >
+            <div class="border border-2">
               <form [formGroup]="form" class="form">
-                <formly-form [model]="model" [fields]="fieldsStep2" [form]="form"></formly-form>
+                <formly-form [model]="vehicleModel" [fields]="fieldsStep2" [form]="form"></formly-form>
               </form>
             </div>
           </div>
@@ -110,69 +110,18 @@
       <p-step-panel [value]="3">
         <ng-template #content let-activateCallback="activateCallback">
           <div class="flex flex-col h-48">
-            <div
-              class="border-2 border-dashed border-surface-200 dark:border-surface-700 rounded bg-surface-50 dark:bg-surface-950 flex-auto flex justify-center items-center font-medium"
-            >
+            <div class="">
               <div class="container py-5">
                 <h2 class="text-center mb-4">Choose Your WarrantyPack</h2>
-                <div class="row g-4">
-                  <!-- Basic Plan -->
-                  <div class="col-md-4">
-                    <div class="card border-primary h-100 text-center">
-                      <div class="card-header bg-primary text-white fw-bold">Basic</div>
-                      <div class="card-body">
-                        <h3 class="card-title">$9<span class="fs-6">/mo</span></h3>
-                        <p class="card-text">Perfect for short-term protection</p>
-                        <ul class="list-unstyled">
-                          <li>✔ 6-month coverage</li>
-                          <li>✔ Basic customer support</li>
-                          <li>✔ 1 device only</li>
-                        </ul>
-                        <a href="#" class="btn btn-outline-primary mt-3">Get Started</a>
-                      </div>
-                    </div>
-                  </div>
-
-                  <!-- Standard Plan -->
-                  <div class="col-md-4">
-                    <div class="card border-success h-100 text-center">
-                      <div class="card-header bg-success text-white fw-bold">Standard</div>
-                      <div class="card-body">
-                        <h3 class="card-title">$19<span class="fs-6">/mo</span></h3>
-                        <p class="card-text">Ideal for regular users</p>
-                        <ul class="list-unstyled">
-                          <li>✔ 1-year coverage</li>
-                          <li>✔ Priority support</li>
-                          <li>✔ Up to 3 devices</li>
-                        </ul>
-                        <a href="#" class="btn btn-success mt-3">Choose Plan</a>
-                      </div>
-                    </div>
-                  </div>
-
-                  <!-- Premium Plan -->
-                  <div class="col-md-4">
-                    <div class="card border-dark h-100 text-center">
-                      <div class="card-header bg-dark text-white fw-bold">Premium</div>
-                      <div class="card-body">
-                        <h3 class="card-title">$29<span class="fs-6">/mo</span></h3>
-                        <p class="card-text">Best for full protection</p>
-                        <ul class="list-unstyled">
-                          <li>✔ 2-year coverage</li>
-                          <li>✔ 24/7 premium support</li>
-                          <li>✔ Unlimited devices</li>
-                        </ul>
-                        <a href="#" class="btn btn-dark mt-3">Go Premium</a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                <form [formGroup]="form" class="form">
+                  <formly-form [model]="warrantyPackModel" [fields]="pack" [form]="form"></formly-form>
+                </form>
               </div>
             </div>
-          </div>
-          <div class="d-flex justify-content-between mx-4 my-2">
-            <button class="btn btn-outline-primary rounded-pill shadow-5" (click)="activateCallback(2)">Back</button>
-            <button class="btn btn-primary rounded-pill shadow-5" (click)="activateCallback(4)">Next</button>
+            <div class="d-flex justify-content-between mx-4 my-2">
+              <button class="btn btn-outline-primary rounded-pill shadow-5" (click)="activateCallback(2)">Back</button>
+              <button class="btn btn-primary rounded-pill shadow-5" (click)="activateCallback(4)">Next</button>
+            </div>
           </div>
         </ng-template>
       </p-step-panel>
@@ -188,7 +137,7 @@
         </ng-template>
       </p-step-panel>
     </p-step-panels>
-    <div class="progress m-0 p-0 rounded-bottom-4">
+    <div class="progress mb-0 p-0 mx-auto">
       <div
         class="progress-bar bg-primary"
         role="progressbar"

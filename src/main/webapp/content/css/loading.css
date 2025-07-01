@@ -150,3 +150,7 @@
   -webkit-animation-delay: 0s;
   animation-delay: 0s;
 }
+
+.p-step:has(~ .p-step-active) .p-stepper-separator {
+  background: #0278f6 !important;
+}

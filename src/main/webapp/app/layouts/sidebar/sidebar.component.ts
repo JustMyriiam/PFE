@@ -5,13 +5,11 @@ import { LANGUAGES } from '../../config/language.constants';
 import { environment } from '../../../environments/environment';
 import { ProfileService } from '../profiles/profile.service';
 import { StateStorageService } from '../../core/auth/state-storage.service';
-import { NgClass } from '@angular/common';
-import { NgbCollapse } from '@ng-bootstrap/ng-bootstrap';
 import TranslateDirective from '../../shared/language/translate.directive';
 
 @Component({
   selector: 'jhi-sidebar',
-  imports: [FaIconComponent, RouterLinkActive, NgClass, NgbCollapse, RouterLink, TranslateDirective],
+  imports: [FaIconComponent, RouterLinkActive, RouterLink, TranslateDirective],
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.scss',
 })

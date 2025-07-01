@@ -11,8 +11,8 @@ import { LoginService } from 'app/login/login.service';
 import { ProfileService } from 'app/layouts/profiles/profile.service';
 import { EntityNavbarItems } from 'app/entities/entity-navbar-items';
 import { environment } from 'environments/environment';
-import ActiveMenuDirective from './active-menu.directive';
 import NavbarItem from './navbar-item.model';
+import ActiveMenuDirective from './active-menu.directive';
 
 @Component({
   selector: 'jhi-navbar',

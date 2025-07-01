@@ -23,6 +23,10 @@ const routes: Routes = [
   },
   {
     path: 'stepper-1',
+    data: {
+      authorities: [Authority.ADMIN, Authority.USER],
+    },
+    canActivate: [UserRouteAccessService],
     loadComponent: () => import('./subscription/stepper-1/stepper-1.component').then(m => m.Stepper1Component),
   },
   {

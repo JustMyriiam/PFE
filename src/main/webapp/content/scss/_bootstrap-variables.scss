@@ -29,7 +29,9 @@ $body-bg: #f4eee1;
 //$body-bg: #FFF4E6;
 //$body-bg: #fff3e6;
 //$body-bg: #fffaf5;
-$body-bg: #fffcf4;
+//$body-bg: #fffcf4;
+$body-bg: #f2f8ff;
+//$body-bg: #f8fdff;
 $primary: #0278f6;
 
 // Typography:
@@ -41,3 +43,5 @@ $dropdown-link-hover-color: white;
 $input-btn-focus-box-shadow: none;
 $input-btn-focus-color: $primary;
 $dropdown-link-hover-bg: $primary;
+
+$enable-caret: false;
