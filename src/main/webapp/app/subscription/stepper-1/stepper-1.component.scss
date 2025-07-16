@@ -44,7 +44,7 @@
 ::ng-deep formly-form .form-control:focus {
   outline: none;
   box-shadow: none;
-  border-color: #0d6efd;
+  border: solid 1px #0d6efd;
 }
 
 ::ng-deep formly-form .form-control.ng-valid,
@@ -59,25 +59,3 @@
   width: 97%;
   height: 1vh;
 }
-
-::ng-deep .formly-field-radio .form-check {
-  width: calc(33.333% - 1rem);
-  margin-bottom: 1rem;
-}
-::ng-deep .formly-field-radio .form-check-input {
-  display: none; // hide the circle input
-}
-::ng-deep .formly-field-radio .form-check-label {
-  width: 100%;
-  cursor: pointer;
-  padding: 0;
-}
-::ng-deep .formly-field-radio input:checked + .form-check-label .card {
-  border: 2px solid #0d6efd;
-  box-shadow: 0 0 0 0.1rem rgba(13, 110, 253, 0.25);
-}
-
-//
-//.p-stepper-separator.p-component {
-//  background-color: #007bff !important;
-//}

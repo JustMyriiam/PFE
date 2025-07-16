@@ -1,9 +1,9 @@
-<h3 id="datasourceMetrics" jhiTranslate="metrics.datasource.title">DataSource statistics (time in millisecond)</h3>
+<h3 id="datasourceMetrics" class="mt-4" jhiTranslate="metrics.datasource.title">DataSource statistics (time in millisecond)</h3>
 
 @let datasourceMetricsRef = datasourceMetrics();
 @if (!updating() && datasourceMetricsRef) {
   <div class="table-responsive">
-    <table class="table table-striped" aria-describedby="datasourceMetrics">
+    <table class="table" aria-describedby="datasourceMetrics">
       <thead>
         <tr>
           <th scope="col">

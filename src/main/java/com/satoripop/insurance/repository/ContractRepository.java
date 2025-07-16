@@ -10,4 +10,7 @@ import org.springframework.stereotype.Repository;
  */
 @SuppressWarnings("unused")
 @Repository
-public interface ContractRepository extends JpaRepository<Contract, UUID>, JpaSpecificationExecutor<Contract> {}
+public interface ContractRepository extends JpaRepository<Contract, UUID>, JpaSpecificationExecutor<Contract> {
+    @Query("SELECT COALESCE(SUM(c.upfrontPremium), 0) FROM Contract c")
+    Double findTotalUpfront();
+}

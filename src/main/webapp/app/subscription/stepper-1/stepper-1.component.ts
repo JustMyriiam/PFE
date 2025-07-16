@@ -40,10 +40,13 @@ import { InsurancePackName } from '../../entities/enumerations/insurance-pack-na
   styleUrl: './stepper-1.component.scss',
 })
 export class Stepper1Component {
+  novalidate: any;
+  activeStep = 1;
   form = new FormGroup({});
   protected readonly clientModel: IClient = { id: '' };
   protected readonly vehicleModel: IVehicle = { id: '' };
-  protected readonly warrantyPackModel: IInsurancePack[] = [];
+  protected readonly insurancePackModel: IInsurancePack[] = [];
+
   fields: FormlyFieldConfig[] = [
     {
       fieldGroupClassName: 'row',
@@ -299,24 +302,15 @@ export class Stepper1Component {
     {
       key: 'name',
       type: 'radio',
-      className: 'd-flex flex-wrap gap-3',
+      className: 'container', // Bootstrap container
       templateOptions: {
-        label: 'Choisissez un Pack d’Assurance',
+        label: 'Choisissez un Pack ',
         required: true,
-        labelHtml: true,
-        options: this.warrantyPackModel.map(pack => ({
-          value: pack.name,
-          label: `
-          <div class="card border shadow-sm p-3 text-center" style="min-width: 200px; cursor: pointer;">
-            <h5 class="mb-2">${InsurancePackName[pack.name!]}</h5>
-            <p class="text-muted mb-0">${pack.price ?? 0} $</p>
-          </div>
-        `,
+        options: Object.keys(InsurancePackName).map(key => ({
+          value: key,
+          label: InsurancePackName[key as keyof typeof InsurancePackName],
         })),
       },
     },
   ];
-
-  novalidate: any;
-  activeStep: number = 0;
 }

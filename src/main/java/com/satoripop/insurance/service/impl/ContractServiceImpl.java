@@ -6,6 +6,7 @@ import com.satoripop.insurance.repository.search.ContractSearchRepository;
 import com.satoripop.insurance.service.ContractService;
 import com.satoripop.insurance.service.dto.ContractDTO;
 import com.satoripop.insurance.service.mapper.ContractMapper;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 import org.slf4j.Logger;
@@ -96,5 +97,11 @@ public class ContractServiceImpl implements ContractService {
     public Page<ContractDTO> search(String query, Pageable pageable) {
         LOG.debug("Request to search for a page of Contracts for query {}", query);
         return contractSearchRepository.search(query, pageable).map(contractMapper::toDto);
+    }
+
+    @Override
+    public double getTotalUpfrontPremium() {
+        Double total = contractRepository.findTotalUpfront();
+        return total != null ? total : 0.0;
     }
 }

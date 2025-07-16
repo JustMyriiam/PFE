@@ -7,12 +7,13 @@ import { AccountService } from 'app/core/auth/account.service';
 import { AppPageTitleStrategy } from 'app/app-page-title-strategy';
 import FooterComponent from '../footer/footer.component';
 import PageRibbonComponent from '../profiles/page-ribbon.component';
+import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'jhi-main',
   templateUrl: './main.component.html',
   providers: [AppPageTitleStrategy],
-  imports: [RouterOutlet, FooterComponent, PageRibbonComponent],
+  imports: [RouterOutlet, FooterComponent, PageRibbonComponent, NgIf],
 })
 export default class MainComponent implements OnInit {
   private readonly renderer: Renderer2;
@@ -22,6 +23,7 @@ export default class MainComponent implements OnInit {
   private readonly accountService = inject(AccountService);
   private readonly translateService = inject(TranslateService);
   private readonly rootRenderer = inject(RendererFactory2);
+  private readonly routesWithSidebar = ['/admin', '/client', '/entites'];
 
   constructor() {
     this.renderer = this.rootRenderer.createRenderer(document.querySelector('html'), null);
@@ -36,5 +38,17 @@ export default class MainComponent implements OnInit {
       dayjs.locale(langChangeEvent.lang);
       this.renderer.setAttribute(document.querySelector('html'), 'lang', langChangeEvent.lang);
     });
+  }
+
+  showAdminSidebar(): boolean {
+    const currentUrl = this.router.url;
+
+    return this.routesWithSidebar.some(route => currentUrl.startsWith('/admin'));
+  }
+
+  showSidebar(): boolean {
+    const currentUrl = this.router.url;
+
+    return this.routesWithSidebar.some(route => currentUrl.startsWith(route));
   }
 }

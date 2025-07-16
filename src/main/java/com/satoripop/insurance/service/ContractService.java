@@ -58,4 +58,6 @@ public interface ContractService {
      * @return the list of entities.
      */
     Page<ContractDTO> search(String query, Pageable pageable);
+
+    double getTotalUpfrontPremium();
 }

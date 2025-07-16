@@ -4,16 +4,15 @@
   <router-outlet name="navbar" />
 </div>
 
-<div class="container-fluid p-0">
-  <!--  <div class="d-flex align-items-stretch">-->
-  <!--    <div class="">-->
-  <!--      <router-outlet name="sidebar" />-->
-  <!--    </div>-->
+<div class="container-fluid p-0 d-flex flex-column flex-grow-1 min-vh-100">
+  <div class="d-flex align-items-stretch">
+    <div class="" *ngIf="showAdminSidebar()">
+      <router-outlet name="admin-sidebar" />
+    </div>
 
-  <div class="card jh-card flex-grow-1">
-    <router-outlet />
+    <div class="card jh-card flex-grow-1">
+      <router-outlet />
+    </div>
   </div>
-  <!--  </div>-->
-
   <jhi-footer />
 </div>

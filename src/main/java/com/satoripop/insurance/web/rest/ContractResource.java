@@ -225,4 +225,10 @@ public class ContractResource {
             throw ElasticsearchExceptionMapper.mapException(e);
         }
     }
+
+    @GetMapping("/total-upfront-premium")
+    public ResponseEntity<Double> getTotalUpfrontPremium() {
+        double total = contractService.getTotalUpfrontPremium();
+        return ResponseEntity.ok(total);
+    }
 }

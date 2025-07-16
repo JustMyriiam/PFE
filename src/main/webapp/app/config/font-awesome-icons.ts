@@ -14,6 +14,7 @@ import {
   faCloud,
   faCogs,
   faDatabase,
+  faDollarSign,
   faEnvelope,
   faExclamationCircle,
   faEye,
@@ -113,5 +114,6 @@ export const fontAwesomeIcons = [
   faMapMarker,
   faPhone,
   faArrowRight,
+  faDollarSign,
   // jhipster-needle-add-icon-import
 ];

@@ -1,0 +1,57 @@
+<div class="container-fluid my-4">
+  <div class="row g-4">
+    <!-- KPI 1 -->
+    <div class="col-md-3">
+      <div class="card shadow-sm bg-white rounded-3 border-0 px-3 py-2 bg-white h-100">
+        <div class="card-body">
+          <div class="d-flex justify-content-between">
+            <div class="fw-semibold text-muted">Nombre de <br />contrats</div>
+            <div class="text-secondary fw-bold fs-5 mt-3 me-2">
+              <fa-icon icon="file-contract" class="pt-5"></fa-icon>
+            </div>
+          </div>
+          <h2 class="fw-bold mt-3 mb-0 text-black">{{ contracts }}</h2>
+        </div>
+      </div>
+    </div>
+
+    <!-- KPI 2 -->
+    <div class="col-md-3">
+      <div class="card shadow-sm bg-white rounded-3 border-0 px-3 py-2 bg-white h-100">
+        <div class="card-body">
+          <div class="d-flex justify-content-between">
+            <div class="fw-semibold text-muted">Nombre de <br />réclamations</div>
+            <div class="text-secondary fw-bold fs-5 mt-3 me-2">
+              <fa-icon icon="exclamation-circle" class="pt-5"></fa-icon>
+            </div>
+          </div>
+          <h2 class="fw-bold mt-4 mb-0 text-black">{{ claims }}</h2>
+        </div>
+      </div>
+    </div>
+
+    <!-- KPI 3 -->
+    <div class="col-md-3">
+      <div class="card shadow-sm bg-white rounded-3 border-0 px-3 py-2 bg-white h-100">
+        <div class="card-body">
+          <div class="d-flex justify-content-between">
+            <div class="fw-semibold text-muted me-3">Revenu <br />total</div>
+            <div class="text-secondary fw-bold fs-5 mt-3 me-2">
+              <fa-icon icon="dollar-sign"></fa-icon>
+            </div>
+          </div>
+          <h3 class="fw-bold mt-4 mb-0 text-black">{{ totalUpfrontPremium }} TND</h3>
+        </div>
+      </div>
+    </div>
+
+    <!-- Chart -->
+    <div class="col-md-3">
+      <div class="card shadow-sm rounded-3 p-4 border-0 bg-white">
+        <h6 class="mb-3 fw-semibold text-muted">Etat des réclmations</h6>
+        <canvas baseChart [data]="doughnutChartData" [options]="doughnutChartOptions" [type]="'doughnut'"> </canvas>
+      </div>
+    </div>
+  </div>
+</div>
+<jhi-contract />

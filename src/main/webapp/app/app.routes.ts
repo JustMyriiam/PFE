@@ -22,6 +22,11 @@ const routes: Routes = [
     outlet: 'sidebar',
   },
   {
+    path: '',
+    outlet: 'admin-sidebar',
+    loadComponent: () => import('./admin/admin-sidebar/admin-sidebar.component').then(m => m.AdminSidebarComponent),
+  },
+  {
     path: 'stepper-1',
     data: {
       authorities: [Authority.ADMIN, Authority.USER],
