@@ -2,15 +2,14 @@
 @import 'bootstrap/scss/variables';
 
 .sidebar {
-  background-color: rgb(255, 255, 255) !important;
-
-  border: 1px solid rgba(0, 123, 255, 0.2);
-  //border: 1px solid rgb(163, 210, 250);
-  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.03);
-
+  height: 100vh;
+  overflow-y: auto;
+  position: sticky;
+  top: 0;
+  background-color: #fff !important;
+  border: 2px solid rgba(0, 123, 255, 0.2);
   color: #333;
   width: 20vw;
-  min-height: 100vh;
   margin: 0 0.5rem;
   padding: 1rem 0;
   border-radius: 0.5rem;
@@ -27,72 +26,74 @@
     text-transform: uppercase;
     letter-spacing: 0.5px;
     margin-bottom: 0.75rem;
+  }
 
-    .navbar-nav {
-      .nav-item {
-        margin-bottom: 0.25rem;
+  .navbar-nav {
+    .nav-item {
+      margin-bottom: 0.25rem;
 
-        .nav-link {
-          color: #333 !important;
-          text-decoration: none;
-          padding: 0.75rem 1rem !important;
-          display: flex;
-          align-items: center;
-          gap: 0.75rem;
-          border-left: 3px solid transparent;
-          border-radius: 0;
-          transition: all 0.2s ease;
-          font-size: 0.95rem;
+      .nav-link {
+        color: #333 !important;
+        text-decoration: none;
+        padding: 0.75rem 1rem !important;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        border-left: 3px solid transparent;
+        border-radius: 0;
+        transition: all 0.2s ease;
+        font-size: 0.95rem;
+        background-color: transparent;
 
-          &:hover {
-            background-color: rgba(13, 110, 253, 0.05);
-            //border: 1px solid $primary;
-            border-radius: 0.5rem;
-            color: $primary;
-          }
-
-          &.active,
-          &:focus {
-            background-color: $primary;
-            border-radius: 0.5rem;
-            outline: none;
-            color: white;
-          }
+        &:hover {
+          background-color: #ebe9e9 !important;
+          border-radius: 0.5rem;
 
           fa-icon,
           .sidebar-icon {
-            font-size: 1.1rem;
-            width: 1.2rem;
-            text-align: center;
-            flex-shrink: 0;
-            color: black;
+            color: inherit;
+          }
+        }
+
+        &.active {
+          &:focus {
+            outline: none !important;
+          }
+
+          background-color: cornflowerblue;
+          border-radius: 0.5rem;
+          outline: none;
+          color: #fff !important;
+
+          fa-icon,
+          .sidebar-icon {
+            color: #fff !important;
           }
 
           span {
-            flex-grow: 1;
-            color: inherit;
+            color: #fff !important;
           }
+        }
+
+        fa-icon,
+        .sidebar-icon {
+          font-size: 1.1rem;
+          width: 1.2rem;
+          text-align: center;
+          flex-shrink: 0;
+          color: #000;
+        }
+
+        span {
+          flex-grow: 1;
+          color: inherit;
         }
       }
     }
 
-    @media (max-width: 768px) {
-      width: 100%;
-      height: auto;
-      position: fixed;
-      top: 0;
-      left: 0;
-      z-index: 1000;
-      transform: translateX(-100%);
-      transition: transform 0.3s ease;
-
-      &.show {
-        transform: translateX(0);
-      }
-
-      &.collapsed {
-        width: 100%;
-      }
+    ul {
+      transition: max-height 0.3s ease;
+      overflow: hidden;
     }
   }
 }

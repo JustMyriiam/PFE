@@ -11,6 +11,8 @@ import {
   faCar,
   faCheck,
   faCheckCircle,
+  faChevronDown,
+  faChevronUp,
   faCloud,
   faCogs,
   faDatabase,
@@ -115,5 +117,7 @@ export const fontAwesomeIcons = [
   faPhone,
   faArrowRight,
   faDollarSign,
+  faChevronUp,
+  faChevronDown,
   // jhipster-needle-add-icon-import
 ];

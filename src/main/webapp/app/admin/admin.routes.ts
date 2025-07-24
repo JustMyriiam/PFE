@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import DashboardComponent from './dashboard/dashboard.component';
 /* jhipster-needle-add-admin-module-import - JHipster will add admin modules imports here */
 
 const routes: Routes = [

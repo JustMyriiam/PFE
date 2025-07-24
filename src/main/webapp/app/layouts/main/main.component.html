@@ -9,7 +9,9 @@
     <div class="" *ngIf="showAdminSidebar()">
       <router-outlet name="admin-sidebar" />
     </div>
-
+    <div class="" *ngIf="showClientSidebar()">
+      <router-outlet name="client-sidebar" />
+    </div>
     <div class="card jh-card flex-grow-1">
       <router-outlet />
     </div>

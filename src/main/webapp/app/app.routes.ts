@@ -47,6 +47,14 @@ const routes: Routes = [
     loadChildren: () => import('./admin/admin.routes'),
   },
   {
+    path: 'client',
+    data: {
+      authorities: [Authority.USER],
+    },
+    canActivate: [UserRouteAccessService],
+    loadChildren: () => import('./client/client.routes'),
+  },
+  {
     path: '',
     loadChildren: () => import(`./entities/entity.routes`),
   },

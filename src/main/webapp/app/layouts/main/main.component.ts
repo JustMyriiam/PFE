@@ -23,7 +23,22 @@ export default class MainComponent implements OnInit {
   private readonly accountService = inject(AccountService);
   private readonly translateService = inject(TranslateService);
   private readonly rootRenderer = inject(RendererFactory2);
-  private readonly routesWithSidebar = ['/admin', '/client', '/entites'];
+  private readonly routesWithSidebarPrefix = ['/admin'];
+  private readonly routesWithSidebarExact = [
+    '/authority',
+    '/client',
+    '/city',
+    '/governorate',
+    '/client-address',
+    '/claim',
+    '/quote',
+    '/contract',
+    '/agency',
+    '/document',
+    '/insurance-pack',
+    '/warranty',
+    '/vehicle',
+  ];
 
   constructor() {
     this.renderer = this.rootRenderer.createRenderer(document.querySelector('html'), null);
@@ -43,12 +58,18 @@ export default class MainComponent implements OnInit {
   showAdminSidebar(): boolean {
     const currentUrl = this.router.url;
 
-    return this.routesWithSidebar.some(route => currentUrl.startsWith('/admin'));
+    return this.routesWithSidebarPrefix.some(route => currentUrl.startsWith(route)) || this.routesWithSidebarExact.includes(currentUrl);
+  }
+
+  showClientSidebar(): boolean {
+    const currentUrl = this.router.url;
+
+    return currentUrl.startsWith('/client');
   }
 
   showSidebar(): boolean {
     const currentUrl = this.router.url;
 
-    return this.routesWithSidebar.some(route => currentUrl.startsWith(route));
+    return this.routesWithSidebarPrefix.some(route => currentUrl.startsWith(route));
   }
 }

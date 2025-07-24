@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { LANGUAGES } from '../../config/language.constants';
@@ -7,28 +7,20 @@ import { ProfileService } from '../../layouts/profiles/profile.service';
 import { environment } from '../../../environments/environment';
 import TranslateDirective from '../../shared/language/translate.directive';
 import HasAnyAuthorityDirective from '../../shared/auth/has-any-authority.directive';
-import { NgbDropdown, NgbDropdownMenu, NgbDropdownToggle } from '@ng-bootstrap/ng-bootstrap';
+import { NgbCollapse } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'jhi-admin-sidebar',
-  imports: [
-    FaIconComponent,
-    RouterLink,
-    RouterLinkActive,
-    TranslateDirective,
-    HasAnyAuthorityDirective,
-    NgbDropdownToggle,
-    NgbDropdown,
-    NgbDropdownMenu,
-  ],
+  imports: [FaIconComponent, RouterLink, RouterLinkActive, TranslateDirective, HasAnyAuthorityDirective, NgbCollapse],
   templateUrl: './admin-sidebar.component.html',
   styleUrl: './admin-sidebar.component.scss',
 })
-export class AdminSidebarComponent {
+export class AdminSidebarComponent implements OnInit {
   inProduction?: boolean;
   languages = LANGUAGES;
   openAPIEnabled?: boolean;
-  isCollapsed: boolean = false;
+  isCollapsed = false;
+  isGestionOpen = false;
 
   private readonly stateStorageService = inject(StateStorageService);
   private readonly profileService = inject(ProfileService);
@@ -43,5 +35,9 @@ export class AdminSidebarComponent {
 
   toggleSidebar(): void {
     this.isCollapsed = !this.isCollapsed;
+  }
+
+  toggleGestion(): void {
+    this.isGestionOpen = !this.isGestionOpen;
   }
 }

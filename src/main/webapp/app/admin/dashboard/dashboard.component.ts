@@ -5,6 +5,8 @@ import { ChartConfiguration, ChartType } from 'chart.js';
 import { NgChartsModule } from 'ng2-charts';
 import { forkJoin } from 'rxjs';
 import { ContractComponent } from '../../entities/insurance/contract/list/contract.component';
+import { IContract } from '../../entities/insurance/contract/contract.model';
+import { ContractService } from '../../entities/insurance/contract/service/contract.service';
 
 @Component({
   selector: 'jhi-dashboard',
@@ -32,7 +34,7 @@ export default class DashboardComponent implements OnInit {
     labels: ['Resolved', 'In Progress'],
     datasets: [
       {
-        data: [this.resolvedClaims, this.inProgressClaims],
+        data: [0, 0],
         backgroundColor: ['#0278f6', 'darkorange'],
       },
     ],
@@ -41,6 +43,10 @@ export default class DashboardComponent implements OnInit {
   constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
+    this.loadDashboardData();
+  }
+
+  private loadDashboardData(): void {
     this.http.get<number>('/api/contracts/count').subscribe(count => {
       this.contracts = count;
     });
@@ -62,6 +68,7 @@ export default class DashboardComponent implements OnInit {
       this.updateChartData();
     });
   }
+
   private updateChartData(): void {
     this.doughnutChartData = {
       labels: ['Resolved', 'In Progress'],

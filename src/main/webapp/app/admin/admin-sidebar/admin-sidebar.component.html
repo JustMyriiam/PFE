@@ -1,10 +1,10 @@
-<aside data-cy="sidebar" class="sidebar d-flex flex-column flex-shrink-0 bg-white px-3" *jhiHasAnyAuthority="'ROLE_ADMIN'">
+<aside data-cy="sidebar" class="sidebar d-flex flex-column flex-shrink-0 bg-white px-3 mb-0">
   <div class="container-fluid">
-    <!-- Sidebar Gestion Dropdown for ROLE_ADMIN -->
-    <div class="mb-4" *jhiHasAnyAuthority="'ROLE_ADMIN'">
+    <!-- Sidebar Principal -->
+    <div class="mb-4">
       <h6 class="text-uppercase text-muted fw-bold mb-3 small" jhiTranslate="">Principal</h6>
       <ul class="navbar-nav">
-        <!-- Dashboard link -->
+        <!-- Dashboard -->
         <li class="nav-item mb-2">
           <a class="nav-link px-3 py-3 d-flex align-items-center" routerLink="/admin/dashboard" routerLinkActive="active">
             <fa-icon icon="tachometer-alt" class="sidebar-icon me-3"></fa-icon>
@@ -12,96 +12,88 @@
           </a>
         </li>
 
-        <!-- Gestion Dropdown -->
-        <li ngbDropdown class="nav-item dropdown pointer mb-2">
+        <li class="nav-item pointer mb-2">
           <a
-            class="nav-link px-3 py-3 d-flex align-items-center dropdown-toggle"
-            ngbDropdownToggle
-            id="gestionDropdown"
-            href="javascript:void(0);"
+            class="nav-link px-3 py-3 d-flex align-items-center"
+            (click)="toggleGestion()"
+            [attr.aria-expanded]="isGestionOpen"
+            [attr.aria-controls]="'gestion-menu'"
+            role="button"
           >
             <fa-icon icon="cogs" class="sidebar-icon me-3"></fa-icon>
             <span jhiTranslate="">Gestion</span>
+            <fa-icon [icon]="isGestionOpen ? 'chevron-up' : 'chevron-down'" class=""></fa-icon>
           </a>
-          <ul class="dropdown-menu show-on-hover w-100 shadow-sm" ngbDropdownMenu aria-labelledby="gestionDropdown">
-            <li>
-              <a class="dropdown-item px-3 py-2" routerLink="/client" routerLinkActive="active">
-                <fa-icon icon="asterisk" class="me-2" [fixedWidth]="true"></fa-icon>
-                <span jhiTranslate="global.menu.entities.insuranceClient">Client</span>
-              </a>
-            </li>
-            <li>
-              <a class="dropdown-item px-3 py-2" routerLink="/city" routerLinkActive="active">
-                <fa-icon icon="asterisk" class="me-2" [fixedWidth]="true"></fa-icon>
-                <span jhiTranslate="global.menu.entities.insuranceCity">City</span>
-              </a>
-            </li>
-            <li>
-              <a class="dropdown-item px-3 py-2" routerLink="/governorate" routerLinkActive="active">
-                <fa-icon icon="asterisk" class="me-2" [fixedWidth]="true"></fa-icon>
-                <span jhiTranslate="global.menu.entities.insuranceGovernorate">Governorate</span>
-              </a>
-            </li>
-            <li>
-              <a class="dropdown-item px-3 py-2" routerLink="/client-address" routerLinkActive="active">
-                <fa-icon icon="asterisk" class="me-2" [fixedWidth]="true"></fa-icon>
-                <span jhiTranslate="global.menu.entities.insuranceClientAddress">Client Address</span>
-              </a>
-            </li>
-            <li>
-              <a class="dropdown-item px-3 py-2" routerLink="/claim" routerLinkActive="active">
-                <fa-icon icon="asterisk" class="me-2" [fixedWidth]="true"></fa-icon>
-                <span jhiTranslate="global.menu.entities.insuranceClaim">Claim</span>
-              </a>
-            </li>
-            <li>
-              <a class="dropdown-item px-3 py-2" routerLink="/quote" routerLinkActive="active">
-                <fa-icon icon="asterisk" class="me-2" [fixedWidth]="true"></fa-icon>
-                <span jhiTranslate="global.menu.entities.insuranceQuote">Quote</span>
-              </a>
-            </li>
-            <li>
-              <a class="dropdown-item px-3 py-2" routerLink="/contract" routerLinkActive="active">
-                <fa-icon icon="asterisk" class="me-2" [fixedWidth]="true"></fa-icon>
-                <span jhiTranslate="global.menu.entities.insuranceContract">Contract</span>
-              </a>
-            </li>
-            <li>
-              <a class="dropdown-item px-3 py-2" routerLink="/agency" routerLinkActive="active">
-                <fa-icon icon="asterisk" class="me-2" [fixedWidth]="true"></fa-icon>
-                <span jhiTranslate="global.menu.entities.insuranceAgency">Agency</span>
-              </a>
-            </li>
-            <li>
-              <a class="dropdown-item px-3 py-2" routerLink="/document" routerLinkActive="active">
-                <fa-icon icon="asterisk" class="me-2" [fixedWidth]="true"></fa-icon>
-                <span jhiTranslate="global.menu.entities.insuranceDocument">Document</span>
-              </a>
-            </li>
-            <li>
-              <a class="dropdown-item px-3 py-2" routerLink="/insurance-pack" routerLinkActive="active">
-                <fa-icon icon="asterisk" class="me-2" [fixedWidth]="true"></fa-icon>
-                <span jhiTranslate="global.menu.entities.insuranceInsurancePack">Insurance Pack</span>
-              </a>
-            </li>
-            <li>
-              <a class="dropdown-item px-3 py-2" routerLink="/warranty" routerLinkActive="active">
-                <fa-icon icon="asterisk" class="me-2" [fixedWidth]="true"></fa-icon>
-                <span jhiTranslate="global.menu.entities.insuranceWarranty">Warranty</span>
-              </a>
-            </li>
-            <li>
-              <a class="dropdown-item px-3 py-2" routerLink="/vehicle" routerLinkActive="active">
-                <fa-icon icon="asterisk" class="me-2" [fixedWidth]="true"></fa-icon>
-                <span jhiTranslate="global.menu.entities.insuranceVehicle">Vehicle</span>
-              </a>
-            </li>
-          </ul>
+
+          <div [ngbCollapse]="!isGestionOpen" id="gestion-menu">
+            <ul class="navbar-nav ps-4">
+              <li>
+                <a class="nav-link py-2" routerLink="/client" routerLinkActive="active">
+                  <span jhiTranslate="global.menu.entities.insuranceClient">Client</span>
+                </a>
+              </li>
+              <li>
+                <a class="nav-link py-2" routerLink="/city" routerLinkActive="active">
+                  <span jhiTranslate="global.menu.entities.insuranceCity">City</span>
+                </a>
+              </li>
+              <li>
+                <a class="nav-link py-2" routerLink="/governorate" routerLinkActive="active">
+                  <span jhiTranslate="global.menu.entities.insuranceGovernorate">Governorate</span>
+                </a>
+              </li>
+              <li>
+                <a class="nav-link py-2" routerLink="/client-address" routerLinkActive="active">
+                  <span jhiTranslate="global.menu.entities.insuranceClientAddress">Client Address</span>
+                </a>
+              </li>
+              <li>
+                <a class="nav-link py-2" routerLink="/claim" routerLinkActive="active">
+                  <span jhiTranslate="global.menu.entities.insuranceClaim">Claim</span>
+                </a>
+              </li>
+              <li>
+                <a class="nav-link py-2" routerLink="/quote" routerLinkActive="active">
+                  <span jhiTranslate="global.menu.entities.insuranceQuote">Quote</span>
+                </a>
+              </li>
+              <li>
+                <a class="nav-link py-2" routerLink="/contract" routerLinkActive="active">
+                  <span jhiTranslate="global.menu.entities.insuranceContract">Contract</span>
+                </a>
+              </li>
+              <li>
+                <a class="nav-link py-2" routerLink="/agency" routerLinkActive="active">
+                  <span jhiTranslate="global.menu.entities.insuranceAgency">Agency</span>
+                </a>
+              </li>
+              <li>
+                <a class="nav-link py-2" routerLink="/document" routerLinkActive="active">
+                  <span jhiTranslate="global.menu.entities.insuranceDocument">Document</span>
+                </a>
+              </li>
+              <li>
+                <a class="nav-link py-2" routerLink="/insurance-pack" routerLinkActive="active">
+                  <span jhiTranslate="global.menu.entities.insuranceInsurancePack">Insurance Pack</span>
+                </a>
+              </li>
+              <li>
+                <a class="nav-link py-2" routerLink="/warranty" routerLinkActive="active">
+                  <span jhiTranslate="global.menu.entities.insuranceWarranty">Warranty</span>
+                </a>
+              </li>
+              <li>
+                <a class="nav-link py-2" routerLink="/vehicle" routerLinkActive="active">
+                  <span jhiTranslate="global.menu.entities.insuranceVehicle">Vehicle</span>
+                </a>
+              </li>
+            </ul>
+          </div>
         </li>
       </ul>
     </div>
 
-    <!-- Section: Administration -->
+    <!-- Sidebar Administration -->
     <div class="mb-4">
       <h6 class="text-uppercase text-muted fw-bold mb-3 small" jhiTranslate="global.menu.admin.main">Administration</h6>
       <ul class="navbar-nav">
@@ -111,35 +103,30 @@
             <span jhiTranslate="">Authorité</span>
           </a>
         </li>
-
         <li class="nav-item mb-2">
           <a class="nav-link px-3 py-3 d-flex align-items-center" routerLink="/admin/metrics" routerLinkActive="active">
             <fa-icon icon="tachometer-alt" class="sidebar-icon me-3" [fixedWidth]="true"></fa-icon>
             <span jhiTranslate="global.menu.admin.metrics">Metrics</span>
           </a>
         </li>
-
         <li class="nav-item mb-2">
           <a class="nav-link px-3 py-3 d-flex align-items-center" routerLink="/admin/health" routerLinkActive="active">
             <fa-icon icon="heart" class="sidebar-icon me-3"></fa-icon>
             <span jhiTranslate="global.menu.admin.health">Health</span>
           </a>
         </li>
-
         <li class="nav-item mb-2">
           <a class="nav-link px-3 py-3 d-flex align-items-center" routerLink="/admin/configuration" routerLinkActive="active">
             <fa-icon icon="cogs" class="sidebar-icon me-3" [fixedWidth]="true"></fa-icon>
             <span jhiTranslate="global.menu.admin.configuration">Configuration</span>
           </a>
         </li>
-
         <li class="nav-item mb-2">
           <a class="nav-link px-3 py-3 d-flex align-items-center" routerLink="/admin/logs" routerLinkActive="active">
             <fa-icon icon="list" class="sidebar-icon me-3"></fa-icon>
             <span jhiTranslate="global.menu.admin.logs">Logs</span>
           </a>
         </li>
-
         <li class="nav-item mb-2">
           <a class="nav-link px-3 py-3 d-flex align-items-center" routerLink="/admin/docs" routerLinkActive="active">
             <fa-icon icon="book" class="sidebar-icon me-3"></fa-icon>
