@@ -1,0 +1,11 @@
+@import '../../../../../../node_modules/bootstrap/scss/functions';
+@import '../../../../../../node_modules/bootstrap/scss/variables';
+
+.container-fluid {
+  //padding: 2rem;
+  gap: 1rem;
+}
+
+h4 {
+  color: darkorange;
+}

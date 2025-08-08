@@ -1,20 +1,18 @@
-import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
-import { ChartConfiguration, ChartType } from 'chart.js';
 import { forkJoin } from 'rxjs';
-import { ContractComponent } from '../../entities/insurance/contract/list/contract.component';
-import { IContract } from '../../entities/insurance/contract/contract.model';
-import { ContractService } from '../../entities/insurance/contract/service/contract.service';
 import { NgChartsModule } from 'ng2-charts';
+import { Component, OnInit } from '@angular/core';
+import { ChartConfiguration } from 'chart.js';
+import { ContractsComponent } from '../contracts/contracts.component';
 
 @Component({
   selector: 'jhi-dashboard',
-  imports: [FaIconComponent, ContractComponent, NgChartsModule],
+  imports: [FaIconComponent, NgChartsModule, ContractsComponent],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss',
 })
-export default class DashboardComponent implements OnInit {
+export class DashboardComponent implements OnInit {
   contracts = 0;
   claims = 0;
   totalUpfrontPremium = 0;

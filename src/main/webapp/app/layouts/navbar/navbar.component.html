@@ -56,169 +56,169 @@
         </a>
       </li>
       <!-- jhipster-needle-add-element-to-menu - JHipster will add new menu items here -->
-      @if (account() !== null) {
-        <li
-          ngbDropdown
-          class="nav-item dropdown pointer"
-          display="dynamic"
-          routerLinkActive="active"
-          [routerLinkActiveOptions]="{ exact: true }"
-        >
-          <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="entity-menu" data-cy="entity">
-            <span>
-              <fa-icon icon="th-list"></fa-icon>
-              <span jhiTranslate="global.menu.entities.main">Entities</span>
-            </span>
-          </a>
-          <ul class="dropdown-menu" ngbDropdownMenu aria-labelledby="entity-menu">
-            <li>
-              <a
-                class="dropdown-item"
-                routerLink="/client"
-                routerLinkActive="active"
-                [routerLinkActiveOptions]="{ exact: true }"
-                (click)="collapseNavbar()"
-              >
-                <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
-                <span jhiTranslate="global.menu.entities.insuranceClient">Client</span>
-              </a>
-            </li>
-            <li>
-              <a
-                class="dropdown-item"
-                routerLink="/city"
-                routerLinkActive="active"
-                [routerLinkActiveOptions]="{ exact: true }"
-                (click)="collapseNavbar()"
-              >
-                <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
-                <span jhiTranslate="global.menu.entities.insuranceCity">City</span>
-              </a>
-            </li>
-            <li>
-              <a
-                class="dropdown-item"
-                routerLink="/governorate"
-                routerLinkActive="active"
-                [routerLinkActiveOptions]="{ exact: true }"
-                (click)="collapseNavbar()"
-              >
-                <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
-                <span jhiTranslate="global.menu.entities.insuranceGovernorate">Governorate</span>
-              </a>
-            </li>
-            <li>
-              <a
-                class="dropdown-item"
-                routerLink="/client-address"
-                routerLinkActive="active"
-                [routerLinkActiveOptions]="{ exact: true }"
-                (click)="collapseNavbar()"
-              >
-                <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
-                <span jhiTranslate="global.menu.entities.insuranceClientAddress">Client Address</span>
-              </a>
-            </li>
-            <li>
-              <a
-                class="dropdown-item"
-                routerLink="/claim"
-                routerLinkActive="active"
-                [routerLinkActiveOptions]="{ exact: true }"
-                (click)="collapseNavbar()"
-              >
-                <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
-                <span jhiTranslate="global.menu.entities.insuranceClaim">Claim</span>
-              </a>
-            </li>
-            <li>
-              <a
-                class="dropdown-item"
-                routerLink="/quote"
-                routerLinkActive="active"
-                [routerLinkActiveOptions]="{ exact: true }"
-                (click)="collapseNavbar()"
-              >
-                <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
-                <span jhiTranslate="global.menu.entities.insuranceQuote">Quote</span>
-              </a>
-            </li>
-            <li>
-              <a
-                class="dropdown-item"
-                routerLink="/contract"
-                routerLinkActive="active"
-                [routerLinkActiveOptions]="{ exact: true }"
-                (click)="collapseNavbar()"
-              >
-                <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
-                <span jhiTranslate="global.menu.entities.insuranceContract">Contract</span>
-              </a>
-            </li>
-            <li>
-              <a
-                class="dropdown-item"
-                routerLink="/agency"
-                routerLinkActive="active"
-                [routerLinkActiveOptions]="{ exact: true }"
-                (click)="collapseNavbar()"
-              >
-                <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
-                <span jhiTranslate="global.menu.entities.insuranceAgency">Agency</span>
-              </a>
-            </li>
-            <li>
-              <a
-                class="dropdown-item"
-                routerLink="/document"
-                routerLinkActive="active"
-                [routerLinkActiveOptions]="{ exact: true }"
-                (click)="collapseNavbar()"
-              >
-                <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
-                <span jhiTranslate="global.menu.entities.insuranceDocument">Document</span>
-              </a>
-            </li>
-            <li>
-              <a
-                class="dropdown-item"
-                routerLink="/insurance-pack"
-                routerLinkActive="active"
-                [routerLinkActiveOptions]="{ exact: true }"
-                (click)="collapseNavbar()"
-              >
-                <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
-                <span jhiTranslate="global.menu.entities.insuranceInsurancePack">Insurance Pack</span>
-              </a>
-            </li>
-            <li>
-              <a
-                class="dropdown-item"
-                routerLink="/warranty"
-                routerLinkActive="active"
-                [routerLinkActiveOptions]="{ exact: true }"
-                (click)="collapseNavbar()"
-              >
-                <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
-                <span jhiTranslate="global.menu.entities.insuranceWarranty">Warranty</span>
-              </a>
-            </li>
-            <li>
-              <a
-                class="dropdown-item"
-                routerLink="/vehicle"
-                routerLinkActive="active"
-                [routerLinkActiveOptions]="{ exact: true }"
-                (click)="collapseNavbar()"
-              >
-                <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
-                <span jhiTranslate="global.menu.entities.insuranceVehicle">Vehicle</span>
-              </a>
-            </li>
-            <!-- jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here -->
-          </ul>
-        </li>
-      }
+      <!--      @if (account() !== null) {-->
+      <!--        <li-->
+      <!--          ngbDropdown-->
+      <!--          class="nav-item dropdown pointer"-->
+      <!--          display="dynamic"-->
+      <!--          routerLinkActive="active"-->
+      <!--          [routerLinkActiveOptions]="{ exact: true }"-->
+      <!--        >-->
+      <!--          <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="entity-menu" data-cy="entity">-->
+      <!--            <span>-->
+      <!--              <fa-icon icon="th-list"></fa-icon>-->
+      <!--              <span jhiTranslate="global.menu.entities.main">Entities</span>-->
+      <!--            </span>-->
+      <!--          </a>-->
+      <!--          <ul class="dropdown-menu" ngbDropdownMenu aria-labelledby="entity-menu">-->
+      <!--            <li>-->
+      <!--              <a-->
+      <!--                class="dropdown-item"-->
+      <!--                routerLink="/client"-->
+      <!--                routerLinkActive="active"-->
+      <!--                [routerLinkActiveOptions]="{ exact: true }"-->
+      <!--                (click)="collapseNavbar()"-->
+      <!--              >-->
+      <!--                <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>-->
+      <!--                <span jhiTranslate="global.menu.entities.insuranceClient">Client</span>-->
+      <!--              </a>-->
+      <!--            </li>-->
+      <!--            <li>-->
+      <!--              <a-->
+      <!--                class="dropdown-item"-->
+      <!--                routerLink="/city"-->
+      <!--                routerLinkActive="active"-->
+      <!--                [routerLinkActiveOptions]="{ exact: true }"-->
+      <!--                (click)="collapseNavbar()"-->
+      <!--              >-->
+      <!--                <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>-->
+      <!--                <span jhiTranslate="global.menu.entities.insuranceCity">City</span>-->
+      <!--              </a>-->
+      <!--            </li>-->
+      <!--            <li>-->
+      <!--              <a-->
+      <!--                class="dropdown-item"-->
+      <!--                routerLink="/governorate"-->
+      <!--                routerLinkActive="active"-->
+      <!--                [routerLinkActiveOptions]="{ exact: true }"-->
+      <!--                (click)="collapseNavbar()"-->
+      <!--              >-->
+      <!--                <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>-->
+      <!--                <span jhiTranslate="global.menu.entities.insuranceGovernorate">Governorate</span>-->
+      <!--              </a>-->
+      <!--            </li>-->
+      <!--            <li>-->
+      <!--              <a-->
+      <!--                class="dropdown-item"-->
+      <!--                routerLink="/client-address"-->
+      <!--                routerLinkActive="active"-->
+      <!--                [routerLinkActiveOptions]="{ exact: true }"-->
+      <!--                (click)="collapseNavbar()"-->
+      <!--              >-->
+      <!--                <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>-->
+      <!--                <span jhiTranslate="global.menu.entities.insuranceClientAddress">Client Address</span>-->
+      <!--              </a>-->
+      <!--            </li>-->
+      <!--            <li>-->
+      <!--              <a-->
+      <!--                class="dropdown-item"-->
+      <!--                routerLink="/claim"-->
+      <!--                routerLinkActive="active"-->
+      <!--                [routerLinkActiveOptions]="{ exact: true }"-->
+      <!--                (click)="collapseNavbar()"-->
+      <!--              >-->
+      <!--                <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>-->
+      <!--                <span jhiTranslate="global.menu.entities.insuranceClaim">Claim</span>-->
+      <!--              </a>-->
+      <!--            </li>-->
+      <!--            <li>-->
+      <!--              <a-->
+      <!--                class="dropdown-item"-->
+      <!--                routerLink="/quote"-->
+      <!--                routerLinkActive="active"-->
+      <!--                [routerLinkActiveOptions]="{ exact: true }"-->
+      <!--                (click)="collapseNavbar()"-->
+      <!--              >-->
+      <!--                <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>-->
+      <!--                <span jhiTranslate="global.menu.entities.insuranceQuote">Quote</span>-->
+      <!--              </a>-->
+      <!--            </li>-->
+      <!--            <li>-->
+      <!--              <a-->
+      <!--                class="dropdown-item"-->
+      <!--                routerLink="/contract"-->
+      <!--                routerLinkActive="active"-->
+      <!--                [routerLinkActiveOptions]="{ exact: true }"-->
+      <!--                (click)="collapseNavbar()"-->
+      <!--              >-->
+      <!--                <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>-->
+      <!--                <span jhiTranslate="global.menu.entities.insuranceContract">Contract</span>-->
+      <!--              </a>-->
+      <!--            </li>-->
+      <!--            <li>-->
+      <!--              <a-->
+      <!--                class="dropdown-item"-->
+      <!--                routerLink="/agency"-->
+      <!--                routerLinkActive="active"-->
+      <!--                [routerLinkActiveOptions]="{ exact: true }"-->
+      <!--                (click)="collapseNavbar()"-->
+      <!--              >-->
+      <!--                <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>-->
+      <!--                <span jhiTranslate="global.menu.entities.insuranceAgency">Agency</span>-->
+      <!--              </a>-->
+      <!--            </li>-->
+      <!--            <li>-->
+      <!--              <a-->
+      <!--                class="dropdown-item"-->
+      <!--                routerLink="/document"-->
+      <!--                routerLinkActive="active"-->
+      <!--                [routerLinkActiveOptions]="{ exact: true }"-->
+      <!--                (click)="collapseNavbar()"-->
+      <!--              >-->
+      <!--                <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>-->
+      <!--                <span jhiTranslate="global.menu.entities.insuranceDocument">Document</span>-->
+      <!--              </a>-->
+      <!--            </li>-->
+      <!--            <li>-->
+      <!--              <a-->
+      <!--                class="dropdown-item"-->
+      <!--                routerLink="/insurance-pack"-->
+      <!--                routerLinkActive="active"-->
+      <!--                [routerLinkActiveOptions]="{ exact: true }"-->
+      <!--                (click)="collapseNavbar()"-->
+      <!--              >-->
+      <!--                <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>-->
+      <!--                <span jhiTranslate="global.menu.entities.insuranceInsurancePack">Insurance Pack</span>-->
+      <!--              </a>-->
+      <!--            </li>-->
+      <!--            <li>-->
+      <!--              <a-->
+      <!--                class="dropdown-item"-->
+      <!--                routerLink="/warranty"-->
+      <!--                routerLinkActive="active"-->
+      <!--                [routerLinkActiveOptions]="{ exact: true }"-->
+      <!--                (click)="collapseNavbar()"-->
+      <!--              >-->
+      <!--                <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>-->
+      <!--                <span jhiTranslate="global.menu.entities.insuranceWarranty">Warranty</span>-->
+      <!--              </a>-->
+      <!--            </li>-->
+      <!--            <li>-->
+      <!--              <a-->
+      <!--                class="dropdown-item"-->
+      <!--                routerLink="/vehicle"-->
+      <!--                routerLinkActive="active"-->
+      <!--                [routerLinkActiveOptions]="{ exact: true }"-->
+      <!--                (click)="collapseNavbar()"-->
+      <!--              >-->
+      <!--                <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>-->
+      <!--                <span jhiTranslate="global.menu.entities.insuranceVehicle">Vehicle</span>-->
+      <!--              </a>-->
+      <!--            </li>-->
+      <!--            &lt;!&ndash; jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here &ndash;&gt;-->
+      <!--          </ul>-->
+      <!--        </li>-->
+      <!--      }-->
       <li
         ngbDropdown
         class="nav-item pointer dropdown"
@@ -279,9 +279,11 @@
           }
         </ul>
       </li>
-      <div class="d-none d-md-block">
-        <a routerLink="/stepper-1" routerLinkActive="d-none" class="btn btn-primary text-white py-2 px-3">Espace Client</a>
-      </div>
+      @if (isHomePage()) {
+        <div class="d-none d-md-block">
+          <a routerLink="/stepper-1" class="btn btn-primary text-white py-2 px-3">Espace Client</a>
+        </div>
+      }
     </ul>
   </div>
 </nav>

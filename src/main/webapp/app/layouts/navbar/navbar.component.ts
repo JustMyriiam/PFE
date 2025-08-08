@@ -18,7 +18,7 @@ import ActiveMenuDirective from './active-menu.directive';
   selector: 'jhi-navbar',
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss',
-  imports: [RouterModule, SharedModule, HasAnyAuthorityDirective, ActiveMenuDirective],
+  imports: [RouterModule, SharedModule, ActiveMenuDirective],
 })
 export default class NavbarComponent implements OnInit {
   inProduction?: boolean;
@@ -86,5 +86,9 @@ export default class NavbarComponent implements OnInit {
 
   toggleNavbar(): void {
     this.isNavbarCollapsed.update(isNavbarCollapsed => !isNavbarCollapsed);
+  }
+
+  isHomePage(): boolean {
+    return this.router.url === '/' || this.router.url === '/home';
   }
 }

@@ -27,16 +27,13 @@ const routes: Routes = [
     loadComponent: () => import('./admin/admin-sidebar/admin-sidebar.component').then(m => m.AdminSidebarComponent),
   },
   {
-    path: 'stepper-1',
-    data: {
-      authorities: [Authority.ADMIN, Authority.USER],
-    },
-    canActivate: [UserRouteAccessService],
-    loadComponent: () => import('./subscription/stepper-1/stepper-1.component').then(m => m.Stepper1Component),
+    path: '',
+    outlet: 'user-sidebar',
+    loadComponent: () => import('./user/user-sidebar/user-sidebar.component').then(m => m.UserSidebarComponent),
   },
   {
     path: 'agency',
-    loadComponent: () => import('./client/agency/agency.component').then(m => m.AgencyComponent),
+    loadComponent: () => import('./user/agency/agency.component').then(m => m.AgencyComponent),
   },
   {
     path: 'admin',
@@ -47,12 +44,12 @@ const routes: Routes = [
     loadChildren: () => import('./admin/admin.routes'),
   },
   {
-    path: 'client',
+    path: 'user',
     data: {
       authorities: [Authority.USER],
     },
     canActivate: [UserRouteAccessService],
-    loadChildren: () => import('./client/client.routes'),
+    loadChildren: () => import('./user/user.routes'),
   },
   {
     path: '',

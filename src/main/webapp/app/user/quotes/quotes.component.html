@@ -1,0 +1,46 @@
+<div class="p-5 bg-white rounded-4">
+  <h2 id="page-heading">Contracts</h2>
+
+  @if (quotes.length === 0) {
+    <div class="alert alert-warning" id="no-result">No quotes found.</div>
+  } @else {
+    <div class="table-responsive" id="entities">
+      <table class="table" aria-describedby="page-heading">
+        <thead>
+          <tr>
+            <th>Devis #</th>
+            <th>Date</th>
+            <th>Montant Estimé</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (quote of quotes; track quote.id) {
+            <tr>
+              <td>{{ quote.id }}</td>
+              <td>{{ quote.date }}</td>
+              <td>{{ quote.estimatedAmount }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+
+  @if (quotes.length > 0) {
+    <div class="d-flex justify-content-center mt-3">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }" />
+    </div>
+
+    <div class="d-flex justify-content-center mt-2">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [(page)]="page"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="navigateToPage($event)"
+      ></ngb-pagination>
+    </div>
+  }
+</div>

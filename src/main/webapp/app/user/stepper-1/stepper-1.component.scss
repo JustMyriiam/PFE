@@ -1,5 +1,5 @@
-@import 'bootstrap/scss/functions';
-@import 'bootstrap/scss/variables';
+@import '../../../../../../node_modules/bootstrap/scss/functions';
+@import '../../../../../../node_modules/bootstrap/scss/variables';
 
 //$primary: #0278f6;
 //$grey: #d3d3d3;
@@ -56,6 +56,6 @@
 }
 
 .progress {
-  width: 97%;
-  height: 1vh;
+  //width: 97%;
+  height: 1.5vh;
 }

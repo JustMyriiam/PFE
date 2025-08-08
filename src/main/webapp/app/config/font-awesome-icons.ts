@@ -33,6 +33,7 @@ import {
   faPencilAlt,
   faPhone,
   faPlus,
+  faPlusCircle,
   faQuoteLeft,
   faRoad,
   faSave,
@@ -119,5 +120,6 @@ export const fontAwesomeIcons = [
   faDollarSign,
   faChevronUp,
   faChevronDown,
+  faPlusCircle,
   // jhipster-needle-add-icon-import
 ];

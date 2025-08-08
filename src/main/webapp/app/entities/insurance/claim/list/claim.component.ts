@@ -16,6 +16,7 @@ import { IClaim } from '../claim.model';
 
 import { ClaimService, EntityArrayResponseType } from '../service/claim.service';
 import { ClaimDeleteDialogComponent } from '../delete/claim-delete-dialog.component';
+import HasAnyAuthorityDirective from 'app/shared/auth/has-any-authority.directive';
 
 @Component({
   selector: 'jhi-claim',
@@ -29,6 +30,7 @@ import { ClaimDeleteDialogComponent } from '../delete/claim-delete-dialog.compon
     FormatMediumDatePipe,
     FilterComponent,
     ItemCountComponent,
+    HasAnyAuthorityDirective,
   ],
 })
 export class ClaimComponent implements OnInit {

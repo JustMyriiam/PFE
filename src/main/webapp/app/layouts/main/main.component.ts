@@ -61,15 +61,9 @@ export default class MainComponent implements OnInit {
     return this.routesWithSidebarPrefix.some(route => currentUrl.startsWith(route)) || this.routesWithSidebarExact.includes(currentUrl);
   }
 
-  showClientSidebar(): boolean {
+  showUserSidebar(): boolean {
     const currentUrl = this.router.url;
 
-    return currentUrl.startsWith('/client');
-  }
-
-  showSidebar(): boolean {
-    const currentUrl = this.router.url;
-
-    return this.routesWithSidebarPrefix.some(route => currentUrl.startsWith(route));
+    return currentUrl.startsWith('/user');
   }
 }

@@ -78,17 +78,20 @@ export class AccountService {
   }
 
   private navigateToStoredUrl(): void {
-    // previousState can be set in the authExpiredInterceptor and in the userRouteAccessService
-    // if login is successful, go to stored previousState and clear previousState
+    //previousState can be set in the authExpiredInterceptor and in the userRouteAccessService
+    //if login is successful, go to stored previousState and clear previousState
     if (this.hasAnyAuthority(['ROLE_ADMIN'])) {
       this.stateStorageService.clearUrl();
       this.router.navigate(['/admin/dashboard']);
-      return;
-    }
-    const previousUrl = this.stateStorageService.getUrl();
-    if (previousUrl) {
+    } else if (this.hasAnyAuthority(['ROLE_USER'])) {
       this.stateStorageService.clearUrl();
-      this.router.navigateByUrl(previousUrl);
+      this.router.navigate(['/user/dashboard']);
+    } else {
+      const previousUrl = this.stateStorageService.getUrl();
+      if (previousUrl) {
+        this.stateStorageService.clearUrl();
+        this.router.navigateByUrl(previousUrl);
+      }
     }
   }
 }

@@ -2,8 +2,11 @@ import { Routes } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ContractsComponent } from './contracts/contracts.component';
 import { QuotesComponent } from './quotes/quotes.component';
-import { ClaimsComponent } from './claims/claims.component';
 import { AgencyComponent } from './agency/agency.component';
+import { Stepper1Component } from './stepper-1/stepper-1.component';
+import { ClaimsComponent } from './claims/claims.component';
+import { AddClaimComponent } from './add-claim/add-claim.component';
+import { AddQuoteComponent } from './add-quote/add-quote.component';
 
 const routes: Routes = [
   {
@@ -12,17 +15,17 @@ const routes: Routes = [
     title: 'Tableau de bord',
   },
   {
-    path: 'contract',
+    path: 'contracts',
     component: ContractsComponent,
     title: 'Contrats',
   },
   {
-    path: 'quote',
+    path: 'quotes',
     component: QuotesComponent,
     title: 'Devis',
   },
   {
-    path: 'claim',
+    path: 'claims',
     component: ClaimsComponent,
     title: 'Réclamation',
   },
@@ -32,14 +35,29 @@ const routes: Routes = [
     title: 'Agences',
   },
   {
-    path: '',
-    redirectTo: 'dashboard',
-    pathMatch: 'full',
+    path: 'addQuote',
+    component: AddQuoteComponent,
+    title: 'add Quote',
   },
   {
-    path: '**',
-    redirectTo: 'dashboard',
+    path: 'addClaim',
+    component: AddClaimComponent,
+    title: 'add claim',
   },
+  {
+    path: 'addContract',
+    component: Stepper1Component,
+    title: 'add Contract',
+  },
+  // {
+  //   path: '',
+  //   redirectTo: 'dashboard',
+  //   pathMatch: 'full',
+  // },
+  // {
+  //   path: '**',
+  //   redirectTo: 'dashboard',
+  // },
 ];
 
 export default routes;

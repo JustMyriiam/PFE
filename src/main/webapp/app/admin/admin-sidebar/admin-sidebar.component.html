@@ -22,6 +22,9 @@
           >
             <fa-icon icon="cogs" class="sidebar-icon me-3"></fa-icon>
             <span jhiTranslate="">Gestion</span>
+            <span *ngIf="pendingClaimCount() > 0" class="badge shadow-sm text-light ms-1">
+              {{ pendingClaimCount() }}
+            </span>
             <fa-icon [icon]="isGestionOpen ? 'chevron-up' : 'chevron-down'" class=""></fa-icon>
           </a>
 
@@ -50,6 +53,9 @@
               <li>
                 <a class="nav-link py-2" routerLink="/claim" routerLinkActive="active">
                   <span jhiTranslate="global.menu.entities.insuranceClaim">Claim</span>
+                  <span *ngIf="pendingClaimCount() > 0" class="badge text-light ms-1">
+                    {{ pendingClaimCount() }}
+                  </span>
                 </a>
               </li>
               <li>
