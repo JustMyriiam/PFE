@@ -1,0 +1,329 @@
+<h2 class="pb-4">Contrat de souscription</h2>
+<p-stepper [(value)]="activeStep" class="d-flex flex-column justify-content-center align-items-center mb-5">
+  <p-step-list class="w-75 mb-5">
+    <p-step [value]="1" class="d-flex flex-row flex-grow-1">
+      <ng-template #content let-activateCallback="activateCallback" let-value="value">
+        <button class="bg-transparent border-0 d-flex flex-column align-items-center" (click)="activateCallback()">
+          <span
+            class="rounded-circle border border-2 d-flex align-items-center justify-content-center"
+            style="width: 3rem; height: 3rem"
+            [ngClass]="{
+              'bg-primary text-white border-primary': value < activeStep,
+              'border-primary text-primary': value === activeStep,
+              'border-secondary text-dark': value > activeStep,
+            }"
+          >
+            <fa-icon class="fs-5" icon="user"></fa-icon>
+          </span>
+        </button>
+      </ng-template>
+    </p-step>
+
+    <p-step [value]="2" class="d-flex flex-row flex-grow-1">
+      <ng-template #content let-activateCallback="activateCallback" let-value="value">
+        <button class="bg-transparent border-0 d-flex flex-column align-items-center" (click)="activateCallback()">
+          <span
+            class="rounded-circle border border-2 d-flex align-items-center justify-content-center"
+            style="width: 3rem; height: 3rem"
+            [ngClass]="{
+              'bg-primary text-white border-primary': value < activeStep,
+              'border-primary text-primary': value === activeStep,
+              'border-secondary text-dark': value > activeStep,
+            }"
+          >
+            <fa-icon icon="car" class="fs-5"></fa-icon>
+          </span>
+        </button>
+      </ng-template>
+    </p-step>
+
+    <p-step [value]="3" class="d-flex flex-row">
+      <ng-template #content let-activateCallback="activateCallback" let-value="value">
+        <button class="bg-transparent border-0 d-flex flex-column align-items-center" (click)="activateCallback()">
+          <span
+            class="rounded-circle border border-2 d-flex align-items-center justify-content-center"
+            style="width: 3rem; height: 3rem"
+            [ngClass]="{
+              'bg-primary text-white border-primary': value < activeStep,
+              'border-primary text-primary': value === activeStep,
+              'border-secondary text-dark': value > activeStep,
+            }"
+          >
+            <fa-icon icon="file-contract" class="fs-5"></fa-icon>
+          </span>
+        </button>
+      </ng-template>
+    </p-step>
+
+    <p-step [value]="4" class="d-flex flex-row">
+      <ng-template #content let-activateCallback="activateCallback" let-value="value">
+        <button class="bg-transparent border-0 d-flex flex-column align-items-center" (click)="activateCallback()">
+          <span
+            class="rounded-circle border border-2 d-flex align-items-center justify-content-center"
+            style="width: 3rem; height: 3rem"
+            [ngClass]="{
+              'bg-primary text-white border-primary': value < activeStep,
+              'border-primary text-primary': value === activeStep,
+              'border-secondary text-dark': value > activeStep,
+            }"
+          >
+            <fa-icon class="fs-5" icon="check"></fa-icon>
+          </span>
+        </button>
+      </ng-template>
+    </p-step>
+  </p-step-list>
+
+  <div class="container-fluid shadow-sm h-100 w-75 mb-0">
+    <p-step-panels>
+      <p-step-panel [value]="1">
+        <ng-template #content let-activateCallback="activateCallback">
+          <div class="flex flex-col h-48">
+            <div class="">
+              <form [formGroup]="form" class="form px-3 py-1">
+                <formly-form [model]="form.value" [fields]="fields" [form]="form"></formly-form>
+              </form>
+            </div>
+          </div>
+          <div class="d-flex justify-content-end mx-4 my-2">
+            <button class="btn btn-primary rounded-pill shadow-5" (click)="activateCallback(2)">Next</button>
+          </div>
+        </ng-template>
+      </p-step-panel>
+
+      <p-step-panel [value]="2">
+        <ng-template #content let-activateCallback="activateCallback">
+          <div class="flex flex-col h-48">
+            <div class="">
+              <form [formGroup]="form" class="form">
+                <formly-form [model]="form.value" [fields]="fieldsStep2" [form]="form"></formly-form>
+              </form>
+            </div>
+          </div>
+          <div class="d-flex justify-content-between mx-4 my-2">
+            <button class="btn btn-outline-primary rounded-pill shadow-5" (click)="activateCallback(1)">Back</button>
+            <button class="btn btn-primary rounded-pill shadow-5" (click)="activateCallback(3)">Next</button>
+          </div>
+        </ng-template>
+      </p-step-panel>
+
+      <p-step-panel [value]="3">
+        <ng-template #content let-activateCallback="activateCallback">
+          <div class="flex flex-col h-48">
+            <div class="">
+              <div class="container py-5">
+                <h2 class="text-center mb-4">Choose Your WarrantyPack</h2>
+                <form [formGroup]="form" class="form">
+                  <formly-form [fields]="pack" [model]="form.value" [form]="form"></formly-form>
+                </form>
+              </div>
+            </div>
+            <div class="d-flex justify-content-between mx-4 my-2">
+              <button class="btn btn-outline-primary rounded-pill shadow-5" (click)="activateCallback(2)">Back</button>
+              <button class="btn btn-primary rounded-pill shadow-5" (click)="confirmContract(); activateCallback(4)">
+                Calculer le prix
+              </button>
+            </div>
+          </div>
+        </ng-template>
+      </p-step-panel>
+
+      <p-step-panel [value]="4">
+        <ng-template #content let-activateCallback="activateCallback">
+          <div class="d-flex flex-column p-5">
+            <!--            <div class="contract-document bg-white border rounded-3 shadow-lg p-5 mx-auto" style="max-width: 800px;">-->
+            <div class="text-center mb-5">
+              <h2 class="text-primary fw-bold mb-2">CONTRAT D'ASSURANCE AUTOMOBILE</h2>
+              <div class="border-bottom border-primary mx-auto mb-3" style="width: 200px; height: 3px"></div>
+            </div>
+
+            <div *ngIf="form.value.client || form.value.vehicle" class="contract-content">
+              <!-- Client Information Section -->
+              <div *ngIf="form.value.client" class="mb-5">
+                <div class="section-header bg-light p-3 rounded-top">
+                  <h4 class="text-primary mb-0 d-flex align-items-center">
+                    <fa-icon icon="user" class="me-2"></fa-icon>
+                    INFORMATIONS DU SOUSCRIPTEUR
+                  </h4>
+                </div>
+                <div class="section-content border border-top-0 rounded-bottom p-4">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="info-item mb-3">
+                        <label class="text-muted small text-uppercase">Nom</label>
+                        <div class="fw-bold">{{ form.value.client?.lastName || 'Non renseigné' }}</div>
+                      </div>
+                      <div class="info-item mb-3">
+                        <label class="text-muted small text-uppercase">Statut Marital</label>
+                        <div class="fw-bold">{{ form.value.client?.maritalStatus || 'Non renseigné' }}</div>
+                      </div>
+                      <div class="info-item mb-3">
+                        <label class="text-muted small text-uppercase">Titre Professionnel</label>
+                        <div class="fw-bold">{{ form.value.client?.jobTitle || 'Non renseigné' }}</div>
+                      </div>
+                      <div class="info-item mb-3">
+                        <label class="text-muted small text-uppercase">Agence</label>
+                        <div class="fw-bold">{{ form.value.client?.agency || 'Non renseigné' }}</div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="info-item mb-3">
+                        <label class="text-muted small text-uppercase">Prénom</label>
+                        <div class="fw-bold">{{ form.value.client?.firstName || 'Non renseigné' }}</div>
+                      </div>
+                      <div class="info-item mb-3">
+                        <label class="text-muted small text-uppercase">Statut Professionnel</label>
+                        <div class="fw-bold">{{ form.value.client?.professionalStatus || 'Non renseigné' }}</div>
+                      </div>
+                      <div class="info-item mb-3">
+                        <label class="text-muted small text-uppercase">Adresse Client</label>
+                        <div class="fw-bold">{{ form.value.client?.clientAddress || 'Non renseigné' }}</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Vehicle Information Section -->
+              <div *ngIf="form.value.vehicle" class="mb-5">
+                <div class="section-header bg-light p-3 rounded-top">
+                  <h4 class="text-primary mb-0 d-flex align-items-center">
+                    <fa-icon icon="car" class="me-2"></fa-icon>
+                    INFORMATIONS DU VÉHICULE
+                  </h4>
+                </div>
+                <div class="section-content border border-top-0 rounded-bottom p-4">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="info-item mb-3">
+                        <label class="text-muted small text-uppercase">Matricule</label>
+                        <div class="fw-bold">{{ form.value.vehicle?.registrationNumber || 'Non renseigné' }}</div>
+                      </div>
+                      <div class="info-item mb-3">
+                        <label class="text-muted small text-uppercase">Marque</label>
+                        <div class="fw-bold">{{ form.value.vehicle?.brand || 'Non renseigné' }}</div>
+                      </div>
+                      <div class="info-item mb-3">
+                        <label class="text-muted small text-uppercase">Date de première immatriculation</label>
+                        <div class="fw-bold">{{ form.value.vehicle?.firstRegistrationDate || 'Non renseigné' }}</div>
+                      </div>
+                      <div class="info-item mb-3">
+                        <label class="text-muted small text-uppercase">Kilométrage</label>
+                        <div class="fw-bold">{{ form.value.vehicle?.mileage || 'Non renseigné' }} km</div>
+                      </div>
+                      <div class="info-item mb-3">
+                        <label class="text-muted small text-uppercase">Énergie</label>
+                        <div class="fw-bold">{{ form.value.vehicle?.energy || 'Non renseigné' }}</div>
+                      </div>
+                      <div class="info-item mb-3">
+                        <label class="text-muted small text-uppercase">Usage du véhicule</label>
+                        <div class="fw-bold">{{ form.value.vehicle?.usage || 'Non renseigné' }}</div>
+                      </div>
+                      <div class="info-item mb-3">
+                        <label class="text-muted small text-uppercase">Date d'expiration</label>
+                        <div class="fw-bold">{{ form.value.vehicle?.expirationDate || 'Non renseigné' }}</div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="info-item mb-3">
+                        <label class="text-muted small text-uppercase">Type d'immatriculation</label>
+                        <div class="fw-bold">{{ form.value.vehicle?.registrationType || 'Non renseigné' }}</div>
+                      </div>
+                      <div class="info-item mb-3">
+                        <label class="text-muted small text-uppercase">Modèle</label>
+                        <div class="fw-bold">{{ form.value.vehicle?.model || 'Non renseigné' }}</div>
+                      </div>
+                      <div class="info-item mb-3">
+                        <label class="text-muted small text-uppercase">Puissance fiscale</label>
+                        <div class="fw-bold">{{ form.value.vehicle?.fiscalPower || 'Non renseigné' }} CV</div>
+                      </div>
+                      <div class="info-item mb-3">
+                        <label class="text-muted small text-uppercase">Couleur</label>
+                        <div class="fw-bold">{{ form.value.vehicle?.color || 'Non renseigné' }}</div>
+                      </div>
+                      <div class="info-item mb-3">
+                        <label class="text-muted small text-uppercase">Boîte de vitesse</label>
+                        <div class="fw-bold">{{ form.value.vehicle?.gearbox || 'Non renseigné' }}</div>
+                      </div>
+                      <div class="info-item mb-3">
+                        <label class="text-muted small text-uppercase">État de la visite technique</label>
+                        <div class="fw-bold">{{ form.value.vehicle?.technicalInspectionStatus || 'Non renseigné' }}</div>
+                      </div>
+                      <div class="info-item mb-3">
+                        <label class="text-muted small text-uppercase">Véhicule Neuf</label>
+                        <div class="fw-bold">{{ form.value.vehicle?.isNew ? 'Oui' : 'Non' }}</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Insurance Pack Section -->
+              <div *ngIf="form.value.name" class="mb-5">
+                <div class="section-header bg-primary text-white p-3 rounded-top">
+                  <h4 class="mb-0 d-flex align-items-center">
+                    <fa-icon icon="shield-alt" class="me-2"></fa-icon>
+                    PACK D'ASSURANCE SÉLECTIONNÉ
+                  </h4>
+                </div>
+                <div class="section-content border border-top-0 rounded-bottom p-4 bg-light">
+                  <div class="text-center">
+                    <div class="badge bg-success fs-6 px-4 py-2">Pack Premium</div>
+                  </div>
+                </div>
+                <div class="text-center mb-4">
+                  <h3 class="text-primary">Prix Total: {{ getCalculatedPrice() }}</h3>
+                </div>
+              </div>
+
+              <!-- Signature Section -->
+              <div class="signature-section mt-5 pt-4 border-top">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="text-center">
+                      <p class="mb-4"><strong>Signature de l'Assuré</strong></p>
+                      <div class="signature-box border rounded p-4 mb-2" style="height: 80px; background-color: #f8f9fa">
+                        <small class="text-muted">Signature électronique requise</small>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="text-center">
+                      <p class="mb-4"><strong>Signature de l'Assureur</strong></p>
+                      <div class="signature-box border rounded p-4 mb-2" style="height: 80px; background-color: #f8f9fa">
+                        <small class="text-muted">Signature électronique</small>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Footer -->
+              <div class="contract-footer text-center mt-5 pt-4 border-top">
+                <p class="small text-muted mb-1">Ce contrat est soumis aux conditions générales d'assurance automobile.</p>
+                <p class="small text-muted">En signant ce document, vous acceptez les termes et conditions de votre police d'assurance.</p>
+              </div>
+            </div>
+          </div>
+          <!--          </div>-->
+          <div class="d-flex justify-content-between mx-4 my-2">
+            <button class="btn btn-outline-primary rounded-pill shadow-sm" (click)="activateCallback(3)">Back</button>
+            <button class="btn btn-success rounded-pill shadow-sm px-4" (click)="confirmContract()">Confirmer Contrat</button>
+          </div>
+        </ng-template>
+      </p-step-panel>
+    </p-step-panels>
+    <div class="progress p-0 mb-2">
+      <div
+        class="progress-bar bg-primary"
+        role="progressbar"
+        [style.width.%]="getStepProgress(activeStep)"
+        [attr.aria-valuenow]="getStepProgress(activeStep)"
+        aria-valuemin="0"
+        aria-valuemax="100"
+      >
+        {{ getStepProgress(activeStep) }}%
+      </div>
+    </div>
+  </div>
+</p-stepper>

@@ -1,0 +1,119 @@
+<aside
+  data-cy="sidebar"
+  class="sidebar d-flex flex-column flex-shrink-0 bg-white collapsed px-1 min-vh-100"
+  [class.collapsed]="isCollapsed"
+>
+  <div class="container-fluid">
+    <fa-icon icon="bars" class="sidebar-toggler fs-4 px-3 mb-5 my-5" (click)="toggleSidebar()"></fa-icon>
+    <div class="">
+      <ul class="navbar-nav">
+        <!-- Dashboard -->
+        <li class="nav-item mb-3">
+          <a class="nav-link px-3 py-3" routerLink="/user/dashboard" routerLinkActive="active">
+            <fa-icon icon="tachometer-alt" class="sidebar-icon me-2"></fa-icon>
+            @if (!isCollapsed) {
+              <span class="sidebar-text">Tableau de bord</span>
+            }
+          </a>
+        </li>
+
+        <!-- Contracts with Submenu -->
+        <li class="nav-item mb-3">
+          <!-- Toggle Button -->
+          <button
+            class="nav-link btn btn-link w-100 text-start px-3 py-3 d-flex justify-content-between align-items-center border-0"
+            type="button"
+            (click)="isContractsOpen = !isContractsOpen"
+            [attr.aria-expanded]="isContractsOpen"
+          >
+            <div class="d-flex align-items-center">
+              <fa-icon icon="file-invoice-dollar" class="me-2"></fa-icon>
+              <span class="sidebar-text">Contrats</span>
+            </div>
+            <fa-icon icon="chevron-up"></fa-icon>
+          </button>
+
+          <!-- Submenu -->
+          <div [ngbCollapse]="!isContractsOpen">
+            <ul class="list-unstyled ps-4 mt-2">
+              <li class="mb-1">
+                <a class="nav-link px-3 py-2 small text-decoration-none" routerLink="/user/addContract" routerLinkActive="active">
+                  Ajouter un contrat
+                </a>
+              </li>
+              <li class="mb-1">
+                <a class="nav-link px-3 py-2 small text-decoration-none" routerLink="/user/contracts" routerLinkActive="active">
+                  Liste des contrats
+                </a>
+              </li>
+            </ul>
+          </div>
+        </li>
+
+        <!-- Quotes with Submenu -->
+        <li class="nav-item mb-3">
+          <button
+            class="nav-link btn btn-link w-100 text-start px-3 py-3 d-flex justify-content-between align-items-center border-0"
+            type="button"
+            (click)="isQuotesOpen = !isQuotesOpen"
+            [attr.aria-expanded]="isQuotesOpen"
+          >
+            <div class="d-flex align-items-center">
+              <fa-icon icon="calculator" class="sidebar-icon me-2"></fa-icon>
+              <span class="sidebar-text" jhiTranslate="global.menu.entities.insuranceQuote">Devis</span>
+            </div>
+            <fa-icon icon="chevron-up"></fa-icon>
+          </button>
+
+          <!-- Submenu -->
+          <div [ngbCollapse]="!isQuotesOpen">
+            <ul class="list-unstyled ps-4 mt-2">
+              <li class="mb-1">
+                <a class="nav-link px-3 py-2 small text-decoration-none" routerLink="/user/addQuote"> Ajouter un devis </a>
+              </li>
+              <li class="mb-1">
+                <a class="nav-link px-3 py-2 small text-decoration-none" routerLink="/user/quotes"> Liste des devis </a>
+              </li>
+            </ul>
+          </div>
+        </li>
+
+        <li class="nav-item mb-3">
+          <button
+            class="nav-link btn btn-link w-100 text-start px-3 py-3 d-flex justify-content-between align-items-center border-0"
+            type="button"
+            (click)="isClaimsOpen = !isClaimsOpen"
+            [attr.aria-expanded]="isClaimsOpen"
+          >
+            <div class="d-flex align-items-center">
+              <fa-icon icon="exclamation-circle" class="sidebar-icon me-2"></fa-icon>
+              <span class="sidebar-text" jhiTranslate="global.menu.entities.insuranceClaim">Réclamations</span>
+            </div>
+            <fa-icon icon="chevron-up"></fa-icon>
+          </button>
+
+          <!-- Submenu -->
+          <div [ngbCollapse]="!isClaimsOpen">
+            <ul class="list-unstyled ps-4 mt-2">
+              <li class="mb-1">
+                <a class="nav-link px-3 py-2 small text-decoration-none" routerLink="/user/addClaim"> Ajouter une réclamation </a>
+              </li>
+              <li class="mb-1">
+                <a class="nav-link px-3 py-2 small text-decoration-none" routerLink="/user/claims"> Liste des réclamations </a>
+              </li>
+            </ul>
+          </div>
+        </li>
+
+        <li class="nav-item mb-3">
+          <a class="nav-link px-3 py-3" routerLink="/user/agency" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+            <fa-icon icon="location-dot" class="sidebar-icon me-2"></fa-icon>
+            @if (!isCollapsed) {
+              <span class="sidebar-text" jhiTranslate="global.menu.entities.insuranceAgency">Agences</span>
+            }
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</aside>

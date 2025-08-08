@@ -1,0 +1,13 @@
+<div *ngIf="alertMessage" class="alert alert-{{ alertType }} alert-dismissible fade show" role="alert">
+  {{ alertMessage }}
+  <button type="button" class="btn-close" (click)="closeAlert()" aria-label="Fermer"></button>
+</div>
+<div class="container-fluid p-3 p-md-5 rounded-4 bg-white shadow-sm">
+  <h2 class="mb-3 mb-md-4">Nouvelle réclamation</h2>
+  <form [formGroup]="form" (ngSubmit)="submit()" novalidate>
+    <formly-form [form]="form" [fields]="fields" [model]="model" [options]="{ formState: { showError: true } }"></formly-form>
+    <div class="mt-3 mt-md-4 d-flex justify-content-end">
+      <button type="submit" class="btn-primary btn w-100 w-md-auto">Soumettre la réclamation</button>
+    </div>
+  </form>
+</div>
